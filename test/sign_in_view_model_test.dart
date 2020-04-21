@@ -1,10 +1,10 @@
 import 'dart:async';
 
+import 'package:trust_ping_app/app/home/models/user.dart';
 import 'package:trust_ping_app/app/sign_in/sign_in_view_model.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:trust_ping_app/services/firebase_auth_service.dart';
 
 import 'mocks.dart';
 

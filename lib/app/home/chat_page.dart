@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:trust_ping_app/common_widgets/list_items_builder.dart';
-import 'package:trust_ping_app/services/firebase_auth_service.dart';
 import 'package:trust_ping_app/services/firestore_database.dart';
 
-import 'models.dart';
+import 'models/chat.dart';
+import 'models/message.dart';
+import 'models/user.dart';
 
 class ChatPage extends StatelessWidget {
-  const ChatPage({this.chat});
   final Chat chat;
+  const ChatPage({this.chat});
 
   @override
   Widget build(BuildContext context) {
-    String myUserId = Provider.of<User>(context, listen: false).uid;
+    String myUserID = Provider.of<User>(context, listen: false).uid;
     return Scaffold(
       appBar: AppBar(
-        title: Text(chat.otherParticipant(myUserId)),
+        title: Text(chat.otherParticipant(myUserID)),
       ),
       body: _buildBody(context),
     );
@@ -52,19 +53,52 @@ class ChatPage extends StatelessWidget {
 
 /// A fancy text input field to compose a message
 class MessageComposer extends StatefulWidget {
-  const MessageComposer({this.conversationID});
   final String conversationID;
+  const MessageComposer({this.conversationID});
 
   @override
   _State createState() => _State(conversationID: conversationID);
 }
 
-class _State extends State<MessageComposer> {
-  _State({this.conversationID});
-  final String conversationID;
+class MessageListTile extends StatelessWidget {
+  final Message message;
+  final String userID;
+  const MessageListTile({this.message, this.userID});
 
+  @override
+  Widget build(BuildContext context) {
+    final alignment =
+        (userID == message.author) ? Alignment.topRight : Alignment.topLeft;
+    final textAlign =
+        (userID == message.author) ? TextAlign.right : TextAlign.left;
+    final left = (userID == message.author) ? 48.0 : 0.0;
+    final right = (userID == message.author) ? 0.0 : 48.0;
+
+    return Padding(
+      padding: EdgeInsets.fromLTRB(left, 0, right, 0),
+      child: Card(
+        child: Padding(
+          child: Align(
+            child: Text(message.body, textAlign: textAlign),
+            alignment: alignment,
+          ),
+          padding: const EdgeInsets.all(10.0),
+        ),
+        elevation: 1.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+      ),
+    );
+  }
+}
+
+class _State extends State<MessageComposer> {
+  final String conversationID;
   final TextEditingController _textController = TextEditingController();
+
   bool _isComposing = false;
+  _State({this.conversationID});
 
   @override
   Widget build(BuildContext context) {
@@ -120,38 +154,5 @@ class _State extends State<MessageComposer> {
       body: text,
     );
     db.setMessage(conversationID, message);
-  }
-}
-
-class MessageListTile extends StatelessWidget {
-  const MessageListTile({this.message, this.userID});
-  final Message message;
-  final String userID;
-
-  @override
-  Widget build(BuildContext context) {
-    final alignment =
-        (userID == message.author) ? Alignment.topRight : Alignment.topLeft;
-    final textAlign =
-        (userID == message.author) ? TextAlign.right : TextAlign.left;
-    final left = (userID == message.author) ? 48.0 : 0.0;
-    final right = (userID == message.author) ? 0.0 : 48.0;
-
-    return Padding(
-      padding: EdgeInsets.fromLTRB(left, 0, right, 0),
-      child: Card(
-        child: Padding(
-          child: Align(
-            child: Text(message.body, textAlign: textAlign),
-            alignment: alignment,
-          ),
-          padding: const EdgeInsets.all(10.0),
-        ),
-        elevation: 1.0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12.0),
-        ),
-      ),
-    );
   }
 }

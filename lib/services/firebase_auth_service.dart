@@ -1,20 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
-
-@immutable
-class User {
-  const User({
-    @required this.uid,
-    this.email,
-    this.photoUrl,
-    this.displayName,
-  });
-
-  final String uid;
-  final String email;
-  final String photoUrl;
-  final String displayName;
-}
+import 'package:trust_ping_app/app/home/models/user.dart';
 
 class FirebaseAuthService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;

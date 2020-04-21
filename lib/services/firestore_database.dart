@@ -1,8 +1,8 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
-import 'package:trust_ping_app/app/home/models.dart';
+import 'package:trust_ping_app/app/home/models/chat.dart';
+import 'package:trust_ping_app/app/home/models/message.dart';
 
 String documentIdFromCurrentDate() => DateTime.now().toIso8601String();
 

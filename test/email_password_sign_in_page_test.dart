@@ -1,3 +1,4 @@
+import 'package:trust_ping_app/app/home/models/user.dart';
 import 'package:trust_ping_app/app/sign_in/email_password/email_password_sign_in_page.dart';
 import 'package:trust_ping_app/constants/strings.dart';
 import 'package:flutter/material.dart';

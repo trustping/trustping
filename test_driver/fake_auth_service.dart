@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:meta/meta.dart';
 import 'package:random_string/random_string.dart' as random;
+import 'package:trust_ping_app/app/home/models/user.dart';
 import 'package:trust_ping_app/services/firebase_auth_service.dart';
 
 /// Fake authentication service to be used for testing the UI

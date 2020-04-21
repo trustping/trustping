@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:trust_ping_app/app/home/models/user.dart';
 import 'package:trust_ping_app/common_widgets/avatar.dart';
 import 'package:trust_ping_app/common_widgets/platform_alert_dialog.dart';
 import 'package:trust_ping_app/common_widgets/platform_exception_alert_dialog.dart';

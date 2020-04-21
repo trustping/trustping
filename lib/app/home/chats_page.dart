@@ -4,9 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:trust_ping_app/common_widgets/list_items_builder.dart';
 import 'package:trust_ping_app/routing/router.gr.dart';
 import 'package:trust_ping_app/services/firestore_database.dart';
-import 'package:trust_ping_app/services/firebase_auth_service.dart';
 
-import 'models.dart';
+import 'models/chat.dart';
+import 'models/user.dart';
 
 // Show an active conversatin
 class ChatsPage extends StatelessWidget {
@@ -56,7 +56,6 @@ class ChatsPage extends StatelessWidget {
     final chat = Chat(
       id: documentID,
       participants: [user.uid, "otherPersonsUID"],
-      messages: null,
     );
     await db.setChat(chat);
 
