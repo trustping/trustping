@@ -4,7 +4,8 @@ import 'package:trust_ping_app/common_widgets/list_items_builder.dart';
 import 'package:trust_ping_app/services/firebase_auth_service.dart';
 import 'package:trust_ping_app/services/firestore_database.dart';
 
-import 'models.dart';
+import 'models/chat.dart';
+import 'models/message.dart';
 
 class ChatPage extends StatelessWidget {
   const ChatPage({this.chat});

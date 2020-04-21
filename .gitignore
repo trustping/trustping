@@ -45,6 +45,9 @@ linked_*.ds
 unlinked.ds
 unlinked_spec.ds
 .flutter-plugins-dependencies
+# Freezed and Router
+*.freezed.dart
+*.gr.dart
 
 # Android related
 **/android/**/gradle-wrapper.jar
@@ -94,3 +97,4 @@ unlinked_spec.ds
 # Firebase configuration files
 ios/Runner/GoogleService-Info.plist
 android/app/google-services.json
+
