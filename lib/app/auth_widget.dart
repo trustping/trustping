@@ -1,7 +1,8 @@
 import 'package:trust_ping_app/app/home/chats_page.dart';
 import 'package:trust_ping_app/app/sign_in/sign_in_page.dart';
 import 'package:flutter/material.dart';
-import 'package:trust_ping_app/services/firebase_auth_service.dart';
+
+import 'home/models/user.dart';
 
 /// Builds the signed-in or non signed-in UI, depending on the user snapshot.
 ///

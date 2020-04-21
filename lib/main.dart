@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 import 'package:trust_ping_app/services/firestore_database.dart';
 import 'package:trust_ping_app/services/firebase_auth_service.dart';
 
+import 'app/home/models/user.dart';
+
 void main() {
   runApp(
     MyApp(

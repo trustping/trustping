@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:trust_ping_app/services/firestore_database.dart';
 import 'package:trust_ping_app/services/firebase_auth_service.dart';
 
+import 'home/models/user.dart';
+
 /// Used to create user-dependent objects that need to be accessible by all widgets.
 ///
 /// Check out main.dart for an explanation of the widget tree.

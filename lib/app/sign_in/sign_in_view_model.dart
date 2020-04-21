@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
+import 'package:trust_ping_app/app/home/models/user.dart';
 import 'package:trust_ping_app/services/firebase_auth_service.dart';
 
 class SignInViewModel with ChangeNotifier {
