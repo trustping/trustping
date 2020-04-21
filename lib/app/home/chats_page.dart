@@ -21,7 +21,13 @@ class ChatsPage extends StatelessWidget {
             onPressed: () {
               ExtendedNavigator.of(context).pushNamed(Routes.accountPage);
             },
-          )
+          ),
+          IconButton(
+            icon: Icon(Icons.info),
+            onPressed: () {
+              ExtendedNavigator.of(context).pushNamed(Routes.introductionPage);
+            },
+          ),
         ],
       ),
       body: _buildBody(context),
