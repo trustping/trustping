@@ -52,14 +52,19 @@ class MyApp extends StatelessWidget {
               router: Router(),
               initialRouteArgs: AuthWidgetArguments(userSnapshot: userSnapshot),
             ),
-            theme: ThemeData(
-              primarySwatch: Colors.yellow,
-              accentColor: Colors.redAccent,
-            ),
+            theme: trustPingTheme(),
             debugShowCheckedModeBanner: true,
           );
         },
       ),
     );
   }
+}
+
+ThemeData trustPingTheme() {
+  return ThemeData(
+    fontFamily: 'Inter',
+    primarySwatch: Colors.yellow,
+    accentColor: Colors.redAccent,
+  );
 }
