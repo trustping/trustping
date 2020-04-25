@@ -8,5 +8,22 @@ abstract class UserProfile implements _$UserProfile {
     String id,
     String name,
     List<String> interests,
-  }) = _UserDart;
+  }) = _UserProfile;
+
+  Map<String, dynamic> toMap() {
+    return {
+      'name': name,
+      'interests': interests,
+    };
+  }
+
+  factory UserProfile.fromMap(Map<String, dynamic> data, String documentID) {
+    assert(data["interests"] != null);
+
+    final List<String> _interests = List.from(data["interests"]);
+    return UserProfile(
+      id: documentID,
+      interests: _interests,
+    );
+  }
 }

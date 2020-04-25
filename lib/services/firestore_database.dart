@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
 import 'package:trust_ping_app/app/home/models/chat.dart';
 import 'package:trust_ping_app/app/home/models/message.dart';
+import 'package:trust_ping_app/app/home/models/user_profile.dart';
 
 String documentIdFromCurrentDate() => DateTime.now().toIso8601String();
 
@@ -14,6 +15,8 @@ class _Path {
   static String messages(String chatID) => 'chats/$chatID/messages';
   static String message(String chatID, String messageID) =>
       'chats/$chatID/messages/$messageID';
+
+  static String userProfile(String userID) => 'user_profile/$userID';
 }
 
 /// The main interface to entities that live in the firebase database.
@@ -23,15 +26,28 @@ class FirestoreDatabase {
   final String userID; // user id
   final _service = FirestoreService.instance;
 
-  // chats
+  // USER PROFILE
+  Future<void> setUserProfile(UserProfile userProfile) async =>
+      await _service.setData(
+        path: _Path.userProfile(userProfile.id),
+        data: userProfile.toMap(),
+      );
+
+  Stream<UserProfile> userProfileStream({@required String userID}) =>
+      _service.documentStream(
+        path: _Path.userProfile(userID),
+        builder: (data, documentId) => UserProfile.fromMap(data, documentId),
+      );
+
+  // CHATS
   Stream<List<Chat>> chatsStream() => _service.collectionStream(
         path: _Path.chats(),
         builder: (data, documentId) => Chat.fromMap(data, documentId),
       );
 
-  Future<void> setChat(Chat chatID) async => await _service.setData(
-        path: _Path.chat(chatID.id),
-        data: chatID.toMap(),
+  Future<void> setChat(Chat chat) async => await _service.setData(
+        path: _Path.chat(chat.id),
+        data: chat.toMap(),
       );
 
   // MESSAGES
