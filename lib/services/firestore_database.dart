@@ -3,54 +3,63 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
 import 'package:trust_ping_app/app/home/models/chat.dart';
 import 'package:trust_ping_app/app/home/models/message.dart';
+import 'package:trust_ping_app/app/home/models/user_profile.dart';
 
 String documentIdFromCurrentDate() => DateTime.now().toIso8601String();
 
 /// Encode the paths of firestore documents.
 class _Path {
-  static String job(String userID, String jobId) => 'users/$userID/jobs/$jobId';
-  static String jobs(String userID) => 'users/$userID/jobs';
-  static String entry(String userID, String entryId) =>
-      'users/$userID/entries/$entryId';
-  static String entries(String userID) => 'users/$userID/entries';
-
   static String chats() => 'chats';
-  static String conversation(String conversationID) => 'chats/$conversationID';
-  static String messages(String conversationID) =>
-      'chats/$conversationID/messages';
-  static String message(String conversationID, String messageID) =>
-      'chats/$conversationID/messages/$messageID';
+  static String chat(String chatID) => 'chats/$chatID';
+
+  static String messages(String chatID) => 'chats/$chatID/messages';
+  static String message(String chatID, String messageID) =>
+      'chats/$chatID/messages/$messageID';
+
+  static String userProfile(String userID) => 'user_profile/$userID';
 }
 
 /// The main interface to entities that live in the firebase database.
 /// Note that you get fully typed domain entities, not snapshots.
 class FirestoreDatabase {
   FirestoreDatabase({@required this.userID}) : assert(userID != null);
-  final String userID; // user id
+  final String userID;
   final _service = FirestoreService.instance;
 
-  // chats
+  // USER PROFILE
+  Future<void> setUserProfile(UserProfile userProfile) async =>
+      await _service.setData(
+        path: _Path.userProfile(userProfile.id),
+        data: userProfile.toMap(),
+      );
+
+  Stream<UserProfile> userProfileStream() => _service.documentStream(
+        path: _Path.userProfile(userID),
+        builder: (data, documentId) => UserProfile.fromMap(data, documentId),
+      );
+
+  // CHATS
   Stream<List<Chat>> chatsStream() => _service.collectionStream(
         path: _Path.chats(),
         builder: (data, documentId) => Chat.fromMap(data, documentId),
       );
 
-  Future<void> setChat(Chat conversation) async => await _service.setData(
-        path: _Path.conversation(conversation.id),
-        data: conversation.toMap(),
+  Future<void> setChat(Chat chat) async => await _service.setData(
+        path: _Path.chat(chat.id),
+        data: chat.toMap(),
       );
 
   // MESSAGES
-  Stream<List<Message>> messagesStream(String conversationID) {
+  Stream<List<Message>> messagesStream(String chatID) {
     return _service.collectionStream(
-      path: _Path.messages(conversationID),
+      path: _Path.messages(chatID),
       builder: (data, documentID) => Message.fromMap(data, documentID),
     );
   }
 
-  Future<void> setMessage(String conversationID, Message message) async {
+  Future<void> setMessage(String chatID, Message message) async {
     return await _service.setData(
-      path: _Path.message(conversationID, message.id),
+      path: _Path.message(chatID, message.id),
       data: message.toMap(),
     );
   }

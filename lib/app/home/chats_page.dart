@@ -28,6 +28,19 @@ class ChatsPage extends StatelessWidget {
               ExtendedNavigator.of(context).pushNamed(Routes.introductionPage);
             },
           ),
+          IconButton(
+            icon: Icon(Icons.account_box),
+            onPressed: () {
+              ExtendedNavigator.of(context).pushNamed(Routes.userProfilePage);
+            },
+          ),
+          // IconButton(
+          //   icon: Icon(Icons.edit),
+          //   onPressed: () {
+          //     ExtendedNavigator.of(context)
+          //         .pushNamed(Routes.userInputStepperPage);
+          //   },
+          // ),
         ],
       ),
       body: _buildBody(context),

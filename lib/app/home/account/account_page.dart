@@ -25,7 +25,7 @@ class AccountPage extends StatelessWidget {
               Strings.logout,
               style: TextStyle(
                 fontSize: 18.0,
-                color: Theme.of(context).accentColor,
+                // color: Theme.of(context).accentColor,
               ),
             ),
             onPressed: () => _confirmSignOut(context),
