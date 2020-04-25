@@ -5,6 +5,7 @@ import 'package:trust_ping_app/app/home/chat_page.dart';
 import 'package:trust_ping_app/app/home/chats_page.dart';
 import 'package:trust_ping_app/app/introduction_page.dart';
 import 'package:trust_ping_app/app/sign_in/email_password/email_password_sign_in_page.dart';
+import 'package:trust_ping_app/app/user_profile_page.dart';
 
 @MaterialAutoRouter()
 class $Router {
@@ -25,4 +26,7 @@ class $Router {
 
   @MaterialRoute(fullscreenDialog: false)
   IntroductionPage introductionPage;
+
+  @MaterialRoute(fullscreenDialog: false)
+  UserProfilePage userProfilePage;
 }

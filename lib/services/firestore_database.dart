@@ -23,7 +23,7 @@ class _Path {
 /// Note that you get fully typed domain entities, not snapshots.
 class FirestoreDatabase {
   FirestoreDatabase({@required this.userID}) : assert(userID != null);
-  final String userID; // user id
+  final String userID;
   final _service = FirestoreService.instance;
 
   // USER PROFILE
@@ -33,8 +33,7 @@ class FirestoreDatabase {
         data: userProfile.toMap(),
       );
 
-  Stream<UserProfile> userProfileStream({@required String userID}) =>
-      _service.documentStream(
+  Stream<UserProfile> userProfileStream() => _service.documentStream(
         path: _Path.userProfile(userID),
         builder: (data, documentId) => UserProfile.fromMap(data, documentId),
       );
