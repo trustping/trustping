@@ -8,18 +8,12 @@ String documentIdFromCurrentDate() => DateTime.now().toIso8601String();
 
 /// Encode the paths of firestore documents.
 class _Path {
-  static String job(String userID, String jobId) => 'users/$userID/jobs/$jobId';
-  static String jobs(String userID) => 'users/$userID/jobs';
-  static String entry(String userID, String entryId) =>
-      'users/$userID/entries/$entryId';
-  static String entries(String userID) => 'users/$userID/entries';
-
   static String chats() => 'chats';
-  static String conversation(String conversationID) => 'chats/$conversationID';
-  static String messages(String conversationID) =>
-      'chats/$conversationID/messages';
-  static String message(String conversationID, String messageID) =>
-      'chats/$conversationID/messages/$messageID';
+  static String chat(String chatID) => 'chats/$chatID';
+
+  static String messages(String chatID) => 'chats/$chatID/messages';
+  static String message(String chatID, String messageID) =>
+      'chats/$chatID/messages/$messageID';
 }
 
 /// The main interface to entities that live in the firebase database.
@@ -35,22 +29,22 @@ class FirestoreDatabase {
         builder: (data, documentId) => Chat.fromMap(data, documentId),
       );
 
-  Future<void> setChat(Chat conversation) async => await _service.setData(
-        path: _Path.conversation(conversation.id),
-        data: conversation.toMap(),
+  Future<void> setChat(Chat chatID) async => await _service.setData(
+        path: _Path.chat(chatID.id),
+        data: chatID.toMap(),
       );
 
   // MESSAGES
-  Stream<List<Message>> messagesStream(String conversationID) {
+  Stream<List<Message>> messagesStream(String chatID) {
     return _service.collectionStream(
-      path: _Path.messages(conversationID),
+      path: _Path.messages(chatID),
       builder: (data, documentID) => Message.fromMap(data, documentID),
     );
   }
 
-  Future<void> setMessage(String conversationID, Message message) async {
+  Future<void> setMessage(String chatID, Message message) async {
     return await _service.setData(
-      path: _Path.message(conversationID, message.id),
+      path: _Path.message(chatID, message.id),
       data: message.toMap(),
     );
   }
