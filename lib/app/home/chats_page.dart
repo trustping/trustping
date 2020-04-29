@@ -45,7 +45,10 @@ class ChatsPage extends StatelessWidget {
       ),
       body: _buildBody(context),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => {_createChat(context)},
+        onPressed: () {
+          // _createChat(context);
+          ExtendedNavigator.of(context).pushNamed(Routes.composePingPage);
+        },
         child: Icon(Icons.add),
       ),
     );
