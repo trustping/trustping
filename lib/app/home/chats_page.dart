@@ -49,7 +49,7 @@ class ChatsPage extends StatelessWidget {
           // _createChat(context);
           ExtendedNavigator.of(context).pushNamed(Routes.composePingPage);
         },
-        child: Icon(Icons.add),
+        child: Icon(Icons.person_add),
       ),
     );
   }
