@@ -1,3 +1,4 @@
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:trust_ping_app/app/home/models/user_profile.dart';
@@ -164,7 +165,13 @@ class _ComposePingCardState extends State<ComposePingCard> {
             ),
             FlatButton(
               child: Text("SENDEN"),
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Flushbar(
+                  message: 'Pings unterwegs...',
+                  duration: Duration(seconds: 3),
+                ).show(context);
+              },
             )
           ],
           elevation: 24.0,
