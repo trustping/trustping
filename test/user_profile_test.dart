@@ -15,6 +15,25 @@ void main() {
       expect(userProfile, expectedUserProfile);
     });
 
+    test('with null circumstances', () {
+      final userProfile = UserProfile.fromMap(
+        {
+          "name": "Foo",
+          "interests": ["Yoga"],
+          "circumstances": null,
+        },
+        "someFakeDocumentID",
+      );
+      final expectedUserProfile = UserProfile(
+        id: "someFakeDocumentID",
+        name: "Foo",
+        yearOfBirth: null,
+        interests: ["Yoga"],
+        circumstances: [],
+      );
+      expect(userProfile, expectedUserProfile);
+    });
+
     test('with no circumstances', () {
       final userProfile = UserProfile.fromMap(
         {
