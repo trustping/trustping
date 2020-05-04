@@ -49,13 +49,14 @@ abstract class UserProfile implements _$UserProfile {
       );
     }
 
-    print(data);
     final String _name = data["name"] ?? "";
     final int _yearOfBirth = data["yearOfBirth"];
+
     final List<String> _interests =
-        data.get("interests", defaultValue: []).cast<String>();
+        listify<String>(data.get("interests", null));
     final List<String> _circumstances =
-        data.get("circumstances", defaultValue: []).cast<String>();
+        listify<String>(data.get("circumstances", null));
+
     final user = UserProfile(
       id: documentID,
       name: _name,
