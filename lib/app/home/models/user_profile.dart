@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:trust_ping_app/utils.dart';
 part 'user_profile.freezed.dart';
 
 class ProfileChoices {
@@ -40,25 +41,28 @@ abstract class UserProfile implements _$UserProfile {
   factory UserProfile.fromMap(Map<String, dynamic> data, String documentID) {
     if (data == null) {
       return UserProfile(
-          id: documentID,
-          name: "",
-          yearOfBirth: null,
-          interests: [],
-          circumstances: []);
+        id: documentID,
+        name: "",
+        yearOfBirth: null,
+        interests: [],
+        circumstances: [],
+      );
     }
-    assert(data["interests"] != null);
-    assert(data["circumstances"] != null);
-    final String _name = data["name"];
-    final int _yearOfBirth = data["yearOfBirth"];
-    final List<String> _interests = List.from(data["interests"]);
-    final List<String> _circumstances = List.from(data["circumstances"]);
 
-    return UserProfile(
+    print(data);
+    final String _name = data["name"] ?? "";
+    final int _yearOfBirth = data["yearOfBirth"];
+    final List<String> _interests =
+        data.get("interests", defaultValue: []).cast<String>();
+    final List<String> _circumstances =
+        data.get("circumstances", defaultValue: []).cast<String>();
+    final user = UserProfile(
       id: documentID,
       name: _name,
       yearOfBirth: _yearOfBirth,
       interests: _interests,
       circumstances: _circumstances,
     );
+    return user;
   }
 }
