@@ -17,6 +17,7 @@ class _Path {
       'chats/$chatID/messages/$messageID';
 
   static String userProfile(String userID) => 'user_profile/$userID';
+  static String userProfiles() => 'user_profile/';
 }
 
 /// The main interface to entities that live in the firebase database.
@@ -37,6 +38,13 @@ class FirestoreDatabase {
         path: _Path.userProfile(userID),
         builder: (data, documentId) => UserProfile.fromMap(data, documentId),
       );
+
+  Stream<List<UserProfile>> userProfilesStream() {
+    return _service.collectionStream(
+      path: _Path.userProfiles(),
+      builder: (data, documentID) => UserProfile.fromMap(data, documentID),
+    );
+  }
 
   // CHATS
   Stream<List<Chat>> chatsStream() => _service.collectionStream(
