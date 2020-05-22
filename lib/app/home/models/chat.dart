@@ -16,7 +16,8 @@ abstract class Chat implements _$Chat {
 
   factory Chat.fromMap(Map<String, dynamic> data, String documentID) {
     assert(data["participants"] != null);
-    final List<String> _participants = List.from(data["participants"]);
+    final List<String> _participants =
+        List.from(data["participants"]).cast<String>();
     return Chat(
       id: documentID,
       participants: _participants,

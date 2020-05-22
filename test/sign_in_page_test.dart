@@ -10,7 +10,7 @@
 
 // import 'mocks.dart';
 
-// void main() {
+void main() {}
 //   MockAuthService mockAuthService;
 //   MockNavigatorObserver mockNavigatorObserver;
 //   StreamController<User> onAuthStateChangedController;

@@ -69,23 +69,6 @@ class ChatsPage extends StatelessWidget {
       },
     );
   }
-
-  // ACTIONS
-  void _createChat(BuildContext context) async {
-    final db = Provider.of<FirestoreDatabase>(context, listen: false);
-    final user = Provider.of<User>(context, listen: false);
-    final documentID = documentIdFromCurrentDate();
-    final chat = Chat(
-      id: documentID,
-      participants: [user.uid, "otherPersonsUID"],
-    );
-    await db.setChat(chat);
-
-    ExtendedNavigator.of(context).pushNamed(
-      Routes.chatPage,
-      arguments: ChatPageArguments(chat: chat),
-    );
-  }
 }
 
 class ChatListTile extends StatelessWidget {

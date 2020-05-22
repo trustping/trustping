@@ -31,14 +31,22 @@ class ComposePingPage extends StatelessWidget {
   }
 
   Widget buildPingCard(BuildContext context) {
-    final db = Provider.of<FirestoreDatabase>(context, listen: false);
+    final db = Provider.of<FirestoreDatabase>(context, listen: true);
 
     return StreamBuilder<UserProfile>(
       stream: db.userProfileStream(),
       builder: (context, snapshot) {
-        final userProfile = snapshot.data;
-
-        return ComposePingCard(pingViewModel: PingViewModel(userProfile));
+        if (snapshot.hasData) {
+          var userProfile = snapshot.data;
+          return ComposePingCard(
+            pingViewModel: PingViewModel(
+              userProfile: userProfile,
+              db: db,
+            ),
+          );
+        } else {
+          return CircularProgressIndicator();
+        }
       },
     );
   }
@@ -166,6 +174,9 @@ class _ComposePingCardState extends State<ComposePingCard> {
             FlatButton(
               child: Text("SENDEN"),
               onPressed: () {
+                widget.pingViewModel.sendPing(
+                  widget.pingViewModel.compose(_textController.text),
+                );
                 Navigator.of(context).pop();
                 Flushbar(
                   message: 'Pings unterwegs...',

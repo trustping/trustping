@@ -5,6 +5,7 @@ class FirebaseAuthService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   User _userFromFirebase(FirebaseUser user) {
+    print('FirebaseAuthService._userFromFirebase(): $user');
     if (user == null) {
       return null;
     }
@@ -17,6 +18,7 @@ class FirebaseAuthService {
   }
 
   Stream<User> get onAuthStateChanged {
+    print("FirebaseAuthService: onAuthStateChanged");
     return _firebaseAuth.onAuthStateChanged.map(_userFromFirebase);
   }
 
