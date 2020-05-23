@@ -45,8 +45,11 @@ class ChatsPage extends StatelessWidget {
       ),
       body: _buildBody(context),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => {_createChat(context)},
-        child: Icon(Icons.add),
+        onPressed: () {
+          // _createChat(context);
+          ExtendedNavigator.of(context).pushNamed(Routes.composePingPage);
+        },
+        child: Icon(Icons.person_add),
       ),
     );
   }
@@ -64,23 +67,6 @@ class ChatsPage extends StatelessWidget {
           },
         );
       },
-    );
-  }
-
-  // ACTIONS
-  void _createChat(BuildContext context) async {
-    final db = Provider.of<FirestoreDatabase>(context, listen: false);
-    final user = Provider.of<User>(context, listen: false);
-    final documentID = documentIdFromCurrentDate();
-    final chat = Chat(
-      id: documentID,
-      participants: [user.uid, "otherPersonsUID"],
-    );
-    await db.setChat(chat);
-
-    ExtendedNavigator.of(context).pushNamed(
-      Routes.chatPage,
-      arguments: ChatPageArguments(chat: chat),
     );
   }
 }

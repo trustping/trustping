@@ -11,7 +11,7 @@ import 'package:trust_ping_app/services/firebase_auth_service.dart';
 import 'mocks.dart';
 
 void main() {
-  group('AuthWidgetBuilder tests', () {
+  group('AuthWidgetBuilder tests ', () {
     MockAuthService mockAuthService;
     MockDatabase mockDatabase;
     StreamController<User> onAuthStateChangedController;
@@ -53,8 +53,8 @@ void main() {
     }
 
     testWidgets(
-        'WHEN onAuthStateChanged in waiting state'
-        'THEN calls builder with snapshot in waiting state'
+        'WHEN onAuthStateChanged in waiting state '
+        'THEN calls builder with snapshot in waiting state '
         'AND doesn\'t find MultiProvider', (WidgetTester tester) async {
       stubOnAuthStateChangedYields(<User>[]);
 
@@ -70,8 +70,8 @@ void main() {
     });
 
     testWidgets(
-        'WHEN onAuthStateChanged returns null user'
-        'THEN calls builder with null user and active state'
+        'WHEN onAuthStateChanged returns null user '
+        'THEN calls builder with null user and active state '
         'AND doesn\'t find MultiProvider', (WidgetTester tester) async {
       stubOnAuthStateChangedYields(<User>[null]);
 
@@ -88,8 +88,8 @@ void main() {
     });
 
     testWidgets(
-        'WHEN onAuthStateChanged returns valid user'
-        'THEN calls builder with same user and active state'
+        'WHEN onAuthStateChanged returns valid user '
+        'THEN calls builder with same user and active state '
         'AND finds MultiProvider', (WidgetTester tester) async {
       final user = User(uid: '123');
       stubOnAuthStateChangedYields(<User>[user]);

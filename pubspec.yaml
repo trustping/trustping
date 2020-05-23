@@ -27,7 +27,7 @@ dependencies:
   intl: ^0.16.0
   provider: ^4.0.1
   introduction_screen: ^1.0.8
-  flushbar: 1.9.1
+  flushbar: 1.10.0
 
 dev_dependencies:
   flutter_test:

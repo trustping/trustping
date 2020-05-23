@@ -9,6 +9,7 @@ import 'package:trust_ping_app/services/firebase_auth_service.dart';
 import 'app/home/models/user.dart';
 
 void main() {
+  // runApp(MyAppDummy());
   runApp(
     MyApp(
       authServiceBuilder: (_) => FirebaseAuthService(),
@@ -64,7 +65,7 @@ class MyApp extends StatelessWidget {
 ThemeData trustPingTheme() {
   return ThemeData(
     fontFamily: 'Inter',
-    primarySwatch: Colors.yellow,
-    accentColor: Colors.redAccent,
+    // primarySwatch: Colors.yellow,
+    // accentColor: Colors.redAccent,
   );
 }
