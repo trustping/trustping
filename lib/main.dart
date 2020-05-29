@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:trust_ping_app/services/firestore_database.dart';
 import 'package:trust_ping_app/services/firebase_auth_service.dart';
+import 'package:trust_ping_app/services/settings_service.dart';
 
 import 'app/home/models/user.dart';
 
@@ -25,7 +26,7 @@ void main() {
 ///   [MultiProvider] providing [User] [FirestoreDatabase]
 ///   [MaterialApp]
 ///   [ExtendedNavigator] for all things routing
-///   [AuthWidget]
+///   [LandingPage]
 ///   [ChatPage] or [SignInPageBuilder]
 class MyApp extends StatelessWidget {
   const MyApp({Key key, this.authServiceBuilder, this.databaseBuilder})
@@ -41,9 +42,7 @@ class MyApp extends StatelessWidget {
     // MultiProvider for top-level services that don't depend on any runtime values (e.g. userID)
     return MultiProvider(
       providers: [
-        Provider<FirebaseAuthService>(
-          create: authServiceBuilder,
-        ),
+        Provider<FirebaseAuthService>(create: authServiceBuilder),
       ],
       child: AuthWidgetBuilder(
         databaseBuilder: databaseBuilder,
@@ -51,7 +50,8 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             builder: ExtendedNavigator<Router>(
               router: Router(),
-              initialRouteArgs: AuthWidgetArguments(userSnapshot: userSnapshot),
+              initialRouteArgs:
+                  LandingPageArguments(userSnapshot: userSnapshot),
             ),
             theme: trustPingTheme(),
             debugShowCheckedModeBanner: true,
@@ -81,11 +81,27 @@ ThemeData trustPingTheme() {
   return ThemeData(
     fontFamily: 'Inter',
     primarySwatch: tpColors,
-    // accentColor: Colors.redAccent,
+    accentColor: Color.fromRGBO(255, 217, 76, 1.0),
+    // accentColor: Color.fromRGBO(255, 115, 147, 1.0),
+    // accentColor: Color.fromRGBO(76, 108, 184, 1.0),
     textTheme: TextTheme(
-      headline1: TextStyle(fontSize: 30.0, fontWeight: FontWeight.w600),
-      headline6: TextStyle(fontSize: 24.0, fontWeight: FontWeight.w400),
-      bodyText2: TextStyle(fontSize: 15.0),
+      headline1: TextStyle(
+        fontSize: 28.0,
+        fontWeight: FontWeight.w600,
+        height: 1.2,
+        color: const Color.fromRGBO(48, 61, 68, 1.0),
+      ),
+      headline6: TextStyle(
+        fontSize: 18.5,
+        fontWeight: FontWeight.w400,
+        height: 1.3,
+        color: const Color.fromRGBO(48, 61, 68, 1.0),
+      ),
+      bodyText2: TextStyle(
+        fontSize: 15.0,
+        height: 1.2,
+        color: const Color.fromRGBO(48, 61, 68, 1.0),
+      ),
     ),
   );
 }

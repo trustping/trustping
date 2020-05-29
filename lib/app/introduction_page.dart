@@ -11,9 +11,11 @@ class IntroductionPage extends StatelessWidget {
     return IntroductionScreen(
       pages: [
         _buildPageViewModel(
-          title: 'TrustPing',
+          title: 'Trustping ist tnfeoianst arsietn arsot',
           subtitle:
               "... ist eine App mit der Menschen mit Krebs gezielt Gesprächspartner finden, ohne sensible Informationen aus der Hand zu geben.",
+          body:
+              "tnsireantio naresitn aiorsnt ironsat eiornst arisotte irnset irnste iarnst aresnt rsiont rseiotn",
           assetPath: "assets/images/boxes.png",
           textTheme: textTheme,
         ),
@@ -27,7 +29,7 @@ class IntroductionPage extends StatelessWidget {
         _buildPageViewModel(
           title: "Transparenz und Integrietaet",
           assetPath: "assets/images/boxes.png",
-          subtitle: "Das Herz von TrustPing ist Transparenz und Integrietaet.",
+          subtitle: "Das Herz von Trustping ist Transparenz und Integrietaet.",
           body: "moretn ersint ianrsti enarso",
           textTheme: textTheme,
         ),
@@ -84,26 +86,26 @@ class _IntroPageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const spacer = SizedBox(height: 16.0);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        vSpace,
-        vSpace,
-        vSpace,
-        Image(
-          image: AssetImage(assetPath),
-          width: 100.0,
-        ),
-        spacer,
-        Text(title, style: textTheme.headline1),
-        spacer,
-        Text(
-          subtitle,
-          style: textTheme.headline6,
-        ),
-        if (body != null) spacer,
-        if (body != null) Text(body)
-      ],
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16.0, 92.0, 32.0, 8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Image(
+            image: AssetImage(assetPath),
+            width: 100.0,
+          ),
+          spacer,
+          Text(title, style: textTheme.headline1),
+          spacer,
+          Text(
+            subtitle,
+            style: textTheme.headline6,
+          ),
+          if (body != null) spacer,
+          if (body != null) Text(body)
+        ],
+      ),
     );
   }
 }

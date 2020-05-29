@@ -14,7 +14,7 @@ class ChatsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("TrustPing Chat"),
+        title: Text("Trustping Chat"),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.account_circle),
