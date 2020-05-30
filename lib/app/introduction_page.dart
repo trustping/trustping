@@ -9,24 +9,25 @@ class IntroductionPage extends StatelessWidget {
     return IntroductionScreen(
       pages: [
         _buildPageViewModel(
-          title: 'Trustping ist tnfeoianst arsietn arsot',
+          title: 'Herzlich Willkommen bei Trustping!',
+          subtitle: "",
+          assetPath: "assets/images/boxes.png",
+        ),
+        _buildPageViewModel(
+          title: "Trustping",
           subtitle:
-              "... ist eine App mit der Menschen mit Krebs gezielt Gesprächspartner finden, ohne sensible Informationen aus der Hand zu geben.",
+              "Trustping findet Menschen in ähnlichen Situationen und verbindet sie findet Menschen in ähnlichen Situationen und verbindet ndet Menschen in ähnlichen Situationen und verbindet",
           body:
-              "tnsireantio naresitn aiorsnt ironsat eiornst arisotte irnset irnste iarnst aresnt rsiont rseiotn",
+              "Trustping findet Menschen in ähnlichen Situationen und verbindet sie findet Menschen in ähnlichen Situationen und verbindet ndet Menschen in ähnlichen Situationen und verbindet",
           assetPath: "assets/images/boxes.png",
         ),
         _buildPageViewModel(
-          title: "Let's start",
-          assetPath: "assets/images/boxes.png",
+          title: "Let’s start",
           subtitle:
-              "Um fuer dich passende Gespraechspartner zu finden brauchen wir ein paar Informationen ueber dich",
-        ),
-        _buildPageViewModel(
-          title: "Transparenz und Integrietaet",
+              "Um für Dich passende Gesprächspartner zu finden, brauchen wir ein paar Informationen.",
+          body:
+              "Usam quo tecus id modi omnihil laccusdant cerferchilia simusam quo tecus idem.",
           assetPath: "assets/images/boxes.png",
-          subtitle: "Das Herz von Trustping ist Transparenz und Integrietaet.",
-          body: "moretn ersint ianrsti enarso",
         ),
       ],
       next: const Icon(Icons.forward),
@@ -50,7 +51,7 @@ class IntroductionPage extends StatelessWidget {
     const spacer = SizedBox(height: 16.0);
     return PageViewModel(
       titleWidget: Padding(
-        padding: const EdgeInsets.fromLTRB(16.0, 92.0, 32.0, 8.0),
+        padding: const EdgeInsets.fromLTRB(16.0, 92.0, 24.0, 8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -59,7 +60,10 @@ class IntroductionPage extends StatelessWidget {
               width: 100.0,
             ),
             spacer,
-            Style.title(title),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0.0, 0.0, 40, 0),
+              child: Style.title(title),
+            ),
             spacer,
             Style.subtitle(subtitle),
             if (body != null) spacer,
