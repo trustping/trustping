@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
 import 'package:trust_ping_app/app/home/models/chat.dart';
 import 'package:trust_ping_app/app/home/models/message.dart';
 import 'package:trust_ping_app/app/home/models/user_profile.dart';

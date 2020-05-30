@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route_annotations.dart';
-import 'package:trust_ping_app/app/auth_widget.dart';
+import 'package:trust_ping_app/app/landing_page.dart';
 import 'package:trust_ping_app/app/compose_ping_page.dart';
 import 'package:trust_ping_app/app/home/account/account_page.dart';
 import 'package:trust_ping_app/app/home/chat_page.dart';
@@ -11,7 +11,7 @@ import 'package:trust_ping_app/app/user_profile_page.dart';
 @MaterialAutoRouter()
 class $Router {
   @initial
-  AuthWidget authWidget;
+  LandingPage authWidget;
 
   @MaterialRoute(fullscreenDialog: true)
   EmailPasswordSignInPageBuilder emailPasswordSignInPageBuilder;
@@ -25,7 +25,7 @@ class $Router {
   @MaterialRoute(fullscreenDialog: false)
   AccountPage accountPage;
 
-  @MaterialRoute(fullscreenDialog: false)
+  @MaterialRoute(fullscreenDialog: true)
   IntroductionPage introductionPage;
 
   @MaterialRoute(fullscreenDialog: false)
