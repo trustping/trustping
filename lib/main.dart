@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:trust_ping_app/services/firestore_database.dart';
 import 'package:trust_ping_app/services/firebase_auth_service.dart';
 import 'package:trust_ping_app/services/settings_service.dart';
+import 'package:trust_ping_app/theme.dart';
 
 import 'app/home/models/user.dart';
 
@@ -53,55 +54,11 @@ class MyApp extends StatelessWidget {
               initialRouteArgs:
                   LandingPageArguments(userSnapshot: userSnapshot),
             ),
-            theme: trustPingTheme(),
+            theme: Style.themeData,
             debugShowCheckedModeBanner: true,
           );
         },
       ),
     );
   }
-}
-
-ThemeData trustPingTheme() {
-  const MaterialColor tpColors = const MaterialColor(
-    0xFFFFFFFF,
-    const <int, Color>{
-      50: const Color(0xFFFFFFFF),
-      100: const Color(0xFFFFFFFF),
-      200: const Color(0xFFFFFFFF),
-      300: const Color(0xFFFFFFFF),
-      400: const Color(0xFFFFFFFF),
-      500: const Color(0xFFFFFFFF),
-      600: const Color(0xFFFFFFFF),
-      700: const Color(0xFFFFFFFF),
-      800: const Color(0xFFFFFFFF),
-      900: const Color(0xFFFFFFFF),
-    },
-  );
-  return ThemeData(
-    fontFamily: 'Inter',
-    primarySwatch: tpColors,
-    accentColor: Color.fromRGBO(255, 217, 76, 1.0),
-    // accentColor: Color.fromRGBO(255, 115, 147, 1.0),
-    // accentColor: Color.fromRGBO(76, 108, 184, 1.0),
-    textTheme: TextTheme(
-      headline1: TextStyle(
-        fontSize: 28.0,
-        fontWeight: FontWeight.w600,
-        height: 1.2,
-        color: const Color.fromRGBO(48, 61, 68, 1.0),
-      ),
-      headline6: TextStyle(
-        fontSize: 18.5,
-        fontWeight: FontWeight.w400,
-        height: 1.3,
-        color: const Color.fromRGBO(48, 61, 68, 1.0),
-      ),
-      bodyText2: TextStyle(
-        fontSize: 15.0,
-        height: 1.2,
-        color: const Color.fromRGBO(48, 61, 68, 1.0),
-      ),
-    ),
-  );
 }
