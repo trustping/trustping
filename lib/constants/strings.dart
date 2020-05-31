@@ -2,6 +2,8 @@ class Strings {
   // Generic strings
   static const String ok = 'OK';
   static const String cancel = 'Cancel';
+  static const String skip = 'ÜBERSPRINGEN';
+  static const String next = 'WEITER';
 
   // Logout
   static const String logout = 'Logout';

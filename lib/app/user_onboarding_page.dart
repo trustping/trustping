@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:trust_ping_app/app/spaces.dart';
+import 'package:trust_ping_app/constants/strings.dart';
 import 'package:trust_ping_app/theme.dart';
 
 class UserOnboardingPage extends StatefulWidget {
@@ -7,7 +9,8 @@ class UserOnboardingPage extends StatefulWidget {
 }
 
 class _UserOnboardingPageState extends State<UserOnboardingPage> {
-  static const vspace16 = SizedBox(height: 16);
+  final key = GlobalKey<FormState>();
+  String _name = "dummy";
 
   @override
   Widget build(BuildContext context) {
@@ -25,45 +28,56 @@ class _UserOnboardingPageState extends State<UserOnboardingPage> {
       padding: const EdgeInsets.all(32),
       child: Column(
         children: <Widget>[
-          Image.asset("assets/images/boxes.png", height: 100),
+          SizedBox(
+            child: Image.asset("assets/images/boxes.png", height: 100),
+            height: 100,
+          ),
           vspace16,
           ProgressIndicator(
               i: 1, n: 2, section: "Foo", color: Style.accentColor3),
-          vspace16,
-          vspace16,
+          vspace32,
           Style.title("Hallo!"),
           vspace16,
           Style.subtitle("Wie möchtest Du angesprochen werden?"),
           vspace16,
-          TextField(
-            decoration:
-                InputDecoration(hintText: "Dein Name", labelText: "Dein Name"),
-          ),
-          Expanded(
-            child: Align(
-              alignment: FractionalOffset.bottomCenter,
-              child: ButtonBar(
-                children: <Widget>[
-                  FlatButton(
-                    child: Text("ÜBERSPRINGEN"),
-                    onPressed: () {},
-                    textColor: Style.textLightColor,
-                    disabledTextColor: Style.textLightColor,
-                  ),
-                  RaisedButton(
-                    child: Text("WEITER"),
-                    color: Style.accentColor1,
-                    onPressed: () {},
-                  ),
-                ],
-              ),
-            ),
-          ),
-          vspace16,
-          vspace16,
+          _buildForm(context),
+          vspace32,
         ],
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
+      ),
+    );
+  }
+
+  Widget _buildForm(BuildContext context) {
+    return Form(
+      key: key,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          TextFormField(
+            initialValue: _name,
+            decoration: InputDecoration(labelText: "Dein Name"),
+            validator: (value) => null,
+            onSaved: (value) => _name = value,
+          ),
+          vspace16,
+          RaisedButton(
+            child: Text(Strings.next),
+            color: Style.accentColor1,
+            onPressed: () {
+              final form = this.key.currentState;
+              if (form.validate()) {
+                setState(() {
+                  form.save();
+                });
+                print(_name);
+                // TODO navigate to next page
+                // TODO store in firebase
+              }
+            },
+          ),
+        ],
       ),
     );
   }
@@ -104,11 +118,7 @@ class ProgressIndicator extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        if (section != null)
-          Text(
-            section,
-            style: TextStyle(color: color),
-          ),
+        if (section != null) Text(section, style: TextStyle(color: color)),
         Row(
           children: List.generate(n, (index) => index < i ? doneDot : todoDot),
         ),
