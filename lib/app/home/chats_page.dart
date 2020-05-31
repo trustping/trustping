@@ -8,7 +8,7 @@ import 'package:trust_ping_app/services/firestore_database.dart';
 import 'models/chat.dart';
 import 'models/user.dart';
 
-// Show an active conversatin
+// Show an active conversation
 class ChatsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

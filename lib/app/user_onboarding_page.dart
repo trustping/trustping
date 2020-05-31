@@ -10,7 +10,7 @@ class UserOnboardingPage extends StatefulWidget {
 
 class _UserOnboardingPageState extends State<UserOnboardingPage> {
   final key = GlobalKey<FormState>();
-  String _name = "dummy";
+  String _name = "";
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +33,7 @@ class _UserOnboardingPageState extends State<UserOnboardingPage> {
             height: 100,
           ),
           vspace16,
-          ProgressIndicator(
-              i: 1, n: 2, section: "Foo", color: Style.accentColor3),
+          ProgressIndicator(i: 1, n: 2, color: Style.accentColor3),
           vspace32,
           Style.title("Hallo!"),
           vspace16,
