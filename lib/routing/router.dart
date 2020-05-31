@@ -37,4 +37,7 @@ class $Router {
 
   @MaterialRoute(fullscreenDialog: true)
   UserOnboardingPage userOnboardingPage;
+
+  @MaterialRoute(fullscreenDialog: true)
+  UserOnboardingNameScreen userOnboardingNameScreen;
 }
