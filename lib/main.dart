@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:trust_ping_app/services/firestore_database.dart';
 import 'package:trust_ping_app/services/firebase_auth_service.dart';
-import 'package:trust_ping_app/services/settings_service.dart';
 import 'package:trust_ping_app/theme.dart';
 
 import 'app/home/models/user.dart';
