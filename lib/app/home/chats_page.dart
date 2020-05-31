@@ -34,6 +34,13 @@ class ChatsPage extends StatelessWidget {
               ExtendedNavigator.of(context).pushNamed(Routes.userProfilePage);
             },
           ),
+          IconButton(
+            icon: Icon(Icons.all_inclusive),
+            onPressed: () {
+              ExtendedNavigator.of(context)
+                  .pushNamed(Routes.userOnboardingPage);
+            },
+          ),
           // IconButton(
           //   icon: Icon(Icons.edit),
           //   onPressed: () {
