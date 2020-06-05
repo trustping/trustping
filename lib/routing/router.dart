@@ -48,4 +48,10 @@ class $Router {
 
   @MaterialRoute(fullscreenDialog: true)
   UODiagnosisPage2 uoDiagnosisPage2;
+
+  @MaterialRoute(fullscreenDialog: true)
+  UODiagnosisPage3 uoDiagnosisPage3;
+
+  @MaterialRoute(fullscreenDialog: true)
+  UODiagnosisPage4 uoDiagnosisPage4;
 }

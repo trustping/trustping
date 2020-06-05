@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trust_ping_app/constants/strings.dart';
 import 'package:trust_ping_app/theme.dart';
 
 import '../spaces.dart';
@@ -10,21 +11,23 @@ Widget buildOnboardingContent({
   Widget header,
   Widget form,
 }) {
-  return Padding(
-    padding: const EdgeInsets.all(32),
-    child: Column(
-      children: <Widget>[
-        header,
-        vspace32,
-        Style.title(title),
-        vspace16,
-        Style.subtitle(subtitle),
-        vspace16,
-        form,
-        vspace32,
-      ],
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
+  return SingleChildScrollView(
+    child: Padding(
+      padding: const EdgeInsets.all(32),
+      child: Column(
+        children: <Widget>[
+          header,
+          vspace32,
+          Style.title(title),
+          vspace16,
+          Style.subtitle(subtitle),
+          vspace16,
+          form,
+          vspace32,
+        ],
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+      ),
     ),
   );
 }
@@ -73,4 +76,23 @@ class TPProgressIndicator extends StatelessWidget {
       ],
     );
   }
+}
+
+Widget buildButtonNav({context, onNext, onBack}) {
+  return ButtonBar(
+    alignment: MainAxisAlignment.spaceEvenly,
+    buttonMinWidth: 150,
+    children: <Widget>[
+      FlatButton(
+        child: Text(Strings.back),
+        textColor: Style.textDarkColor,
+        onPressed: onBack,
+      ),
+      RaisedButton(
+        child: Text(Strings.next),
+        color: Style.accentColor1,
+        onPressed: onNext,
+      ),
+    ],
+  );
 }
