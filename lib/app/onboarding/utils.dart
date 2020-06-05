@@ -7,21 +7,14 @@ Widget buildOnboardingContent({
   BuildContext context,
   String title,
   String subtitle,
-  int currentStep,
-  int totalSteps,
+  Widget header,
   Widget form,
 }) {
   return Padding(
     padding: const EdgeInsets.all(32),
     child: Column(
       children: <Widget>[
-        SizedBox(
-          child: Image.asset("assets/images/boxes.png", height: 100),
-          height: 100,
-        ),
-        vspace16,
-        ProgressIndicator(
-            i: currentStep, n: totalSteps, color: Style.accentColor3),
+        header,
         vspace32,
         Style.title(title),
         vspace16,
@@ -37,12 +30,12 @@ Widget buildOnboardingContent({
 }
 
 /// Draw n circles of wich i are done (filled)
-class ProgressIndicator extends StatelessWidget {
+class TPProgressIndicator extends StatelessWidget {
   final int i;
   final int n;
   final String section;
   final Color color;
-  const ProgressIndicator({Key key, this.i, this.n, this.section, this.color})
+  const TPProgressIndicator({Key key, this.i, this.n, this.section, this.color})
       : assert(color != null),
         assert(i != null),
         assert(n != null),
@@ -71,10 +64,12 @@ class ProgressIndicator extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        if (section != null) Text(section, style: TextStyle(color: color)),
+        if (section != null)
+          Text(section, style: Style.subtitleTS.copyWith(color: color)),
         Row(
           children: List.generate(n, (index) => index < i ? doneDot : todoDot),
         ),
+        vspace32,
       ],
     );
   }

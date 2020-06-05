@@ -7,6 +7,11 @@ import 'package:trust_ping_app/app/spaces.dart';
 import 'package:trust_ping_app/constants/strings.dart';
 import 'package:trust_ping_app/theme.dart';
 
+final Widget _logoHeader = SizedBox(
+  child: Image.asset("assets/images/boxes.png", height: 100),
+  height: 100,
+);
+
 class UONameScreen extends StatefulWidget {
   @override
   _UONameScreenState createState() => _UONameScreenState();
@@ -24,8 +29,7 @@ class _UONameScreenState extends State<UONameScreen> {
         context: context,
         title: "Hallo!",
         subtitle: "Wie möchtest Du angesprochen werden?",
-        currentStep: 1,
-        totalSteps: 2,
+        header: _logoHeader,
         form: _buildForm(context),
       ),
       resizeToAvoidBottomInset: false,
@@ -54,8 +58,6 @@ class _UONameScreenState extends State<UONameScreen> {
                 setState(() {
                   form.save();
                 });
-                print(_name);
-
                 ExtendedNavigator.of(context)
                     .popAndPushNamed(Routes.uoAgeScreen);
               }
@@ -84,8 +86,7 @@ class _UOAgeScreenState extends State<UOAgeScreen> {
         context: context,
         title: "Hallo!",
         subtitle: "Was ist dein Geburtsjahr?",
-        currentStep: 2,
-        totalSteps: 2,
+        header: _logoHeader,
         form: _buildForm(context),
       ),
       resizeToAvoidBottomInset: false,
@@ -117,9 +118,8 @@ class _UOAgeScreenState extends State<UOAgeScreen> {
                 setState(() {
                   form.save();
                 });
-                // print(_name);
-                // TODO navigate to next page
-                // TODO store in firebase
+                ExtendedNavigator.of(context)
+                    .popAndPushNamed(Routes.uoDiagnosisPage1);
               }
             },
           ),
