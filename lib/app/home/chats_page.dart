@@ -37,8 +37,7 @@ class ChatsPage extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.all_inclusive),
             onPressed: () {
-              ExtendedNavigator.of(context)
-                  .pushNamed(Routes.userOnboardingPage);
+              ExtendedNavigator.of(context).pushNamed(Routes.uoNameScreen);
             },
           ),
           // IconButton(

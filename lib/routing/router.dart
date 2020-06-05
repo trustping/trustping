@@ -6,7 +6,7 @@ import 'package:trust_ping_app/app/home/chat_page.dart';
 import 'package:trust_ping_app/app/home/chats_page.dart';
 import 'package:trust_ping_app/app/introduction_page.dart';
 import 'package:trust_ping_app/app/sign_in/email_password/email_password_sign_in_page.dart';
-import 'package:trust_ping_app/app/user_onboarding_page.dart';
+import 'package:trust_ping_app/app/onboarding/user_onboarding_page.dart';
 import 'package:trust_ping_app/app/user_profile_page.dart';
 
 @MaterialAutoRouter()
@@ -35,9 +35,10 @@ class $Router {
   @MaterialRoute(fullscreenDialog: false)
   ComposePingPage composePingPage;
 
+  // Onboarding screens
   @MaterialRoute(fullscreenDialog: true)
-  UserOnboardingPage userOnboardingPage;
+  UONameScreen uoNameScreen;
 
   @MaterialRoute(fullscreenDialog: true)
-  UserOnboardingNameScreen userOnboardingNameScreen;
+  UOAgeScreen uoAgeScreen;
 }
