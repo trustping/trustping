@@ -35,7 +35,7 @@ class _UOTherapyPage1State extends State<UOTherapyPage1> {
         header: TPProgressIndicator(
           i: 1,
           n: 1,
-          section: "Lebenssituation",
+          section: "Therapie",
           colors: Style.blues,
         ),
         form: _buildForm(context),
