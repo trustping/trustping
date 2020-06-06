@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/auto_route_annotations.dart';
 import 'package:trust_ping_app/app/landing_page.dart';
 import 'package:trust_ping_app/app/compose_ping_page.dart';
@@ -39,30 +40,51 @@ class $Router {
   ComposePingPage composePingPage;
 
   // Onboarding screens
-  @MaterialRoute(fullscreenDialog: false)
+  @CustomRoute(
+      transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
+      durationInMilliseconds: 300)
   UONameScreen uoNameScreen;
 
-  @MaterialRoute(fullscreenDialog: false)
+  @CustomRoute(
+      transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
+      durationInMilliseconds: 300)
   UOAgeScreen uoAgeScreen;
 
-  @MaterialRoute(fullscreenDialog: false)
+  @CustomRoute(
+      transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
+      durationInMilliseconds: 300)
+  @CustomRoute(
+      transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
+      durationInMilliseconds: 300)
   UODiagnosisPage1 uoDiagnosisPage1;
 
-  @MaterialRoute(fullscreenDialog: false)
+  @CustomRoute(
+      transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
+      durationInMilliseconds: 300)
   UODiagnosisPage2 uoDiagnosisPage2;
 
-  @MaterialRoute(fullscreenDialog: false)
+  @CustomRoute(
+      transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
+      durationInMilliseconds: 300)
   UODiagnosisPage3 uoDiagnosisPage3;
 
-  @MaterialRoute(fullscreenDialog: false)
+  @CustomRoute(
+      transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
+      durationInMilliseconds: 300)
   UODiagnosisPage4 uoDiagnosisPage4;
 
-  @MaterialRoute(fullscreenDialog: false)
+  @CustomRoute(
+      transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
+      durationInMilliseconds: 300)
   UOTherapyPage1 uoTherapyPage1;
 
-  @MaterialRoute(fullscreenDialog: false)
+  @CustomRoute(
+      transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
+      durationInMilliseconds: 300)
   UOLivingSituationPage1 uoLivingSituationPage1;
 
-  @MaterialRoute(fullscreenDialog: false)
+  @CustomRoute(
+      transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
+      durationInMilliseconds: 300)
   UOLivingSituationPage2 uoLivingSituationPage2;
 }
