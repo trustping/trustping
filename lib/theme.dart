@@ -3,24 +3,29 @@ import 'package:flutter/material.dart';
 /// This defines the entire style for the Trustping app
 class Style {
   // COLORS
-  static Color textColor = Color.fromRGBO(48, 61, 68, 1.0);
-  static Color textLightColor = Color.fromRGBO(143, 143, 143, 1.0);
-  static Color textDarkColor = Color.fromRGBO(19, 24, 27, 1.0);
+  static const Color textColor = Color.fromRGBO(48, 61, 68, 1.0);
+  static const Color textLightColor = Color.fromRGBO(143, 143, 143, 1.0);
+  static const Color textDarkColor = Color.fromRGBO(19, 24, 27, 1.0);
   // blue-ish
-  static Color blue = Color.fromRGBO(76, 108, 184, 1.0);
-  static Color blue70 = Color.fromRGBO(76, 108, 184, 0.7);
-  static Color blue50 = Color.fromRGBO(76, 108, 184, 0.5);
-  static Color blue30 = Color.fromRGBO(76, 108, 184, 0.3);
+  static const Color blue = Color.fromRGBO(76, 108, 184, 1.0);
+  static const Color blue70 = Color.fromRGBO(76, 108, 184, 0.7);
+  static const Color blue50 = Color.fromRGBO(76, 108, 184, 0.5);
+  static const Color blue30 = Color.fromRGBO(76, 108, 184, 0.3);
   // yellow
-  static Color yellow = Color.fromRGBO(255, 217, 76, 1.0);
-  static Color yellow70 = Color.fromRGBO(255, 217, 76, 0.7);
-  static Color yellow50 = Color.fromRGBO(255, 217, 76, 0.5);
-  static Color yellow30 = Color.fromRGBO(255, 217, 76, 0.3);
+  static const Color yellow = Color.fromRGBO(255, 217, 76, 1.0);
+  static const Color yellow70 = Color.fromRGBO(255, 217, 76, 0.7);
+  static const Color yellow50 = Color.fromRGBO(255, 217, 76, 0.5);
+  static const Color yellow30 = Color.fromRGBO(255, 217, 76, 0.3);
   // red-ish
-  static Color red = Color.fromRGBO(255, 115, 147, 1.0);
-  static Color red70 = Color.fromRGBO(255, 115, 147, 0.7);
-  static Color red50 = Color.fromRGBO(255, 115, 147, 0.5);
-  static Color red30 = Color.fromRGBO(255, 115, 147, 0.3);
+  static const Color red = Color.fromRGBO(255, 115, 147, 1.0);
+  static const Color red70 = Color.fromRGBO(255, 115, 147, 0.7);
+  static const Color red50 = Color.fromRGBO(255, 115, 147, 0.5);
+  static const Color red30 = Color.fromRGBO(255, 115, 147, 0.3);
+
+  // very simple color swatches
+  static const List<Color> blues = [blue, blue70, blue50, blue30];
+  static const List<Color> yellows = [yellow, yellow70, yellow50, yellow30];
+  static const List<Color> reds = [red, red70, red50, red30];
 
   static TextStyle titleTS = TextStyle(
     fontFamily: 'Inter',

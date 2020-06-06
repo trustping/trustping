@@ -36,7 +36,7 @@ class _UOLivingSituationPage1State extends State<UOLivingSituationPage1> {
           i: 1,
           n: 2,
           section: "Lebenssituation",
-          color: Style.yellow,
+          colors: Style.yellows,
         ),
         form: _buildForm(context),
       ),

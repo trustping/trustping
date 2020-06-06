@@ -37,10 +37,10 @@ class TPProgressIndicator extends StatelessWidget {
   final int i;
   final int n;
   final String section;
-  final Color color;
-  const TPProgressIndicator({Key key, this.i, this.n, this.section, this.color})
-      : assert(color != null),
-        assert(i != null),
+  final List<Color> colors;
+  const TPProgressIndicator(
+      {Key key, this.i, this.n, this.section, this.colors})
+      : assert(i != null),
         assert(n != null),
         super(key: key);
 
@@ -53,7 +53,10 @@ class TPProgressIndicator extends StatelessWidget {
       margin: _margin,
       width: _dotSize,
       height: _dotSize,
-      decoration: BoxDecoration(shape: BoxShape.circle, color: color),
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: colors[0],
+      ),
     );
     final todoDot = Container(
       margin: _margin,
@@ -61,14 +64,15 @@ class TPProgressIndicator extends StatelessWidget {
       height: _dotSize,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        border: Border.all(width: 1, color: color),
+        border: Border.all(width: 1, color: colors[0]),
+        color: colors[3],
       ),
     );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         if (section != null)
-          Text(section, style: Style.subtitleTS.copyWith(color: color)),
+          Text(section, style: Style.subtitleTS.copyWith(color: colors[0])),
         Row(
           children: List.generate(n, (index) => index < i ? doneDot : todoDot),
         ),
