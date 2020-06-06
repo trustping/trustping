@@ -6,6 +6,7 @@ import 'package:trust_ping_app/app/home/chat_page.dart';
 import 'package:trust_ping_app/app/home/chats_page.dart';
 import 'package:trust_ping_app/app/introduction_page.dart';
 import 'package:trust_ping_app/app/onboarding/diagnosis_pages.dart';
+import 'package:trust_ping_app/app/onboarding/living_situation_pages.dart';
 import 'package:trust_ping_app/app/sign_in/email_password/email_password_sign_in_page.dart';
 import 'package:trust_ping_app/app/onboarding/user_onboarding_page.dart';
 import 'package:trust_ping_app/app/user_profile_page.dart';
@@ -54,4 +55,7 @@ class $Router {
 
   @MaterialRoute(fullscreenDialog: true)
   UODiagnosisPage4 uoDiagnosisPage4;
+
+  @MaterialRoute(fullscreenDialog: true)
+  UOLivingSituationPage1 uoLivingSituationPage1;
 }
