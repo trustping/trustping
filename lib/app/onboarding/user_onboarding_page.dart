@@ -51,7 +51,7 @@ class _UONamePageState extends State<UONamePage> {
               final form = this.key.currentState;
               if (form.validate()) {
                 setState(() => form.save());
-                ExtendedNavigator.of(context).pushNamed(Routes.uoAgeScreen);
+                ExtendedNavigator.of(context).pushNamed(Routes.uoAgePage);
               }
             },
           ),
