@@ -1,7 +1,10 @@
 class Strings {
   // Generic strings
   static const String ok = 'OK';
-  static const String cancel = 'Cancel';
+  static const String cancel = 'ABBRECHEN';
+  static const String skip = 'ÜBERSPRINGEN';
+  static const String next = 'WEITER';
+  static const String back = 'ZURÜCK';
 
   // Logout
   static const String logout = 'Logout';

@@ -2,9 +2,8 @@ import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:trust_ping_app/app/home/models/user_profile.dart';
+import 'package:trust_ping_app/app/spaces.dart';
 import 'package:trust_ping_app/services/firestore_database.dart';
-
-const vSpace = SizedBox(height: 32.0);
 
 class UserProfilePage extends StatelessWidget {
   @override
@@ -81,7 +80,7 @@ class _UserInputFormState extends State<UserInputForm> {
             onSaved: (value) => _name = value,
             decoration: InputDecoration(labelText: "Dein Name"),
           ),
-          vSpace,
+          vspace32,
           SectionWidget(
             title: "Lebensumstaende",
             body: "TODO wording\nAlter, Kinder, Berufstaetig/Rente/.../NA",
@@ -99,26 +98,26 @@ class _UserInputFormState extends State<UserInputForm> {
             onSaved: (value) => _yearOfBirth = int.parse(value),
           ),
           _buildCircumstancesFilter(context),
-          vSpace,
+          vspace32,
           SectionWidget(
             title: "Deine Interessen",
             body: "Ueber welche Themen willst du mit anderen Leuten sprechen?",
           ),
           _buildInterestFilter(context),
-          vSpace,
+          vspace32,
           SectionWidget(
             title: "TODO Diagnose",
             body:
                 "TODO wording; welche Attribute?\nBrustkrebs: hormon/nicht/Keine Angabe, ...",
           ),
-          vSpace,
+          vspace32,
           SectionWidget(
             title: "TODO Behandlung",
             body:
                 "TODO wording; welche Attribute?\nKliniken, Therapien, Behandlungsmethoden",
           ),
-          vSpace,
-          vSpace,
+          vspace32,
+          vspace32,
           FlatButton(
             color: Theme.of(context).accentColor,
             onPressed: () {
@@ -136,7 +135,7 @@ class _UserInputFormState extends State<UserInputForm> {
             },
             child: Text('Speichern'),
           ),
-          vSpace,
+          vspace32,
         ],
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.start,

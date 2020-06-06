@@ -1,37 +1,33 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import 'package:trust_ping_app/app/user_profile_page.dart';
+import 'package:trust_ping_app/theme.dart';
 
 class IntroductionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-
     return IntroductionScreen(
       pages: [
         _buildPageViewModel(
-          title: 'Trustping ist tnfeoianst arsietn arsot',
+          title: 'Herzlich Willkommen bei Trustping!',
+          subtitle: "",
+          assetPath: "assets/images/boxes.png",
+        ),
+        _buildPageViewModel(
+          title: "Trustping",
           subtitle:
-              "... ist eine App mit der Menschen mit Krebs gezielt Gesprächspartner finden, ohne sensible Informationen aus der Hand zu geben.",
+              "Trustping findet Menschen in ähnlichen Situationen und verbindet sie findet Menschen in ähnlichen Situationen und verbindet ndet Menschen in ähnlichen Situationen und verbindet",
           body:
-              "tnsireantio naresitn aiorsnt ironsat eiornst arisotte irnset irnste iarnst aresnt rsiont rseiotn",
+              "Trustping findet Menschen in ähnlichen Situationen und verbindet sie findet Menschen in ähnlichen Situationen und verbindet ndet Menschen in ähnlichen Situationen und verbindet",
           assetPath: "assets/images/boxes.png",
-          textTheme: textTheme,
         ),
         _buildPageViewModel(
-          title: "Let's start",
-          assetPath: "assets/images/boxes.png",
+          title: "Let’s start",
           subtitle:
-              "Um fuer dich passende Gespraechspartner zu finden brauchen wir ein paar Informationen ueber dich",
-          textTheme: textTheme,
-        ),
-        _buildPageViewModel(
-          title: "Transparenz und Integrietaet",
+              "Um für Dich passende Gesprächspartner zu finden, brauchen wir ein paar Informationen.",
+          body:
+              "Usam quo tecus id modi omnihil laccusdant cerferchilia simusam quo tecus idem.",
           assetPath: "assets/images/boxes.png",
-          subtitle: "Das Herz von Trustping ist Transparenz und Integrietaet.",
-          body: "moretn ersint ianrsti enarso",
-          textTheme: textTheme,
         ),
       ],
       next: const Icon(Icons.forward),
@@ -51,61 +47,31 @@ class IntroductionPage extends StatelessWidget {
     subtitle,
     body,
     assetPath,
-    textTheme,
   }) {
+    const spacer = SizedBox(height: 16.0);
     return PageViewModel(
-      titleWidget: _IntroPageWidget(
-        title: title,
-        subtitle: subtitle,
-        body: body,
-        assetPath: assetPath,
-        textTheme: textTheme,
+      titleWidget: Padding(
+        padding: const EdgeInsets.fromLTRB(16.0, 92.0, 24.0, 8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Image(
+              image: AssetImage(assetPath),
+              width: 100.0,
+            ),
+            spacer,
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0.0, 0.0, 40, 0),
+              child: Style.title(title),
+            ),
+            spacer,
+            Style.subtitle(subtitle),
+            if (body != null) spacer,
+            if (body != null) Text(body)
+          ],
+        ),
       ),
       body: "",
-    );
-  }
-}
-
-// Helper to easily create the actual content of a PageViewModel
-class _IntroPageWidget extends StatelessWidget {
-  final String title;
-  final String subtitle;
-  final String body;
-  final String assetPath;
-  const _IntroPageWidget({
-    Key key,
-    this.title,
-    this.subtitle,
-    this.body,
-    this.assetPath,
-    @required this.textTheme,
-  }) : super(key: key);
-
-  final TextTheme textTheme;
-
-  @override
-  Widget build(BuildContext context) {
-    const spacer = SizedBox(height: 16.0);
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16.0, 92.0, 32.0, 8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Image(
-            image: AssetImage(assetPath),
-            width: 100.0,
-          ),
-          spacer,
-          Text(title, style: textTheme.headline1),
-          spacer,
-          Text(
-            subtitle,
-            style: textTheme.headline6,
-          ),
-          if (body != null) spacer,
-          if (body != null) Text(body)
-        ],
-      ),
     );
   }
 }
