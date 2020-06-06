@@ -56,6 +56,9 @@ class $Router {
   @MaterialRoute(fullscreenDialog: true)
   UODiagnosisPage4 uoDiagnosisPage4;
 
-  @MaterialRoute(fullscreenDialog: true)
+  @MaterialRoute(fullscreenDialog: false)
   UOLivingSituationPage1 uoLivingSituationPage1;
+
+  @MaterialRoute(fullscreenDialog: false)
+  UOLivingSituationPage2 uoLivingSituationPage2;
 }
