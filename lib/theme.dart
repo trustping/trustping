@@ -2,15 +2,25 @@ import 'package:flutter/material.dart';
 
 /// This defines the entire style for the Trustping app
 class Style {
+  // COLORS
   static Color textColor = Color.fromRGBO(48, 61, 68, 1.0);
   static Color textLightColor = Color.fromRGBO(143, 143, 143, 1.0);
   static Color textDarkColor = Color.fromRGBO(19, 24, 27, 1.0);
-  // yellow
-  static Color accentColor1 = Color.fromRGBO(255, 217, 76, 1.0);
   // blue-ish
-  static Color accentColor2 = Color.fromRGBO(255, 115, 147, 1.0);
+  static Color blue = Color.fromRGBO(76, 108, 184, 1.0);
+  static Color blue70 = Color.fromRGBO(76, 108, 184, 0.7);
+  static Color blue50 = Color.fromRGBO(76, 108, 184, 0.5);
+  static Color blue30 = Color.fromRGBO(76, 108, 184, 0.3);
+  // yellow
+  static Color yellow = Color.fromRGBO(255, 217, 76, 1.0);
+  static Color yellow70 = Color.fromRGBO(255, 217, 76, 0.7);
+  static Color yellow50 = Color.fromRGBO(255, 217, 76, 0.5);
+  static Color yellow30 = Color.fromRGBO(255, 217, 76, 0.3);
   // red-ish
-  static Color accentColor3 = Color.fromRGBO(76, 108, 184, 1.0);
+  static Color red = Color.fromRGBO(255, 115, 147, 1.0);
+  static Color red70 = Color.fromRGBO(255, 115, 147, 0.7);
+  static Color red50 = Color.fromRGBO(255, 115, 147, 0.5);
+  static Color red30 = Color.fromRGBO(255, 115, 147, 0.3);
 
   static TextStyle titleTS = TextStyle(
     fontFamily: 'Inter',
@@ -50,7 +60,7 @@ class Style {
   static ThemeData themeData = ThemeData(
     fontFamily: 'Inter',
     primarySwatch: tpColors,
-    accentColor: accentColor1,
+    accentColor: yellow,
     textTheme: TextTheme(
       headline1: titleTS,
       headline6: subtitleTS,

@@ -90,7 +90,7 @@ Widget buildButtonNav({context, onNext, onBack}) {
       ),
       RaisedButton(
         child: Text(Strings.next),
-        color: Style.accentColor1,
+        color: Style.yellow,
         onPressed: onNext,
       ),
     ],

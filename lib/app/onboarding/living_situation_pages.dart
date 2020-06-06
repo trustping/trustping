@@ -28,7 +28,7 @@ class _UOLivingSituationPage1State extends State<UOLivingSituationPage1> {
           i: 1,
           n: 2,
           section: "Lebenssituation",
-          color: Style.accentColor1,
+          color: Style.yellow,
         ),
         form: _buildForm(context),
       ),
@@ -67,8 +67,8 @@ class _UOLivingSituationPage1State extends State<UOLivingSituationPage1> {
           child: FilterChip(
             label: Text(option),
             selected: _selected.contains(option),
-            selectedColor: Style.accentColor1,
-            backgroundColor: Style.accentColor3,
+            selectedColor: Style.yellow,
+            backgroundColor: Style.blue,
             showCheckmark: false,
             onSelected: (bool selected) {
               setState(() =>

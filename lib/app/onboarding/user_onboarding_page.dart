@@ -51,7 +51,7 @@ class _UONameScreenState extends State<UONameScreen> {
           vspace16,
           RaisedButton(
             child: Text(Strings.next),
-            color: Style.accentColor1,
+            color: Style.yellow,
             onPressed: () {
               final form = this.key.currentState;
               if (form.validate()) {
@@ -120,7 +120,7 @@ class _UOAgeScreenState extends State<UOAgeScreen> {
           vspace16,
           RaisedButton(
             child: Text(Strings.next),
-            color: Style.accentColor1,
+            color: Style.yellow,
             onPressed: () {
               final form = this.key.currentState;
               if (form.validate()) {
