@@ -89,7 +89,7 @@ Widget buildButtonNav({context, onNext, onBack}) {
     children: <Widget>[
       FlatButton(
         child: Text(Strings.back),
-        textColor: Style.textDarkColor,
+        textColor: Style.textLightColor,
         onPressed: onBack,
       ),
       RaisedButton(

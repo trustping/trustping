@@ -140,8 +140,7 @@ class _UOLivingSituationPage2State extends State<UOLivingSituationPage2> {
               final form = this.key.currentState;
               if (form.validate()) {
                 setState(() => form.save());
-                ExtendedNavigator.of(context)
-                    .popAndPushNamed(Routes.uoDiagnosisPage4);
+                Navigator.of(context).pop();
               }
             },
             onBack: () => ExtendedNavigator.of(context)

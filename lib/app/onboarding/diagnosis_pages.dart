@@ -159,6 +159,15 @@ class UODiagnosisPage3 extends StatefulWidget {
 class _UODiagnosisPage3State extends State<UODiagnosisPage3> {
   final key = GlobalKey<FormState>();
 
+  final Set<String> _options = Set.from([
+    "Vorstufe / DCIS",
+    "Hormonsensitiv",
+    "HER2+",
+    "Tripple negative+",
+    "Fortgeschritten / Metastasen",
+  ]);
+  Set<String> _selected = Set();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -183,31 +192,7 @@ class _UODiagnosisPage3State extends State<UODiagnosisPage3> {
       key: key,
       child: Column(
         children: <Widget>[
-          FilterChip(
-            label: Text("Vorstufe / DCIS"),
-            selected: true,
-            onSelected: (bool value) {},
-          ),
-          FilterChip(
-            label: Text("Hormonsensitiv"),
-            selected: false,
-            onSelected: (bool value) {},
-          ),
-          FilterChip(
-            label: Text("HER2+"),
-            selected: false,
-            onSelected: (bool value) {},
-          ),
-          FilterChip(
-            label: Text("Triple negative"),
-            selected: false,
-            onSelected: (bool value) {},
-          ),
-          FilterChip(
-            label: Text("Fortgeschritten / Metastasen"),
-            selected: false,
-            onSelected: (bool value) {},
-          ),
+          _buildChips(),
           vspace16,
           buildButtonNav(
             context: context,
@@ -227,6 +212,30 @@ class _UODiagnosisPage3State extends State<UODiagnosisPage3> {
         ],
         crossAxisAlignment: CrossAxisAlignment.stretch,
       ),
+    );
+  }
+
+  Widget _buildChips() {
+    return Wrap(
+      children: _options.map(
+        (option) {
+          return Container(
+            padding: EdgeInsets.only(right: 4),
+            child: FilterChip(
+              label: Text(option),
+              selected: _selected.contains(option),
+              onSelected: (bool selected) {
+                setState(() {
+                  selected ? _selected.add(option) : _selected.remove(option);
+                });
+              },
+              showCheckmark: false,
+              selectedColor: Style.red,
+              backgroundColor: Style.red50,
+            ),
+          );
+        },
+      ).toList(),
     );
   }
 }
