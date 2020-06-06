@@ -49,26 +49,13 @@ class _UONameScreenState extends State<UONameScreen> {
             onSaved: (value) => _name = value,
           ),
           vspace16,
-          RaisedButton(
-            child: Text(Strings.next),
-            color: Style.yellow,
-            onPressed: () {
+          buildButtonNav(
+            context: context,
+            onNext: () {
               final form = this.key.currentState;
               if (form.validate()) {
                 setState(() => form.save());
-                ExtendedNavigator.of(context)
-                    .popAndPushNamed(Routes.uoAgeScreen);
-              }
-            },
-          ),
-          FlatButton(
-            child: Text(Strings.back),
-            textColor: Style.textLightColor,
-            onPressed: () {
-              final form = this.key.currentState;
-              if (form.validate()) {
-                setState(() => form.save());
-                Navigator.of(context).pop();
+                ExtendedNavigator.of(context).pushNamed(Routes.uoAgeScreen);
               }
             },
           ),

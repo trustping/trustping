@@ -57,7 +57,7 @@ class _UOTherapyPage1State extends State<UOTherapyPage1> {
               if (form.validate()) {
                 setState(() => form.save());
                 ExtendedNavigator.of(context)
-                    .popAndPushNamed(Routes.uoLivingSituationPage1);
+                    .pushNamed(Routes.uoLivingSituationPage1);
               }
             },
             onBack: () => ExtendedNavigator.of(context)

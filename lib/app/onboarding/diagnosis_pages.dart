@@ -55,7 +55,6 @@ class _UODiagnosisPage1State extends State<UODiagnosisPage1> {
             }).toList(),
             isExpanded: true,
           ),
-          vspace16,
           buildButtonNav(
             context: context,
             onNext: () {
@@ -63,7 +62,7 @@ class _UODiagnosisPage1State extends State<UODiagnosisPage1> {
               if (form.validate()) {
                 setState(() => form.save());
                 ExtendedNavigator.of(context)
-                    .popAndPushNamed(Routes.uoDiagnosisPage2);
+                    .pushNamed(Routes.uoDiagnosisPage2);
               }
             },
             onBack: () => ExtendedNavigator.of(context)
@@ -136,7 +135,7 @@ class _UODiagnosisPage2State extends State<UODiagnosisPage2> {
               if (form.validate()) {
                 setState(() => form.save());
                 ExtendedNavigator.of(context)
-                    .popAndPushNamed(Routes.uoDiagnosisPage3);
+                    .pushNamed(Routes.uoDiagnosisPage3);
               }
             },
             onBack: () => ExtendedNavigator.of(context)
@@ -201,7 +200,7 @@ class _UODiagnosisPage3State extends State<UODiagnosisPage3> {
               if (form.validate()) {
                 setState(() => form.save());
                 ExtendedNavigator.of(context)
-                    .popAndPushNamed(Routes.uoDiagnosisPage4);
+                    .pushNamed(Routes.uoDiagnosisPage4);
               }
             },
             onBack: () {
@@ -289,8 +288,7 @@ class _UODiagnosisPage4State extends State<UODiagnosisPage4> {
               final form = this.key.currentState;
               if (form.validate()) {
                 setState(() => form.save());
-                ExtendedNavigator.of(context)
-                    .popAndPushNamed(Routes.uoTherapyPage1);
+                ExtendedNavigator.of(context).pushNamed(Routes.uoTherapyPage1);
               }
             },
             onBack: () {

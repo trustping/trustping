@@ -83,15 +83,9 @@ class TPProgressIndicator extends StatelessWidget {
 }
 
 Widget buildButtonNav({context, onNext, onBack}) {
-  return ButtonBar(
-    alignment: MainAxisAlignment.spaceEvenly,
-    buttonMinWidth: 150,
+  return Column(
     children: <Widget>[
-      FlatButton(
-        child: Text(Strings.back),
-        textColor: Style.textLightColor,
-        onPressed: onBack,
-      ),
+      vspace16,
       RaisedButton(
         child: Text(Strings.next),
         color: Style.yellow,
@@ -99,4 +93,20 @@ Widget buildButtonNav({context, onNext, onBack}) {
       ),
     ],
   );
+  // return ButtonBar(
+  //   alignment: MainAxisAlignment.spaceEvenly,
+  //   buttonMinWidth: 150,
+  //   children: <Widget>[
+  //     FlatButton(
+  //       child: Text(Strings.back),
+  //       textColor: Style.textLightColor,
+  //       onPressed: onBack,
+  //     ),
+  //     RaisedButton(
+  //       child: Text(Strings.next),
+  //       color: Style.yellow,
+  //       onPressed: onNext,
+  //     ),
+  //   ],
+  // );
 }

@@ -57,7 +57,7 @@ class _UOLivingSituationPage1State extends State<UOLivingSituationPage1> {
               if (form.validate()) {
                 setState(() => form.save());
                 ExtendedNavigator.of(context)
-                    .popAndPushNamed(Routes.uoLivingSituationPage2);
+                    .popUntil((route) => route.isFirst);
               }
             },
             onBack: () => ExtendedNavigator.of(context)
@@ -144,7 +144,7 @@ class _UOLivingSituationPage2State extends State<UOLivingSituationPage2> {
               }
             },
             onBack: () => ExtendedNavigator.of(context)
-                .popAndPushNamed(Routes.uoDiagnosisPage4),
+                .pushNamed(Routes.uoDiagnosisPage4),
           ),
         ],
       ),
