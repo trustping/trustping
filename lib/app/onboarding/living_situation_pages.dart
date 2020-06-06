@@ -4,7 +4,15 @@ import 'package:trust_ping_app/app/onboarding/utils.dart';
 import 'package:trust_ping_app/routing/router.gr.dart';
 import 'package:trust_ping_app/theme.dart';
 
-Set<String> _options = Set.from(["Single", "Verheiratet", "foo", "xxx"]);
+Set<String> _options = Set.from([
+  "Single",
+  "In Partnerschaft/Verheiratet",
+  "In Ausbildung/Studium",
+  "Berufstätig",
+  "Pentioniert",
+  "Schwanger",
+  "Mit Familie",
+]);
 
 class UOLivingSituationPage1 extends StatefulWidget {
   @override
@@ -68,7 +76,7 @@ class _UOLivingSituationPage1State extends State<UOLivingSituationPage1> {
             label: Text(option),
             selected: _selected.contains(option),
             selectedColor: Style.yellow,
-            backgroundColor: Style.blue,
+            backgroundColor: Style.yellow50,
             showCheckmark: false,
             onSelected: (bool selected) {
               setState(() =>
