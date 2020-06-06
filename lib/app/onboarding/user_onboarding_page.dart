@@ -85,7 +85,7 @@ class UOAgeScreen extends StatefulWidget {
 
 class _UOAgeScreenState extends State<UOAgeScreen> {
   final key = GlobalKey<FormState>();
-  String _yearOfBirth;
+  String _yearOfBirth = "2000";
 
   @override
   Widget build(BuildContext context) {
@@ -109,8 +109,7 @@ class _UOAgeScreenState extends State<UOAgeScreen> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           TextFormField(
-            initialValue:
-                _yearOfBirth != null ? _yearOfBirth.toString() : "1900",
+            initialValue: _yearOfBirth,
             decoration: InputDecoration(labelText: "Geburtsjahr"),
             validator: (value) => null,
             onSaved: (value) => _yearOfBirth = value,
@@ -118,19 +117,18 @@ class _UOAgeScreenState extends State<UOAgeScreen> {
             inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
           ),
           vspace16,
-          RaisedButton(
-            child: Text(Strings.next),
-            color: Style.yellow,
-            onPressed: () {
+          buildButtonNav(
+            context: context,
+            onNext: () {
               final form = this.key.currentState;
               if (form.validate()) {
-                setState(() {
-                  form.save();
-                });
+                setState(() => form.save());
                 ExtendedNavigator.of(context)
                     .popAndPushNamed(Routes.uoDiagnosisPage1);
               }
             },
+            onBack: () => ExtendedNavigator.of(context)
+                .popAndPushNamed(Routes.uoNameScreen),
           ),
         ],
       ),
