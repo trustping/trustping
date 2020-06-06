@@ -3,21 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:trust_ping_app/app/onboarding/utils.dart';
 import 'package:trust_ping_app/routing/router.gr.dart';
-import 'package:trust_ping_app/app/spaces.dart';
-import 'package:trust_ping_app/constants/strings.dart';
-import 'package:trust_ping_app/theme.dart';
 
 final Widget _logoHeader = SizedBox(
   child: Image.asset("assets/images/boxes.png", height: 100),
   height: 100,
 );
 
-class UONameScreen extends StatefulWidget {
+class UONamePage extends StatefulWidget {
   @override
-  _UONameScreenState createState() => _UONameScreenState();
+  _UONamePageState createState() => _UONamePageState();
 }
 
-class _UONameScreenState extends State<UONameScreen> {
+class _UONamePageState extends State<UONamePage> {
   final key = GlobalKey<FormState>();
   String _name = "";
 
@@ -64,12 +61,12 @@ class _UONameScreenState extends State<UONameScreen> {
   }
 }
 
-class UOAgeScreen extends StatefulWidget {
+class UOAgePage extends StatefulWidget {
   @override
-  _UOAgeScreenState createState() => _UOAgeScreenState();
+  _UOAgePageState createState() => _UOAgePageState();
 }
 
-class _UOAgeScreenState extends State<UOAgeScreen> {
+class _UOAgePageState extends State<UOAgePage> {
   final key = GlobalKey<FormState>();
   String _yearOfBirth = "2000";
 

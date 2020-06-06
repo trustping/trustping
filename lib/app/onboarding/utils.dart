@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:trust_ping_app/app/spaces.dart';
 import 'package:trust_ping_app/constants/strings.dart';
 import 'package:trust_ping_app/theme.dart';
-
-import '../spaces.dart';
 
 Widget buildOnboardingContent({
   BuildContext context,

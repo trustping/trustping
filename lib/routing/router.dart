@@ -43,12 +43,12 @@ class $Router {
   @CustomRoute(
       transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
       durationInMilliseconds: 300)
-  UONameScreen uoNameScreen;
+  UONamePage uoNamePage;
 
   @CustomRoute(
       transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
       durationInMilliseconds: 300)
-  UOAgeScreen uoAgeScreen;
+  UOAgePage uoAgePage;
 
   @CustomRoute(
       transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
