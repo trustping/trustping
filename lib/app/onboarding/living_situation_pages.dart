@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:trust_ping_app/app/onboarding/utils.dart';
+import 'package:trust_ping_app/constants/strings.dart';
+import 'package:trust_ping_app/routing/router.gr.dart';
 import 'package:trust_ping_app/theme.dart';
 
 class UOLivingSituationPage1 extends StatefulWidget {
@@ -56,7 +58,7 @@ class _UOLivingSituationPage1State extends State<UOLivingSituationPage1> {
               if (form.validate()) {
                 setState(() => form.save());
                 ExtendedNavigator.of(context)
-                    .popUntil((route) => route.isFirst);
+                    .pushNamed(Routes.uoLivingSituationPage2);
               }
             },
           ),
@@ -137,9 +139,11 @@ class _UOLivingSituationPage2State extends State<UOLivingSituationPage2> {
               final form = this.key.currentState;
               if (form.validate()) {
                 setState(() => form.save());
-                Navigator.of(context).pop();
+                ExtendedNavigator.of(context)
+                    .popUntil((route) => route.isFirst);
               }
             },
+            buttonText: Strings.ok,
           ),
         ],
       ),

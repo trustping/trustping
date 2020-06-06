@@ -106,7 +106,7 @@ class _UOAgePageState extends State<UOAgePage> {
               if (form.validate()) {
                 setState(() => form.save());
                 ExtendedNavigator.of(context)
-                    .popAndPushNamed(Routes.uoDiagnosisPage1);
+                    .pushNamed(Routes.uoDiagnosisPage1);
               }
             },
           ),

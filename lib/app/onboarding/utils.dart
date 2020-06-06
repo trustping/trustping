@@ -81,13 +81,14 @@ class TPProgressIndicator extends StatelessWidget {
   }
 }
 
-Widget buildButtonNav({BuildContext context, Function onNext}) {
+Widget buildButtonNav(
+    {BuildContext context, Function onNext, String buttonText}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.stretch,
     children: <Widget>[
       vspace16,
       RaisedButton(
-        child: Text(Strings.next),
+        child: Text(buttonText ?? Strings.next),
         color: Style.yellow,
         onPressed: onNext,
       ),
