@@ -48,7 +48,6 @@ class _UONameScreenState extends State<UONameScreen> {
             validator: (value) => null,
             onSaved: (value) => _name = value,
           ),
-          vspace16,
           buildButtonNav(
             context: context,
             onNext: () {
@@ -103,7 +102,6 @@ class _UOAgeScreenState extends State<UOAgeScreen> {
             keyboardType: TextInputType.number,
             inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
           ),
-          vspace16,
           buildButtonNav(
             context: context,
             onNext: () {
@@ -114,8 +112,6 @@ class _UOAgeScreenState extends State<UOAgeScreen> {
                     .popAndPushNamed(Routes.uoDiagnosisPage1);
               }
             },
-            onBack: () => ExtendedNavigator.of(context)
-                .popAndPushNamed(Routes.uoNameScreen),
           ),
         ],
       ),

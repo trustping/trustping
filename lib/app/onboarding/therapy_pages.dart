@@ -60,8 +60,6 @@ class _UOTherapyPage1State extends State<UOTherapyPage1> {
                     .pushNamed(Routes.uoLivingSituationPage1);
               }
             },
-            onBack: () => ExtendedNavigator.of(context)
-                .popAndPushNamed(Routes.uoDiagnosisPage4),
           ),
         ],
       ),

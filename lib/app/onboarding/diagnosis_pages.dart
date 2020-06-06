@@ -65,8 +65,6 @@ class _UODiagnosisPage1State extends State<UODiagnosisPage1> {
                     .pushNamed(Routes.uoDiagnosisPage2);
               }
             },
-            onBack: () => ExtendedNavigator.of(context)
-                .popAndPushNamed(Routes.uoAgeScreen),
           ),
         ],
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -127,7 +125,6 @@ class _UODiagnosisPage2State extends State<UODiagnosisPage2> {
             }).toList(),
             isExpanded: true,
           ),
-          vspace16,
           buildButtonNav(
             context: context,
             onNext: () {
@@ -138,8 +135,6 @@ class _UODiagnosisPage2State extends State<UODiagnosisPage2> {
                     .pushNamed(Routes.uoDiagnosisPage3);
               }
             },
-            onBack: () => ExtendedNavigator.of(context)
-                .popAndPushNamed(Routes.uoDiagnosisPage1),
           ),
         ],
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -192,7 +187,6 @@ class _UODiagnosisPage3State extends State<UODiagnosisPage3> {
       child: Column(
         children: <Widget>[
           _buildChips(),
-          vspace16,
           buildButtonNav(
             context: context,
             onNext: () {
@@ -202,10 +196,6 @@ class _UODiagnosisPage3State extends State<UODiagnosisPage3> {
                 ExtendedNavigator.of(context)
                     .pushNamed(Routes.uoDiagnosisPage4);
               }
-            },
-            onBack: () {
-              ExtendedNavigator.of(context)
-                  .popAndPushNamed(Routes.uoDiagnosisPage2);
             },
           ),
         ],
@@ -281,7 +271,6 @@ class _UODiagnosisPage4State extends State<UODiagnosisPage4> {
           _buildRadioTile("Keine Angabe", Phase.na),
           _buildRadioTile("TODO 1", Phase.todo1),
           _buildRadioTile("TODO 2", Phase.todo2),
-          vspace16,
           buildButtonNav(
             context: context,
             onNext: () {
@@ -290,10 +279,6 @@ class _UODiagnosisPage4State extends State<UODiagnosisPage4> {
                 setState(() => form.save());
                 ExtendedNavigator.of(context).pushNamed(Routes.uoTherapyPage1);
               }
-            },
-            onBack: () {
-              ExtendedNavigator.of(context)
-                  .popAndPushNamed(Routes.uoDiagnosisPage3);
             },
           ),
         ],
