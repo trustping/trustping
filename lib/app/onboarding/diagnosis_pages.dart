@@ -290,7 +290,7 @@ class _UODiagnosisPage4State extends State<UODiagnosisPage4> {
               if (form.validate()) {
                 setState(() => form.save());
                 ExtendedNavigator.of(context)
-                    .popAndPushNamed(Routes.uoLivingSituationPage1);
+                    .popAndPushNamed(Routes.uoTherapyPage1);
               }
             },
             onBack: () {

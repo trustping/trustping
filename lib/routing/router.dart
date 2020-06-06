@@ -7,6 +7,7 @@ import 'package:trust_ping_app/app/home/chats_page.dart';
 import 'package:trust_ping_app/app/introduction_page.dart';
 import 'package:trust_ping_app/app/onboarding/diagnosis_pages.dart';
 import 'package:trust_ping_app/app/onboarding/living_situation_pages.dart';
+import 'package:trust_ping_app/app/onboarding/therapy_pages.dart';
 import 'package:trust_ping_app/app/sign_in/email_password/email_password_sign_in_page.dart';
 import 'package:trust_ping_app/app/onboarding/user_onboarding_page.dart';
 import 'package:trust_ping_app/app/user_profile_page.dart';
@@ -38,23 +39,26 @@ class $Router {
   ComposePingPage composePingPage;
 
   // Onboarding screens
-  @MaterialRoute(fullscreenDialog: true)
+  @MaterialRoute(fullscreenDialog: false)
   UONameScreen uoNameScreen;
 
-  @MaterialRoute(fullscreenDialog: true)
+  @MaterialRoute(fullscreenDialog: false)
   UOAgeScreen uoAgeScreen;
 
-  @MaterialRoute(fullscreenDialog: true)
+  @MaterialRoute(fullscreenDialog: false)
   UODiagnosisPage1 uoDiagnosisPage1;
 
-  @MaterialRoute(fullscreenDialog: true)
+  @MaterialRoute(fullscreenDialog: false)
   UODiagnosisPage2 uoDiagnosisPage2;
 
-  @MaterialRoute(fullscreenDialog: true)
+  @MaterialRoute(fullscreenDialog: false)
   UODiagnosisPage3 uoDiagnosisPage3;
 
-  @MaterialRoute(fullscreenDialog: true)
+  @MaterialRoute(fullscreenDialog: false)
   UODiagnosisPage4 uoDiagnosisPage4;
+
+  @MaterialRoute(fullscreenDialog: false)
+  UOTherapyPage1 uoTherapyPage1;
 
   @MaterialRoute(fullscreenDialog: false)
   UOLivingSituationPage1 uoLivingSituationPage1;
