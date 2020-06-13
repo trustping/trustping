@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trust_ping_app/app/spaces.dart';
+import 'package:trust_ping_app/common_widgets/buttons.dart';
 import 'package:trust_ping_app/constants/strings.dart';
 import 'package:trust_ping_app/theme.dart';
 
@@ -81,33 +82,25 @@ class TPProgressIndicator extends StatelessWidget {
   }
 }
 
-Widget buildButtonNav(
-    {BuildContext context, Function onNext, String buttonText}) {
+Widget buildButtonNav({
+  BuildContext context,
+  Function onNext,
+  Function onSkip,
+  String buttonText,
+}) {
   return Column(
-    crossAxisAlignment: CrossAxisAlignment.stretch,
+    crossAxisAlignment: CrossAxisAlignment.end,
     children: <Widget>[
-      vspace16,
-      RaisedButton(
-        child: Text(buttonText ?? Strings.next),
-        color: Style.yellow,
+      vspace32,
+      TPButton.primary(
+        text: buttonText ?? Strings.next,
         onPressed: onNext,
+      ),
+      vspace16,
+      TPButton.secondary(
+        text: Strings.skip,
+        onPressed: onSkip,
       ),
     ],
   );
-  // return ButtonBar(
-  //   alignment: MainAxisAlignment.spaceEvenly,
-  //   buttonMinWidth: 150,
-  //   children: <Widget>[
-  //     FlatButton(
-  //       child: Text(Strings.back),
-  //       textColor: Style.textLightColor,
-  //       onPressed: onBack,
-  //     ),
-  //     RaisedButton(
-  //       child: Text(Strings.next),
-  //       color: Style.yellow,
-  //       onPressed: onNext,
-  //     ),
-  //   ],
-  // );
 }
