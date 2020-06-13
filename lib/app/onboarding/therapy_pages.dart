@@ -31,10 +31,88 @@ class _UOTherapyPage1State extends State<UOTherapyPage1> {
       body: buildOnboardingContent(
         context: context,
         title: "Therapie",
-        body: "Welche Therapien machst Du, hast Du gemacht oder sind geplant?",
+        body: "Welche Therapien hast du gemacht, machst Du, oder sind geplant?",
         header: TPProgressIndicator(
           i: 1,
-          n: 1,
+          n: 2,
+          section: "Therapie",
+          colors: Style.blues,
+        ),
+        form: _buildForm(context),
+      ),
+      resizeToAvoidBottomInset: false,
+    );
+  }
+
+  Widget _buildForm(context) {
+    return Form(
+      key: key,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          _buildChips(),
+          buildButtonNav(
+            context: context,
+            onNext: () {
+              final form = this.key.currentState;
+              if (form.validate()) {
+                setState(() => form.save());
+                ExtendedNavigator.of(context).pushNamed(Routes.uoTherapyPage2);
+              }
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  Wrap _buildChips() {
+    return Wrap(
+      children: _options.map((option) {
+        return TPFilterChip(
+          label: option,
+          selected: _selected.contains(option),
+          colors: Style.blues,
+          onSelected: (bool selected) {
+            setState(() =>
+                selected ? _selected.add(option) : _selected.remove(option));
+          },
+        );
+      }).toList(),
+    );
+  }
+}
+
+class UOTherapyPage2 extends StatefulWidget {
+  @override
+  _UOTherapyPage2State createState() => _UOTherapyPage2State();
+}
+
+class _UOTherapyPage2State extends State<UOTherapyPage2> {
+  final key = GlobalKey<FormState>();
+  Set<String> _selected = Set();
+
+  final Set<String> _options = Set.from([
+    "Erschöpfung",
+    "Immuntherapie",
+    "Operation",
+    "Hormontherapie",
+    "Strahlentherapie",
+    "Psychotherapie",
+    "Komplementäre Medizin",
+  ]);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Trustping")),
+      body: buildOnboardingContent(
+        context: context,
+        title: "Nebenwirkungen",
+        body: "TODO text",
+        header: TPProgressIndicator(
+          i: 2,
+          n: 2,
           section: "Therapie",
           colors: Style.blues,
         ),
