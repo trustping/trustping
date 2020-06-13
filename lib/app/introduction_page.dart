@@ -10,22 +10,22 @@ class IntroductionPage extends StatelessWidget {
       pages: [
         _buildPageViewModel(
           title: 'Herzlich Willkommen bei Trustping!',
-          subtitle: "",
+          body: "",
           assetPath: "assets/images/boxes.png",
         ),
         _buildPageViewModel(
           title: "Trustping",
-          subtitle:
-              "Trustping findet Menschen in ähnlichen Situationen und verbindet sie findet Menschen in ähnlichen Situationen und verbindet ndet Menschen in ähnlichen Situationen und verbindet",
           body:
+              "Trustping findet Menschen in ähnlichen Situationen und verbindet sie findet Menschen in ähnlichen Situationen und verbindet ndet Menschen in ähnlichen Situationen und verbindet",
+          subBody:
               "Trustping findet Menschen in ähnlichen Situationen und verbindet sie findet Menschen in ähnlichen Situationen und verbindet ndet Menschen in ähnlichen Situationen und verbindet",
           assetPath: "assets/images/boxes.png",
         ),
         _buildPageViewModel(
           title: "Let’s start",
-          subtitle:
-              "Um für Dich passende Gesprächspartner zu finden, brauchen wir ein paar Informationen.",
           body:
+              "Um für Dich passende Gesprächspartner zu finden, brauchen wir ein paar Informationen.",
+          subBody:
               "Usam quo tecus id modi omnihil laccusdant cerferchilia simusam quo tecus idem.",
           assetPath: "assets/images/boxes.png",
         ),
@@ -44,8 +44,8 @@ class IntroductionPage extends StatelessWidget {
 
   PageViewModel _buildPageViewModel({
     title,
-    subtitle,
     body,
+    subBody,
     assetPath,
   }) {
     const spacer = SizedBox(height: 16.0);
@@ -65,9 +65,9 @@ class IntroductionPage extends StatelessWidget {
               child: Style.title(title),
             ),
             spacer,
-            Style.subtitle(subtitle),
-            if (body != null) spacer,
-            if (body != null) Text(body)
+            Style.body(body),
+            if (subBody != null) spacer,
+            if (subBody != null) Style.tiny(subBody)
           ],
         ),
       ),
