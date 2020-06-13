@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:trust_ping_app/app/onboarding/utils.dart';
+import 'package:trust_ping_app/common_widgets/chips.dart';
 import 'package:trust_ping_app/routing/router.gr.dart';
 import 'package:trust_ping_app/theme.dart';
 
@@ -184,6 +185,7 @@ class _UODiagnosisPage3State extends State<UODiagnosisPage3> {
     return Form(
       key: key,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           _buildChips(),
           buildButtonNav(
@@ -198,7 +200,6 @@ class _UODiagnosisPage3State extends State<UODiagnosisPage3> {
             },
           ),
         ],
-        crossAxisAlignment: CrossAxisAlignment.stretch,
       ),
     );
   }
@@ -207,23 +208,15 @@ class _UODiagnosisPage3State extends State<UODiagnosisPage3> {
     return Wrap(
       children: _options.map(
         (option) {
-          return Container(
-            padding: EdgeInsets.only(right: 4),
-            child: FilterChip(
-              label: Text(option),
-              selected: _selected.contains(option),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(4)),
-              ),
-              onSelected: (bool selected) {
-                setState(() {
-                  selected ? _selected.add(option) : _selected.remove(option);
-                });
-              },
-              showCheckmark: false,
-              selectedColor: Style.red,
-              backgroundColor: Style.red50,
-            ),
+          return TPFilterChip(
+            label: option,
+            selected: _selected.contains(option),
+            onSelected: (bool selected) {
+              setState(() {
+                selected ? _selected.add(option) : _selected.remove(option);
+              });
+            },
+            colors: Style.reds,
           );
         },
       ).toList(),

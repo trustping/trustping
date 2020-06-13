@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:trust_ping_app/app/onboarding/utils.dart';
+import 'package:trust_ping_app/common_widgets/chips.dart';
 import 'package:trust_ping_app/routing/router.gr.dart';
 import 'package:trust_ping_app/theme.dart';
 
@@ -47,6 +48,7 @@ class _UOTherapyPage1State extends State<UOTherapyPage1> {
     return Form(
       key: key,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           _buildChips(),
           buildButtonNav(
@@ -68,19 +70,14 @@ class _UOTherapyPage1State extends State<UOTherapyPage1> {
   Wrap _buildChips() {
     return Wrap(
       children: _options.map((option) {
-        return Container(
-          child: FilterChip(
-            label: Text(option),
-            selected: _selected.contains(option),
-            selectedColor: Style.blue,
-            backgroundColor: Style.blue50,
-            showCheckmark: false,
-            onSelected: (bool selected) {
-              setState(() =>
-                  selected ? _selected.add(option) : _selected.remove(option));
-            },
-          ),
-          padding: EdgeInsets.only(right: 4),
+        return TPFilterChip(
+          label: option,
+          selected: _selected.contains(option),
+          colors: Style.blues,
+          onSelected: (bool selected) {
+            setState(() =>
+                selected ? _selected.add(option) : _selected.remove(option));
+          },
         );
       }).toList(),
     );
