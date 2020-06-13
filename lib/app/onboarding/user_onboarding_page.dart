@@ -25,7 +25,7 @@ class _UONamePageState extends State<UONamePage> {
       body: buildOnboardingContent(
         context: context,
         title: "Hallo!",
-        subtitle: "Wie möchtest Du angesprochen werden?",
+        body: "Wie möchtest Du angesprochen werden?",
         header: _logoHeader,
         form: _buildForm(context),
       ),
@@ -54,6 +54,8 @@ class _UONamePageState extends State<UONamePage> {
                 ExtendedNavigator.of(context).pushNamed(Routes.uoAgePage);
               }
             },
+            onSkip: () =>
+                ExtendedNavigator.of(context).pushNamed(Routes.uoAgePage),
           ),
         ],
       ),
@@ -77,7 +79,7 @@ class _UOAgePageState extends State<UOAgePage> {
       body: buildOnboardingContent(
         context: context,
         title: "Hallo!",
-        subtitle: "Was ist dein Geburtsjahr?",
+        body: "Was ist dein Geburtsjahr?",
         header: _logoHeader,
         form: _buildForm(context),
       ),
@@ -109,6 +111,8 @@ class _UOAgePageState extends State<UOAgePage> {
                     .pushNamed(Routes.uoDiagnosisPage1);
               }
             },
+            onSkip: () => ExtendedNavigator.of(context)
+                .pushNamed(Routes.uoDiagnosisPage1),
           ),
         ],
       ),

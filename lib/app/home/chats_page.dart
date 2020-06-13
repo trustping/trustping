@@ -77,7 +77,7 @@ class _ChatsPageState extends State<ChatsPage> {
           icon: Icon(Icons.chat_bubble),
         ),
         BottomNavigationBarItem(
-          title: Text("Match"),
+          title: Text("Ping"),
           icon: Icon(Icons.check),
         ),
         BottomNavigationBarItem(

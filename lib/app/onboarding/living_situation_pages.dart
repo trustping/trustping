@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:trust_ping_app/app/onboarding/utils.dart';
+import 'package:trust_ping_app/common_widgets/chips.dart';
 import 'package:trust_ping_app/constants/strings.dart';
 import 'package:trust_ping_app/routing/router.gr.dart';
 import 'package:trust_ping_app/theme.dart';
@@ -30,13 +31,13 @@ class _UOLivingSituationPage1State extends State<UOLivingSituationPage1> {
       appBar: AppBar(title: Text("Trustping")),
       body: buildOnboardingContent(
         context: context,
-        title: "Lebenssituation",
-        subtitle:
+        title: "Situation",
+        body:
             "Erzähl uns noch etwas von Dir. Das hilft uns, die passenden Gesprächspartner für Dich zu finden.",
         header: TPProgressIndicator(
           i: 1,
           n: 2,
-          section: "Lebenssituation",
+          section: "Situation",
           colors: Style.yellows,
         ),
         form: _buildForm(context),
@@ -49,6 +50,7 @@ class _UOLivingSituationPage1State extends State<UOLivingSituationPage1> {
     return Form(
       key: key,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           _buildChips(),
           buildButtonNav(
@@ -61,6 +63,8 @@ class _UOLivingSituationPage1State extends State<UOLivingSituationPage1> {
                     .pushNamed(Routes.uoLivingSituationPage2);
               }
             },
+            onSkip: () => ExtendedNavigator.of(context)
+                .pushNamed(Routes.uoLivingSituationPage2),
           ),
         ],
       ),
@@ -70,19 +74,14 @@ class _UOLivingSituationPage1State extends State<UOLivingSituationPage1> {
   Wrap _buildChips() {
     return Wrap(
       children: _options.map((option) {
-        return Container(
-          child: FilterChip(
-            label: Text(option),
-            selected: _selected.contains(option),
-            selectedColor: Style.yellow,
-            backgroundColor: Style.yellow50,
-            showCheckmark: false,
-            onSelected: (bool selected) {
-              setState(() =>
-                  selected ? _selected.add(option) : _selected.remove(option));
-            },
-          ),
-          padding: EdgeInsets.only(right: 4),
+        return TPFilterChip(
+          label: option,
+          selected: _selected.contains(option),
+          colors: Style.yellows,
+          onSelected: (bool selected) {
+            setState(() =>
+                selected ? _selected.add(option) : _selected.remove(option));
+          },
         );
       }).toList(),
     );
@@ -113,12 +112,12 @@ class _UOLivingSituationPage2State extends State<UOLivingSituationPage2> {
       body: buildOnboardingContent(
         context: context,
         title: "Interessen",
-        subtitle:
+        body:
             "Was sind Deine Hobbies oder sind Themen, mit denen Du Dich im Zusammenhang mit Deiner Erkrankung beschäftigst oder beschäftigen möchtest?",
         header: TPProgressIndicator(
           i: 2,
           n: 2,
-          section: "Lebenssituation",
+          section: "Situation",
           colors: Style.yellows,
         ),
         form: _buildForm(context),
@@ -131,6 +130,7 @@ class _UOLivingSituationPage2State extends State<UOLivingSituationPage2> {
     return Form(
       key: key,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           _buildChips(),
           buildButtonNav(
@@ -143,7 +143,9 @@ class _UOLivingSituationPage2State extends State<UOLivingSituationPage2> {
                     .popUntil((route) => route.isFirst);
               }
             },
-            buttonText: Strings.ok,
+            onNextButtonText: Strings.ok,
+            onSkip: () => ExtendedNavigator.of(context)
+                .popUntil((route) => route.isFirst),
           ),
         ],
       ),
@@ -153,19 +155,14 @@ class _UOLivingSituationPage2State extends State<UOLivingSituationPage2> {
   Wrap _buildChips() {
     return Wrap(
       children: _options.map((option) {
-        return Container(
-          child: FilterChip(
-            label: Text(option),
-            selected: _selected.contains(option),
-            selectedColor: Style.yellow,
-            backgroundColor: Style.yellow50,
-            showCheckmark: false,
-            onSelected: (bool selected) {
-              setState(() =>
-                  selected ? _selected.add(option) : _selected.remove(option));
-            },
-          ),
-          padding: EdgeInsets.only(right: 4),
+        return TPFilterChip(
+          label: option,
+          selected: _selected.contains(option),
+          colors: Style.yellows,
+          onSelected: (bool selected) {
+            setState(() =>
+                selected ? _selected.add(option) : _selected.remove(option));
+          },
         );
       }).toList(),
     );

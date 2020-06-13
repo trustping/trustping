@@ -1,6 +1,9 @@
+import 'dart:ffi';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:trust_ping_app/app/onboarding/utils.dart';
+import 'package:trust_ping_app/common_widgets/chips.dart';
 import 'package:trust_ping_app/routing/router.gr.dart';
 import 'package:trust_ping_app/theme.dart';
 
@@ -22,7 +25,7 @@ class _UODiagnosisPage1State extends State<UODiagnosisPage1> {
       body: buildOnboardingContent(
         context: context,
         title: "Krebstyp",
-        subtitle:
+        body:
             "lorem Lorem proident ullamco ex anim est ipsum ad. Irure dolore qui ex laborum. Laboris officia dolore do amet culpa dolore ut. Incididunt magna aliqua pariatur aliquip ex.",
         header: TPProgressIndicator(
           i: 1,
@@ -64,6 +67,8 @@ class _UODiagnosisPage1State extends State<UODiagnosisPage1> {
                     .pushNamed(Routes.uoDiagnosisPage2);
               }
             },
+            onSkip: () => ExtendedNavigator.of(context)
+                .pushNamed(Routes.uoDiagnosisPage2),
           ),
         ],
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -92,7 +97,7 @@ class _UODiagnosisPage2State extends State<UODiagnosisPage2> {
       body: buildOnboardingContent(
         context: context,
         title: "Wie lautet deine Diagnose?",
-        subtitle:
+        body:
             "lorem Lorem proident ullamco ex anim est ipsum ad. Irure dolore qui ex laborum.",
         header: TPProgressIndicator(
           i: 2,
@@ -134,6 +139,8 @@ class _UODiagnosisPage2State extends State<UODiagnosisPage2> {
                     .pushNamed(Routes.uoDiagnosisPage3);
               }
             },
+            onSkip: () => ExtendedNavigator.of(context)
+                .pushNamed(Routes.uoDiagnosisPage3),
           ),
         ],
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -156,7 +163,7 @@ class _UODiagnosisPage3State extends State<UODiagnosisPage3> {
     "Vorstufe / DCIS",
     "Hormonsensitiv",
     "HER2+",
-    "Tripple negative+",
+    "Triple negative+",
     "Fortgeschritten / Metastasen",
   ]);
   Set<String> _selected = Set();
@@ -168,7 +175,7 @@ class _UODiagnosisPage3State extends State<UODiagnosisPage3> {
       body: buildOnboardingContent(
         context: context,
         title: "Eigenschaften / Diagnose",
-        subtitle: "some text required.",
+        body: "some text required.",
         header: TPProgressIndicator(
           i: 3,
           n: 4,
@@ -184,6 +191,7 @@ class _UODiagnosisPage3State extends State<UODiagnosisPage3> {
     return Form(
       key: key,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           _buildChips(),
           buildButtonNav(
@@ -196,9 +204,10 @@ class _UODiagnosisPage3State extends State<UODiagnosisPage3> {
                     .pushNamed(Routes.uoDiagnosisPage4);
               }
             },
+            onSkip: () => ExtendedNavigator.of(context)
+                .pushNamed(Routes.uoDiagnosisPage4),
           ),
         ],
-        crossAxisAlignment: CrossAxisAlignment.stretch,
       ),
     );
   }
@@ -207,20 +216,15 @@ class _UODiagnosisPage3State extends State<UODiagnosisPage3> {
     return Wrap(
       children: _options.map(
         (option) {
-          return Container(
-            padding: EdgeInsets.only(right: 4),
-            child: FilterChip(
-              label: Text(option),
-              selected: _selected.contains(option),
-              onSelected: (bool selected) {
-                setState(() {
-                  selected ? _selected.add(option) : _selected.remove(option);
-                });
-              },
-              showCheckmark: false,
-              selectedColor: Style.red,
-              backgroundColor: Style.red50,
-            ),
+          return TPFilterChip(
+            label: option,
+            selected: _selected.contains(option),
+            onSelected: (bool selected) {
+              setState(() {
+                selected ? _selected.add(option) : _selected.remove(option);
+              });
+            },
+            colors: Style.reds,
           );
         },
       ).toList(),
@@ -235,12 +239,31 @@ class UODiagnosisPage4 extends StatefulWidget {
   _UODiagnosisPage4State createState() => _UODiagnosisPage4State();
 }
 
-enum Phase { na, todo1, todo2 }
+enum _DiagnosisPhase {
+  na,
+  phase1,
+  phase2,
+  phase3,
+  phase4,
+  phase5,
+  phase6,
+  phase7,
+}
+const List<String> _diagnosisTexts = [
+  "Ich moechte keine Angabe machen",
+  "Ich habe gerade meine Diagnose bekommen",
+  "Ich bin in der Behandlung",
+  "Ich habe die Akutbehandlung abgeschlossen",
+  "Ich habe ein Rezidiv",
+  "Ich bin in einer Dauerbehandlung",
+  "Leben nach Krebs (Survivorship)",
+  "Nichts davon trifft auf mich zu",
+];
 
 class _UODiagnosisPage4State extends State<UODiagnosisPage4> {
   final key = GlobalKey<FormState>();
 
-  Phase _selected = Phase.na;
+  _DiagnosisPhase _selected = _DiagnosisPhase.na;
 
   @override
   Widget build(BuildContext context) {
@@ -249,7 +272,7 @@ class _UODiagnosisPage4State extends State<UODiagnosisPage4> {
       body: buildOnboardingContent(
         context: context,
         title: "Krankheitsphase",
-        subtitle: "Was trifft am ehesten auf dich zu?",
+        body: "Was trifft am ehesten auf dich zu?",
         header: TPProgressIndicator(
           i: 4,
           n: 4,
@@ -266,10 +289,16 @@ class _UODiagnosisPage4State extends State<UODiagnosisPage4> {
     return Form(
       key: key,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          _buildRadioTile("Keine Angabe", Phase.na),
-          _buildRadioTile("TODO 1", Phase.todo1),
-          _buildRadioTile("TODO 2", Phase.todo2),
+          _buildRadioTile(_diagnosisTexts[0], _DiagnosisPhase.na),
+          _buildRadioTile(_diagnosisTexts[1], _DiagnosisPhase.phase1),
+          _buildRadioTile(_diagnosisTexts[2], _DiagnosisPhase.phase2),
+          _buildRadioTile(_diagnosisTexts[3], _DiagnosisPhase.phase3),
+          _buildRadioTile(_diagnosisTexts[4], _DiagnosisPhase.phase4),
+          _buildRadioTile(_diagnosisTexts[5], _DiagnosisPhase.phase5),
+          _buildRadioTile(_diagnosisTexts[6], _DiagnosisPhase.phase6),
+          _buildRadioTile(_diagnosisTexts[7], _DiagnosisPhase.phase7),
           buildButtonNav(
             context: context,
             onNext: () {
@@ -279,21 +308,23 @@ class _UODiagnosisPage4State extends State<UODiagnosisPage4> {
                 ExtendedNavigator.of(context).pushNamed(Routes.uoTherapyPage1);
               }
             },
+            onSkip: () =>
+                ExtendedNavigator.of(context).pushNamed(Routes.uoTherapyPage1),
           ),
         ],
-        crossAxisAlignment: CrossAxisAlignment.stretch,
       ),
     );
   }
 
-  RadioListTile<Phase> _buildRadioTile(String text, Phase value) {
+  RadioListTile<_DiagnosisPhase> _buildRadioTile(
+      String text, _DiagnosisPhase value) {
     return RadioListTile(
       title: Text(text),
       value: value,
       groupValue: _selected,
       onChanged: (value) => setState(() => _selected = value),
       activeColor: Style.red,
-      dense: true,
+      dense: false,
     );
   }
 }

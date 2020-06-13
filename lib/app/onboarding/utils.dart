@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:trust_ping_app/app/spaces.dart';
+import 'package:trust_ping_app/common_widgets/buttons.dart';
 import 'package:trust_ping_app/constants/strings.dart';
 import 'package:trust_ping_app/theme.dart';
 
 Widget buildOnboardingContent({
   BuildContext context,
   String title,
-  String subtitle,
+  String body,
   Widget header,
   Widget form,
 }) {
@@ -19,7 +20,7 @@ Widget buildOnboardingContent({
           vspace32,
           Style.title(title),
           vspace16,
-          Style.subtitle(subtitle),
+          Style.body(body),
           vspace16,
           form,
           vspace32,
@@ -81,33 +82,26 @@ class TPProgressIndicator extends StatelessWidget {
   }
 }
 
-Widget buildButtonNav(
-    {BuildContext context, Function onNext, String buttonText}) {
+Widget buildButtonNav({
+  BuildContext context,
+  Function onNext,
+  String onNextButtonText,
+  Function onSkip,
+}) {
   return Column(
-    crossAxisAlignment: CrossAxisAlignment.stretch,
+    crossAxisAlignment: CrossAxisAlignment.end,
     children: <Widget>[
-      vspace16,
-      RaisedButton(
-        child: Text(buttonText ?? Strings.next),
-        color: Style.yellow,
+      vspace32,
+      TPButton.primary(
+        text: onNextButtonText ?? Strings.next,
         onPressed: onNext,
       ),
+      if (onSkip != null) vspace16,
+      if (onSkip != null)
+        TPButton.secondary(
+          text: Strings.skip,
+          onPressed: onSkip,
+        ),
     ],
   );
-  // return ButtonBar(
-  //   alignment: MainAxisAlignment.spaceEvenly,
-  //   buttonMinWidth: 150,
-  //   children: <Widget>[
-  //     FlatButton(
-  //       child: Text(Strings.back),
-  //       textColor: Style.textLightColor,
-  //       onPressed: onBack,
-  //     ),
-  //     RaisedButton(
-  //       child: Text(Strings.next),
-  //       color: Style.yellow,
-  //       onPressed: onNext,
-  //     ),
-  //   ],
-  // );
 }
