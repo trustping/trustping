@@ -36,12 +36,19 @@ class Style {
   );
   static TextStyle subtitleTS = TextStyle(
     fontFamily: 'Inter',
-    fontSize: 18.5,
+    fontSize: 22,
     fontWeight: FontWeight.w400,
     height: 1.3,
     color: textColor,
   );
   static TextStyle bodyTS = TextStyle(
+    fontFamily: 'Inter',
+    fontSize: 18,
+    fontWeight: FontWeight.w400,
+    height: 1.3,
+    color: textColor,
+  );
+  static TextStyle tinyTS = TextStyle(
     fontFamily: 'Inter',
     fontSize: 15.0,
     height: 1.2,
@@ -76,4 +83,5 @@ class Style {
   static Text title(String text) => Text(text, style: titleTS);
   static Text subtitle(String text) => Text(text, style: subtitleTS);
   static Text body(String text) => Text(text, style: bodyTS);
+  static Text tiny(String text) => Text(text, style: tinyTS);
 }
