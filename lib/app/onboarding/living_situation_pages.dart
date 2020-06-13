@@ -151,19 +151,14 @@ class _UOLivingSituationPage2State extends State<UOLivingSituationPage2> {
   Wrap _buildChips() {
     return Wrap(
       children: _options.map((option) {
-        return Container(
-          child: FilterChip(
-            label: Text(option),
-            selected: _selected.contains(option),
-            selectedColor: Style.yellow,
-            backgroundColor: Style.yellow50,
-            showCheckmark: false,
-            onSelected: (bool selected) {
-              setState(() =>
-                  selected ? _selected.add(option) : _selected.remove(option));
-            },
-          ),
-          padding: EdgeInsets.only(right: 4),
+        return TPFilterChip(
+          label: option,
+          selected: _selected.contains(option),
+          colors: Style.yellows,
+          onSelected: (bool selected) {
+            setState(() =>
+                selected ? _selected.add(option) : _selected.remove(option));
+          },
         );
       }).toList(),
     );
