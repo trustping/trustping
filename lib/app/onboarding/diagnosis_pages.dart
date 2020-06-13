@@ -316,7 +316,7 @@ class _UODiagnosisPage4State extends State<UODiagnosisPage4> {
       groupValue: _selected,
       onChanged: (value) => setState(() => _selected = value),
       activeColor: Style.red,
-      dense: true,
+      dense: false,
     );
   }
 }
