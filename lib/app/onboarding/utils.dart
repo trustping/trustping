@@ -85,22 +85,23 @@ class TPProgressIndicator extends StatelessWidget {
 Widget buildButtonNav({
   BuildContext context,
   Function onNext,
+  String onNextButtonText,
   Function onSkip,
-  String buttonText,
 }) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.end,
     children: <Widget>[
       vspace32,
       TPButton.primary(
-        text: buttonText ?? Strings.next,
+        text: onNextButtonText ?? Strings.next,
         onPressed: onNext,
       ),
-      vspace16,
-      TPButton.secondary(
-        text: Strings.skip,
-        onPressed: onSkip,
-      ),
+      if (onSkip != null) vspace16,
+      if (onSkip != null)
+        TPButton.secondary(
+          text: Strings.skip,
+          onPressed: onSkip,
+        ),
     ],
   );
 }

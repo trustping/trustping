@@ -60,6 +60,8 @@ class _UOTherapyPage1State extends State<UOTherapyPage1> {
                 ExtendedNavigator.of(context).pushNamed(Routes.uoTherapyPage2);
               }
             },
+            onSkip: () =>
+                ExtendedNavigator.of(context).pushNamed(Routes.uoTherapyPage2),
           ),
         ],
       ),
@@ -139,6 +141,8 @@ class _UOTherapyPage2State extends State<UOTherapyPage2> {
                     .pushNamed(Routes.uoLivingSituationPage1);
               }
             },
+            onSkip: () => ExtendedNavigator.of(context)
+                .pushNamed(Routes.uoLivingSituationPage1),
           ),
         ],
       ),

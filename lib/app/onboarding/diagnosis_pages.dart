@@ -67,6 +67,8 @@ class _UODiagnosisPage1State extends State<UODiagnosisPage1> {
                     .pushNamed(Routes.uoDiagnosisPage2);
               }
             },
+            onSkip: () => ExtendedNavigator.of(context)
+                .pushNamed(Routes.uoDiagnosisPage2),
           ),
         ],
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -137,6 +139,8 @@ class _UODiagnosisPage2State extends State<UODiagnosisPage2> {
                     .pushNamed(Routes.uoDiagnosisPage3);
               }
             },
+            onSkip: () => ExtendedNavigator.of(context)
+                .pushNamed(Routes.uoDiagnosisPage3),
           ),
         ],
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -200,6 +204,8 @@ class _UODiagnosisPage3State extends State<UODiagnosisPage3> {
                     .pushNamed(Routes.uoDiagnosisPage4);
               }
             },
+            onSkip: () => ExtendedNavigator.of(context)
+                .pushNamed(Routes.uoDiagnosisPage4),
           ),
         ],
       ),
@@ -302,6 +308,8 @@ class _UODiagnosisPage4State extends State<UODiagnosisPage4> {
                 ExtendedNavigator.of(context).pushNamed(Routes.uoTherapyPage1);
               }
             },
+            onSkip: () =>
+                ExtendedNavigator.of(context).pushNamed(Routes.uoTherapyPage1),
           ),
         ],
       ),

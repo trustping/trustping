@@ -54,6 +54,8 @@ class _UONamePageState extends State<UONamePage> {
                 ExtendedNavigator.of(context).pushNamed(Routes.uoAgePage);
               }
             },
+            onSkip: () =>
+                ExtendedNavigator.of(context).pushNamed(Routes.uoAgePage),
           ),
         ],
       ),
@@ -109,6 +111,8 @@ class _UOAgePageState extends State<UOAgePage> {
                     .pushNamed(Routes.uoDiagnosisPage1);
               }
             },
+            onSkip: () => ExtendedNavigator.of(context)
+                .pushNamed(Routes.uoDiagnosisPage1),
           ),
         ],
       ),
