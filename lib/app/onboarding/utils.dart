@@ -7,7 +7,7 @@ import 'package:trust_ping_app/theme.dart';
 Widget buildOnboardingContent({
   BuildContext context,
   String title,
-  String subtitle,
+  String body,
   Widget header,
   Widget form,
 }) {
@@ -20,7 +20,7 @@ Widget buildOnboardingContent({
           vspace32,
           Style.title(title),
           vspace16,
-          Style.subtitle(subtitle),
+          Style.body(body),
           vspace16,
           form,
           vspace32,

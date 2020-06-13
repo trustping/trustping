@@ -31,7 +31,7 @@ class _UOLivingSituationPage1State extends State<UOLivingSituationPage1> {
       body: buildOnboardingContent(
         context: context,
         title: "Lebenssituation",
-        subtitle:
+        body:
             "Erzähl uns noch etwas von Dir. Das hilft uns, die passenden Gesprächspartner für Dich zu finden.",
         header: TPProgressIndicator(
           i: 1,
@@ -113,7 +113,7 @@ class _UOLivingSituationPage2State extends State<UOLivingSituationPage2> {
       body: buildOnboardingContent(
         context: context,
         title: "Interessen",
-        subtitle:
+        body:
             "Was sind Deine Hobbies oder sind Themen, mit denen Du Dich im Zusammenhang mit Deiner Erkrankung beschäftigst oder beschäftigen möchtest?",
         header: TPProgressIndicator(
           i: 2,

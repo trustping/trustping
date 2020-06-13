@@ -22,7 +22,7 @@ class _UODiagnosisPage1State extends State<UODiagnosisPage1> {
       body: buildOnboardingContent(
         context: context,
         title: "Krebstyp",
-        subtitle:
+        body:
             "lorem Lorem proident ullamco ex anim est ipsum ad. Irure dolore qui ex laborum. Laboris officia dolore do amet culpa dolore ut. Incididunt magna aliqua pariatur aliquip ex.",
         header: TPProgressIndicator(
           i: 1,
@@ -92,7 +92,7 @@ class _UODiagnosisPage2State extends State<UODiagnosisPage2> {
       body: buildOnboardingContent(
         context: context,
         title: "Wie lautet deine Diagnose?",
-        subtitle:
+        body:
             "lorem Lorem proident ullamco ex anim est ipsum ad. Irure dolore qui ex laborum.",
         header: TPProgressIndicator(
           i: 2,
@@ -168,7 +168,7 @@ class _UODiagnosisPage3State extends State<UODiagnosisPage3> {
       body: buildOnboardingContent(
         context: context,
         title: "Eigenschaften / Diagnose",
-        subtitle: "some text required.",
+        body: "some text required.",
         header: TPProgressIndicator(
           i: 3,
           n: 4,
@@ -212,6 +212,9 @@ class _UODiagnosisPage3State extends State<UODiagnosisPage3> {
             child: FilterChip(
               label: Text(option),
               selected: _selected.contains(option),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(4)),
+              ),
               onSelected: (bool selected) {
                 setState(() {
                   selected ? _selected.add(option) : _selected.remove(option);
@@ -249,7 +252,7 @@ class _UODiagnosisPage4State extends State<UODiagnosisPage4> {
       body: buildOnboardingContent(
         context: context,
         title: "Krankheitsphase",
-        subtitle: "Was trifft am ehesten auf dich zu?",
+        body: "Was trifft am ehesten auf dich zu?",
         header: TPProgressIndicator(
           i: 4,
           n: 4,

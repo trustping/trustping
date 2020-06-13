@@ -25,7 +25,7 @@ class _UONamePageState extends State<UONamePage> {
       body: buildOnboardingContent(
         context: context,
         title: "Hallo!",
-        subtitle: "Wie möchtest Du angesprochen werden?",
+        body: "Wie möchtest Du angesprochen werden?",
         header: _logoHeader,
         form: _buildForm(context),
       ),
@@ -77,7 +77,7 @@ class _UOAgePageState extends State<UOAgePage> {
       body: buildOnboardingContent(
         context: context,
         title: "Hallo!",
-        subtitle: "Was ist dein Geburtsjahr?",
+        body: "Was ist dein Geburtsjahr?",
         header: _logoHeader,
         form: _buildForm(context),
       ),

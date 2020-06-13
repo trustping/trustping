@@ -30,8 +30,7 @@ class _UOTherapyPage1State extends State<UOTherapyPage1> {
       body: buildOnboardingContent(
         context: context,
         title: "Therapie",
-        subtitle:
-            "Welche Therapien machst Du, hast Du gemacht oder sind geplant?",
+        body: "Welche Therapien machst Du, hast Du gemacht oder sind geplant?",
         header: TPProgressIndicator(
           i: 1,
           n: 1,
