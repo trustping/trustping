@@ -2,13 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:trust_ping_app/app/onboarding/utils.dart';
+import 'package:trust_ping_app/common_widgets/images.dart';
 import 'package:trust_ping_app/routing/router.gr.dart';
-import 'package:trust_ping_app/theme.dart';
-
-final Widget _logoHeader = SizedBox(
-  child: Image.asset("assets/images/boxes.png", height: 100),
-  height: 100,
-);
 
 class UONamePage extends StatefulWidget {
   @override
@@ -27,7 +22,7 @@ class _UONamePageState extends State<UONamePage> {
         context: context,
         title: "Hallo!",
         body: "Wie möchtest Du angesprochen werden?",
-        header: _logoHeader,
+        header: trustpingImage,
         form: _buildForm(context),
       ),
       resizeToAvoidBottomInset: false,
@@ -81,7 +76,7 @@ class _UOAgePageState extends State<UOAgePage> {
         context: context,
         title: "Hallo!",
         body: "Was ist dein Geburtsjahr?",
-        header: _logoHeader,
+        header: trustpingImage,
         form: _buildForm(context),
       ),
       resizeToAvoidBottomInset: false,
