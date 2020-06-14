@@ -1,8 +1,7 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:trust_ping_app/app/home/chats_page.dart';
+import 'package:trust_ping_app/app/introduction_page.dart';
 import 'package:trust_ping_app/app/sign_in/sign_in_page.dart';
 import 'package:flutter/material.dart';
-import 'package:trust_ping_app/routing/router.gr.dart';
 
 import 'home/models/user.dart';
 
@@ -22,17 +21,21 @@ class _LandingPageState extends State<LandingPage> {
 
   @override
   Widget build(BuildContext context) {
-    // if (_introPagesCompleted == false) {
-    //   ExtendedNavigator.of(context).pushNamed(Routes.introductionPage);
-    // } else {
     if (widget.userSnapshot.connectionState == ConnectionState.active) {
-      return widget.userSnapshot.hasData ? ChatsPage() : SignInPageBuilder();
+      if (widget.userSnapshot.hasData) {
+        return ChatsPage();
+      } else if (!_introPagesCompleted) {
+        return IntroductionPage(
+          onDone: () => setState(() => _introPagesCompleted = true),
+        );
+      } else {
+        return SignInPageBuilder();
+      }
     }
     return Scaffold(
       body: Center(
         child: CircularProgressIndicator(),
       ),
     );
-    // }
   }
 }
