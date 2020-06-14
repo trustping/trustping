@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:trust_ping_app/app/onboarding/utils.dart';
 import 'package:trust_ping_app/routing/router.gr.dart';
+import 'package:trust_ping_app/theme.dart';
 
 final Widget _logoHeader = SizedBox(
   child: Image.asset("assets/images/boxes.png", height: 100),
@@ -70,7 +71,7 @@ class UOAgePage extends StatefulWidget {
 
 class _UOAgePageState extends State<UOAgePage> {
   final key = GlobalKey<FormState>();
-  String _yearOfBirth = "2000";
+  String _yearOfBirth = "";
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +96,7 @@ class _UOAgePageState extends State<UOAgePage> {
         children: <Widget>[
           TextFormField(
             initialValue: _yearOfBirth,
-            decoration: InputDecoration(labelText: "Geburtsjahr"),
+            decoration: InputDecoration(hintText: "Geburtsjahr"),
             validator: (value) => null,
             onSaved: (value) => _yearOfBirth = value,
             keyboardType: TextInputType.number,

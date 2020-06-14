@@ -13,7 +13,7 @@ class TPFilterChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(right: 4),
+      // padding: EdgeInsets.only(right: 6),
       child: FilterChip(
         label: Text(label),
         selected: selected,
@@ -22,7 +22,7 @@ class TPFilterChip extends StatelessWidget {
         ),
         onSelected: onSelected,
         showCheckmark: false,
-        selectedColor: colors.first,
+        selectedColor: colors[1],
         backgroundColor: colors.last,
       ),
     );

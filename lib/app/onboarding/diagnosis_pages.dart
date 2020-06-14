@@ -213,7 +213,11 @@ class _UODiagnosisPage3State extends State<UODiagnosisPage3> {
   }
 
   Widget _buildChips() {
+    // TODO split item on sep. lines
+    // TODO talk to anke about logic
     return Wrap(
+      runSpacing: -8,
+      spacing: 8,
       children: _options.map(
         (option) {
           return TPFilterChip(
@@ -250,12 +254,12 @@ enum _DiagnosisPhase {
   phase7,
 }
 const List<String> _diagnosisTexts = [
-  "Ich moechte keine Angabe machen",
-  "Ich habe gerade meine Diagnose bekommen",
-  "Ich bin in der Behandlung",
-  "Ich habe die Akutbehandlung abgeschlossen",
+  "Keine Angabe",
+  "Diagnose gerade bekommen",
+  "In Behandlung",
+  "Akutbehandlung abgeschlossen",
   "Ich habe ein Rezidiv",
-  "Ich bin in einer Dauerbehandlung",
+  "In Dauerbehandlung",
   "Leben nach Krebs (Survivorship)",
   "Nichts davon trifft auf mich zu",
 ];
@@ -263,7 +267,7 @@ const List<String> _diagnosisTexts = [
 class _UODiagnosisPage4State extends State<UODiagnosisPage4> {
   final key = GlobalKey<FormState>();
 
-  _DiagnosisPhase _selected = _DiagnosisPhase.na;
+  String _selected = "";
 
   @override
   Widget build(BuildContext context) {
@@ -291,14 +295,30 @@ class _UODiagnosisPage4State extends State<UODiagnosisPage4> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          _buildRadioTile(_diagnosisTexts[0], _DiagnosisPhase.na),
-          _buildRadioTile(_diagnosisTexts[1], _DiagnosisPhase.phase1),
-          _buildRadioTile(_diagnosisTexts[2], _DiagnosisPhase.phase2),
-          _buildRadioTile(_diagnosisTexts[3], _DiagnosisPhase.phase3),
-          _buildRadioTile(_diagnosisTexts[4], _DiagnosisPhase.phase4),
-          _buildRadioTile(_diagnosisTexts[5], _DiagnosisPhase.phase5),
-          _buildRadioTile(_diagnosisTexts[6], _DiagnosisPhase.phase6),
-          _buildRadioTile(_diagnosisTexts[7], _DiagnosisPhase.phase7),
+          DropdownButtonFormField<String>(
+            onChanged: (value) {
+              setState(() {
+                _selected = value;
+              });
+            },
+            items: List<DropdownMenuItem<String>>.generate(
+              _diagnosisTexts.length,
+              (i) {
+                return DropdownMenuItem<String>(
+                  child: Text(_diagnosisTexts[i]),
+                  value: _diagnosisTexts[i],
+                );
+              },
+            ),
+          ),
+          // _buildRadioTile(_diagnosisTexts[0], _DiagnosisPhase.na),
+          // _buildRadioTile(_diagnosisTexts[1], _DiagnosisPhase.phase1),
+          // _buildRadioTile(_diagnosisTexts[2], _DiagnosisPhase.phase2),
+          // _buildRadioTile(_diagnosisTexts[3], _DiagnosisPhase.phase3),
+          // _buildRadioTile(_diagnosisTexts[4], _DiagnosisPhase.phase4),
+          // _buildRadioTile(_diagnosisTexts[5], _DiagnosisPhase.phase5),
+          // _buildRadioTile(_diagnosisTexts[6], _DiagnosisPhase.phase6),
+          // _buildRadioTile(_diagnosisTexts[7], _DiagnosisPhase.phase7),
           buildButtonNav(
             context: context,
             onNext: () {
@@ -316,15 +336,17 @@ class _UODiagnosisPage4State extends State<UODiagnosisPage4> {
     );
   }
 
-  RadioListTile<_DiagnosisPhase> _buildRadioTile(
-      String text, _DiagnosisPhase value) {
-    return RadioListTile(
-      title: Text(text),
-      value: value,
-      groupValue: _selected,
-      onChanged: (value) => setState(() => _selected = value),
-      activeColor: Style.red,
-      dense: false,
-    );
-  }
+  // RadioListTile<_DiagnosisPhase> _buildRadioTile(
+  //     String text, _DiagnosisPhase value) {
+  //       return
+  //   return RadioListTile(
+  //     title: Style.tiny(text),
+  //     value: value,
+  //     groupValue: _selected,
+  //     onChanged: (value) => setState(() => _selected = value),
+  //     activeColor: Style.red,
+  //     // dense: true,
+  //     controlAffinity: ListTileControlAffinity.trailing,
+  //   );
+  // }
 }

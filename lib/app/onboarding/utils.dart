@@ -17,7 +17,7 @@ Widget buildOnboardingContent({
       child: Column(
         children: <Widget>[
           header,
-          vspace32,
+          vspace40,
           Style.title(title),
           vspace16,
           Style.body(body),
@@ -64,7 +64,7 @@ class TPProgressIndicator extends StatelessWidget {
       height: _dotSize,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        border: Border.all(width: 1, color: colors[0]),
+        border: Border.all(width: 0.7, color: colors[0]),
         color: colors[3],
       ),
     );
@@ -72,11 +72,13 @@ class TPProgressIndicator extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         if (section != null)
-          Text(section, style: Style.subtitleTS.copyWith(color: colors[0])),
+          Text(
+            section,
+            style: Style.tinyTS.copyWith(color: colors[0]),
+          ),
         Row(
           children: List.generate(n, (index) => index < i ? doneDot : todoDot),
         ),
-        vspace32,
       ],
     );
   }
@@ -91,6 +93,7 @@ Widget buildButtonNav({
   return Column(
     crossAxisAlignment: CrossAxisAlignment.end,
     children: <Widget>[
+      vspace32,
       vspace32,
       TPButton.primary(
         text: onNextButtonText ?? Strings.next,
