@@ -7,13 +7,13 @@ class Strings {
   static const String back = 'zurück';
 
   // Logout
-  static const String logout = 'Logout';
+  static const String logout = 'ausloggen';
   static const String logoutAreYouSure =
       'Are you sure that you want to logout?';
-  static const String logoutFailed = 'Logout failed';
+  static const String logoutFailed = 'ausloggen fehlgeschlagen';
 
   // Sign In Page
-  static const String signIn = 'Einloggen';
+  static const String signIn = 'einloggen';
   static const String signInWithEmailPassword = 'WIP Mit Email und Passwort';
   static const String goAnonymous = 'Anonym (ohne Email)';
   static const String or = 'oder';
@@ -42,25 +42,7 @@ class Strings {
   static const String invalidPasswordTooShort = 'Password is too short';
   static const String invalidPasswordEmpty = 'Password can\'t be empty';
 
-  // Home page
-  static const String homePage = 'Home Page';
-
-  // Jobs page
-  static const String jobs = 'Jobs';
-
-  // Entries page
-  static const String entries = 'Entries';
-
   // Account page
   static const String account = 'Account';
   static const String accountPage = 'Account Page';
-
-  // Developer menu
-  static const String developerMenu = 'Developer menu';
-  static const String authenticationType = 'Authentication type';
-  static const String firebase = 'Firebase';
-  static const String mock = 'Mock';
-
-  // Chat page
-  static const String chat = "Chat";
 }
