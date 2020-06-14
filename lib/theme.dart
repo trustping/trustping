@@ -12,6 +12,7 @@ class Style {
   static const Color blue50 = Color.fromRGBO(76, 108, 184, 0.5);
   static const Color blue30 = Color.fromRGBO(76, 108, 184, 0.3);
   // yellow
+  // static const Color yellow = Color.fromRGBO(252, 199, 3, 1.0);
   static const Color yellow = Color.fromRGBO(255, 217, 76, 1.0);
   static const Color yellow70 = Color.fromRGBO(255, 217, 76, 0.7);
   static const Color yellow50 = Color.fromRGBO(255, 217, 76, 0.5);
@@ -35,6 +36,7 @@ class Style {
     color: textColor,
   );
   static TextStyle subtitleTS = TextStyle(
+    // TODO set size properly
     fontFamily: 'Inter',
     fontSize: 22,
     fontWeight: FontWeight.w400,
@@ -51,6 +53,7 @@ class Style {
   static TextStyle tinyTS = TextStyle(
     fontFamily: 'Inter',
     fontSize: 15.0,
+    fontWeight: FontWeight.w400,
     height: 1.2,
     color: textColor,
   );
@@ -71,7 +74,8 @@ class Style {
   );
   static ThemeData themeData = ThemeData(
     fontFamily: 'Inter',
-    primarySwatch: tpColors,
+    // primarySwatch: tpColors,
+    primaryColor: Colors.white,
     accentColor: yellow,
     textTheme: TextTheme(
       headline1: titleTS,

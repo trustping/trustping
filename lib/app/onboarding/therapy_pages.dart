@@ -70,6 +70,8 @@ class _UOTherapyPage1State extends State<UOTherapyPage1> {
 
   Wrap _buildChips() {
     return Wrap(
+      runSpacing: -8,
+      spacing: 8,
       children: _options.map((option) {
         return TPFilterChip(
           label: option,
@@ -111,7 +113,7 @@ class _UOTherapyPage2State extends State<UOTherapyPage2> {
       body: buildOnboardingContent(
         context: context,
         title: "Nebenwirkungen",
-        body: "TODO text",
+        body: "TODO fix buildOnboaringContent to not require text",
         header: TPProgressIndicator(
           i: 2,
           n: 2,
@@ -151,6 +153,8 @@ class _UOTherapyPage2State extends State<UOTherapyPage2> {
 
   Wrap _buildChips() {
     return Wrap(
+      runSpacing: -8,
+      spacing: 8,
       children: _options.map((option) {
         return TPFilterChip(
           label: option,

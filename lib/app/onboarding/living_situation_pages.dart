@@ -20,7 +20,7 @@ class _UOLivingSituationPage1State extends State<UOLivingSituationPage1> {
     "In Partnerschaft/Verheiratet",
     "In Ausbildung/Studium",
     "Berufstätig",
-    "Pentioniert",
+    "Pensioniert",
     "Schwanger",
     "Mit Familie",
   ]);
@@ -73,6 +73,8 @@ class _UOLivingSituationPage1State extends State<UOLivingSituationPage1> {
 
   Wrap _buildChips() {
     return Wrap(
+      runSpacing: -8,
+      spacing: 8,
       children: _options.map((option) {
         return TPFilterChip(
           label: option,
@@ -99,10 +101,19 @@ class _UOLivingSituationPage2State extends State<UOLivingSituationPage2> {
 
   final Set<String> _options = Set.from([
     "Sport",
-    "Yoga/Meditation",
-    "Entspanniung",
+    "Yoga",
+    "Meditation",
+    "Entspannung",
     "Ernährung",
-    "Wellness",
+    "Job",
+    "Selbsthilfe",
+    "Reha",
+    "Sozialrecht",
+    "Politik",
+    "Kultur",
+    "Kosmetik",
+    "Sexualität",
+    "Nebenwirkungen",
   ]);
 
   @override
@@ -154,6 +165,8 @@ class _UOLivingSituationPage2State extends State<UOLivingSituationPage2> {
 
   Wrap _buildChips() {
     return Wrap(
+      runSpacing: -8,
+      spacing: 8,
       children: _options.map((option) {
         return TPFilterChip(
           label: option,

@@ -63,19 +63,6 @@ class SignInPage extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader() {
-    if (viewModel.isLoading) {
-      return Center(
-        child: CircularProgressIndicator(),
-      );
-    }
-    return Text(
-      Strings.signIn,
-      textAlign: TextAlign.center,
-      style: TextStyle(fontSize: 32.0, fontWeight: FontWeight.w600),
-    );
-  }
-
   Widget _buildSignIn(BuildContext context) {
     // Make content scrollable so that it fits on small screens
     return Container(
@@ -93,8 +80,8 @@ class SignInPage extends StatelessWidget {
           SignInButton(
             key: anonymousButtonKey,
             text: Strings.goAnonymous,
-            color: Theme.of(context).primaryColor,
-            textColor: Colors.white,
+            // color: Theme.of(context).primaryColor,
+            // textColor: Colors.white,
             onPressed:
                 viewModel.isLoading ? null : () => _signInAnonymously(context),
           ),
@@ -117,6 +104,19 @@ class SignInPage extends StatelessWidget {
           SizedBox(height: 8),
         ],
       ),
+    );
+  }
+
+  Widget _buildHeader() {
+    if (viewModel.isLoading) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+    return Text(
+      Strings.signIn,
+      textAlign: TextAlign.center,
+      style: TextStyle(fontSize: 32.0, fontWeight: FontWeight.w600),
     );
   }
 }
