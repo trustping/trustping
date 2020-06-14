@@ -1,8 +1,6 @@
 import 'package:trust_ping_app/app/sign_in/email_password/email_password_sign_in_page.dart';
 import 'package:trust_ping_app/app/sign_in/sign_in_view_model.dart';
-import 'package:trust_ping_app/app/sign_in/sign_in_button.dart';
 import 'package:trust_ping_app/app/spaces.dart';
-import 'package:trust_ping_app/common_widgets/buttons.dart';
 import 'package:trust_ping_app/common_widgets/images.dart';
 import 'package:trust_ping_app/common_widgets/platform_exception_alert_dialog.dart';
 import 'package:trust_ping_app/constants/keys.dart';
