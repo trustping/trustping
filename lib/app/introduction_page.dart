@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:trust_ping_app/common_widgets/images.dart';
 import 'package:trust_ping_app/theme.dart';
 
 class IntroductionPage extends StatelessWidget {
@@ -11,7 +12,6 @@ class IntroductionPage extends StatelessWidget {
         _buildPageViewModel(
           title: 'Herzlich Willkommen bei Trustping!',
           body: "",
-          assetPath: "assets/images/boxes.png",
         ),
         _buildPageViewModel(
           title: "Trustping",
@@ -19,7 +19,6 @@ class IntroductionPage extends StatelessWidget {
               "Trustping findet Menschen in ähnlichen Situationen und verbindet sie findet Menschen in ähnlichen Situationen und verbindet ndet Menschen in ähnlichen Situationen und verbindet",
           subBody:
               "Trustping findet Menschen in ähnlichen Situationen und verbindet sie findet Menschen in ähnlichen Situationen und verbindet ndet Menschen in ähnlichen Situationen und verbindet",
-          assetPath: "assets/images/boxes.png",
         ),
         _buildPageViewModel(
           title: "Let’s start",
@@ -27,7 +26,6 @@ class IntroductionPage extends StatelessWidget {
               "Um für Dich passende Gesprächspartner zu finden, brauchen wir ein paar Informationen.",
           subBody:
               "Usam quo tecus id modi omnihil laccusdant cerferchilia simusam quo tecus idem.",
-          assetPath: "assets/images/boxes.png",
         ),
       ],
       next: const Icon(Icons.forward),
@@ -46,7 +44,6 @@ class IntroductionPage extends StatelessWidget {
     title,
     body,
     subBody,
-    assetPath,
   }) {
     const spacer = SizedBox(height: 16.0);
     return PageViewModel(
@@ -55,10 +52,7 @@ class IntroductionPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Image(
-              image: AssetImage(assetPath),
-              width: 100.0,
-            ),
+            trustpingImage,
             spacer,
             Padding(
               padding: const EdgeInsets.fromLTRB(0.0, 0.0, 40, 0),
