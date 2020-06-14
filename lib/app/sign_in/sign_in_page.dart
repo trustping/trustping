@@ -22,7 +22,7 @@ class SignInPageBuilder extends StatelessWidget {
       child: Consumer<SignInViewModel>(
         builder: (_, SignInViewModel viewModel, __) => SignInPage._(
           viewModel: viewModel,
-          title: 'TrustPing',
+          title: 'Trustping',
         ),
       ),
     );

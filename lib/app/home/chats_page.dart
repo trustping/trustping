@@ -52,7 +52,13 @@ class _ChatsPageState extends State<ChatsPage> {
       IconButton(
         icon: Icon(Icons.info),
         onPressed: () {
-          ExtendedNavigator.of(context).pushNamed(Routes.introductionPage);
+          ExtendedNavigator.of(context).pushNamed(
+            Routes.introductionPage,
+            arguments: IntroductionPageArguments(
+              onDone: () => ExtendedNavigator.of(context)
+                  .popAndPushNamed(Routes.chatsPage),
+            ),
+          );
         },
       ),
       IconButton(

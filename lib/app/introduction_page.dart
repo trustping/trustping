@@ -5,6 +5,9 @@ import 'package:trust_ping_app/common_widgets/images.dart';
 import 'package:trust_ping_app/theme.dart';
 
 class IntroductionPage extends StatelessWidget {
+  final Function onDone;
+  const IntroductionPage({Key key, this.onDone}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return IntroductionScreen(
@@ -31,19 +34,16 @@ class IntroductionPage extends StatelessWidget {
       next: const Icon(Icons.forward),
       done: const Text("FERTIG", style: TextStyle(fontWeight: FontWeight.w600)),
       skip: const Text("SKIP", style: TextStyle(fontWeight: FontWeight.w300)),
-      // skip: const Icon(Icons.skip_next),
-      onDone: () => _gotoChatsPage(context),
-      onSkip: () => _gotoChatsPage(context),
+      onDone: onDone,
+      onSkip: onDone,
       showSkipButton: true,
     );
   }
 
-  void _gotoChatsPage(context) => ExtendedNavigator.of(context).pop(context);
-
   PageViewModel _buildPageViewModel({
-    title,
-    body,
-    subBody,
+    String title,
+    String body,
+    String subBody,
   }) {
     const spacer = SizedBox(height: 16.0);
     return PageViewModel(
