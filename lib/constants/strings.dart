@@ -13,7 +13,7 @@ class Strings {
   static const String logoutFailed = 'ausloggen fehlgeschlagen';
 
   // Sign In Page
-  static const String signIn = 'einloggen';
+  static const String signIn = 'Einloggen';
   static const String signInWithEmailPassword = 'WIP Mit Email und Passwort';
   static const String goAnonymous = 'Anonym (ohne Email)';
   static const String or = 'oder';
@@ -25,7 +25,7 @@ class Strings {
   static const String createAnAccount = 'Create an account';
   static const String needAnAccount = 'Need an account? Register';
   static const String haveAnAccount = 'Have an account? Sign in';
-  static const String signInFailed = 'Sign in failed';
+  static const String signInFailed = 'Einloggen fehlgeschlagen';
   static const String registrationFailed = 'Registration failed';
   static const String passwordResetFailed = 'Password reset failed';
   static const String sendResetLink = 'Send Reset Link';
