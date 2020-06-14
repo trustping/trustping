@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:trust_ping_app/common_widgets/avatar.dart';
 import 'package:trust_ping_app/common_widgets/list_items_builder.dart';
 import 'package:trust_ping_app/routing/router.gr.dart';
 import 'package:trust_ping_app/services/firestore_database.dart';
@@ -93,7 +94,28 @@ class _ChatsPageState extends State<ChatsPage> {
 
   Widget _buildBody(BuildContext context, int widgetIndex) {
     if (widgetIndex == 1) {
-      return Center(child: Text("TODO Match Widget"));
+      return Column(
+        children: <Widget>[
+          Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                InputChip(
+                  label: Text("Pings"),
+                  onSelected: (val) {},
+                ),
+                InputChip(
+                  label: Text("Matching"),
+                  onSelected: (val) {},
+                )
+              ],
+            ),
+          ),
+          ListTile(title: Text("Ping1 2020-06-13 ... ")),
+          ListTile(title: Text("Ping1 2020-05-13 ... ")),
+          ListTile(title: Text("Ping1 2020-04-13 ... ")),
+        ],
+      );
     } else if (widgetIndex == 2) {
       return Center(child: Text("TODO Profile Widget"));
     }
@@ -122,9 +144,29 @@ class ChatListTile extends StatelessWidget {
     final myUserID = Provider.of<User>(context, listen: false).uid;
     final otherParticipant = chat.otherParticipant(myUserID);
     return ListTile(
-      title: Text(otherParticipant),
-      leading: CircleAvatar(child: Text(otherParticipant[0])),
-      subtitle: Text(chat.id),
+      leading: CircleAvatarWithBorder(
+        child: Text(
+          otherParticipant[0].toUpperCase(),
+          style: TextStyle(color: Style.red),
+        ),
+        borderColor: Style.red,
+        backgroundColor: Colors.white,
+        radius: 25,
+      ),
+      // title: Text(otherParticipant),
+      title: Text(
+        "Fake Name Peter",
+        style: TextStyle(fontWeight: FontWeight.w500),
+      ),
+      // subtitle: Text(chat.id),
+      subtitle: Text(
+        chat.id,
+        style: Style.tinyTS.copyWith(color: Style.textLightColor),
+      ),
+      trailing: Text(
+        "Mon 11.",
+        style: Style.tinyTS.copyWith(color: Style.blue),
+      ),
       onTap: () {
         ExtendedNavigator.of(context).pushNamed(
           Routes.chatPage,

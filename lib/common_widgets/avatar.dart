@@ -39,3 +39,33 @@ class Avatar extends StatelessWidget {
     return null;
   }
 }
+
+class CircleAvatarWithBorder extends StatelessWidget {
+  const CircleAvatarWithBorder({
+    Key key,
+    @required this.radius,
+    @required this.child,
+    @required this.borderColor,
+    @required this.backgroundColor,
+    this.borderWidth = 1,
+  }) : super(key: key);
+
+  final double radius;
+  final double borderWidth;
+  final Color borderColor;
+  final Widget child;
+  final Color backgroundColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return CircleAvatar(
+      radius: radius,
+      backgroundColor: borderColor,
+      child: CircleAvatar(
+        radius: radius - borderWidth,
+        child: child,
+        backgroundColor: backgroundColor,
+      ),
+    );
+  }
+}
