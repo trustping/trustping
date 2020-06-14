@@ -1,6 +1,9 @@
 import 'package:trust_ping_app/app/sign_in/email_password/email_password_sign_in_page.dart';
 import 'package:trust_ping_app/app/sign_in/sign_in_view_model.dart';
 import 'package:trust_ping_app/app/sign_in/sign_in_button.dart';
+import 'package:trust_ping_app/app/spaces.dart';
+import 'package:trust_ping_app/common_widgets/buttons.dart';
+import 'package:trust_ping_app/common_widgets/images.dart';
 import 'package:trust_ping_app/common_widgets/platform_exception_alert_dialog.dart';
 import 'package:trust_ping_app/constants/keys.dart';
 import 'package:trust_ping_app/constants/strings.dart';
@@ -9,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:trust_ping_app/services/firebase_auth_service.dart';
+import 'package:trust_ping_app/theme.dart';
 
 class SignInPageBuilder extends StatelessWidget {
   @override
@@ -71,37 +75,42 @@ class SignInPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          SizedBox(height: 32.0),
+          // SizedBox(height: 32.0),
           SizedBox(
-            height: 50.0,
+            height: 150.0,
             child: _buildHeader(),
           ),
-          SizedBox(height: 32.0),
-          SignInButton(
-            key: anonymousButtonKey,
-            text: Strings.goAnonymous,
-            // color: Theme.of(context).primaryColor,
-            // textColor: Colors.white,
-            onPressed:
-                viewModel.isLoading ? null : () => _signInAnonymously(context),
+          vspace32,
+          SizedBox(
+            height: 45.0,
+            child: RaisedButton(
+              key: anonymousButtonKey,
+              child: Text(Strings.goAnonymous),
+              color: Style.yellow,
+              onPressed: viewModel.isLoading
+                  ? null
+                  : () => _signInAnonymously(context),
+            ),
           ),
-          SizedBox(height: 8),
+          vspace16,
           Text(
             Strings.or,
             style: TextStyle(fontSize: 14.0, color: Colors.black87),
             textAlign: TextAlign.center,
           ),
-          SizedBox(height: 8),
-          SignInButton(
-            key: emailPasswordButtonKey,
-            text: Strings.signInWithEmailPassword,
-            onPressed: viewModel.isLoading
-                ? null
-                : () => EmailPasswordSignInPageBuilder.show(context),
-            textColor: Colors.white,
-            color: Theme.of(context).primaryColor,
+          vspace16,
+          SizedBox(
+            height: 45.0,
+            child: RaisedButton(
+              key: emailPasswordButtonKey,
+              child: Text(Strings.signInWithEmailPassword),
+              onPressed: viewModel.isLoading
+                  ? null
+                  : () => EmailPasswordSignInPageBuilder.show(context),
+              color: Style.yellow,
+            ),
           ),
-          SizedBox(height: 8),
+          vspace16,
         ],
       ),
     );
@@ -109,14 +118,14 @@ class SignInPage extends StatelessWidget {
 
   Widget _buildHeader() {
     if (viewModel.isLoading) {
-      return Center(
-        child: CircularProgressIndicator(),
-      );
+      return Center(child: CircularProgressIndicator());
     }
-    return Text(
-      Strings.signIn,
-      textAlign: TextAlign.center,
-      style: TextStyle(fontSize: 32.0, fontWeight: FontWeight.w600),
+    return Column(
+      children: <Widget>[
+        trustpingImage,
+        vspace16,
+        Center(child: Style.title(Strings.signIn)),
+      ],
     );
   }
 }
