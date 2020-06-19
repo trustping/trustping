@@ -27,7 +27,7 @@ void main() {
 ///   [MaterialApp]
 ///   [ExtendedNavigator] for all things routing
 ///   [LandingPage]
-///   [ChatPage] or [SignInPageBuilder]
+///   [MainPage] or [SignInPageBuilder]
 class MyApp extends StatelessWidget {
   const MyApp({Key key, this.authServiceBuilder, this.databaseBuilder})
       : super(key: key);
