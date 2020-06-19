@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:trust_ping_app/app/home/chats_tab.dart';
+import 'package:trust_ping_app/common_widgets/images.dart';
 
 class PingsTab extends StatelessWidget {
   const PingsTab({
@@ -7,26 +9,35 @@ class PingsTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
       children: <Widget>[
-        Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              InputChip(
-                label: Text("Pings"),
-                onSelected: (val) {},
-              ),
-              InputChip(
-                label: Text("Matching"),
-                onSelected: (val) {},
-              )
-            ],
-          ),
+        TPStyledListTile(
+          // leading: trustpingImage,
+          // leading: Icon(Icons.inbox),
+          leading: Image.asset("assets/images/logo_2of3.png"),
+          titleString: "Deine Anfrage",
+          trailingString: "Mon.\n11. Juni",
+          subtitleString:
+              "Hallo, ich moechte mich zu Nebenwirkung XYZ austauschen...",
+          onTap: null,
         ),
-        ListTile(title: Text("Ping1 2020-06-13 ... ")),
-        ListTile(title: Text("Ping1 2020-05-13 ... ")),
-        ListTile(title: Text("Ping1 2020-04-13 ... ")),
+        TPStyledListTile(
+          leading: Image.asset("assets/images/logo_1of3.png"),
+          // leading: Icon(Icons.inbox),
+          titleString: "Anfrage von <Anonym>",
+          trailingString: "Mon.\n11. Juni",
+          subtitleString:
+              "Hallo, ich moechte sneoat arsanutfioan snet ao naonfe...",
+          onTap: null,
+        ),
+        TPStyledListTile(
+          leading: Image.asset("assets/images/logo_3of3.png"),
+          // leading: Icon(Icons.inbox),
+          titleString: "Anfrage von Stefan",
+          trailingString: "Mon.\n19. Juni",
+          subtitleString: "Hallo, Yoga und Krebs...",
+          onTap: null,
+        ),
       ],
     );
   }

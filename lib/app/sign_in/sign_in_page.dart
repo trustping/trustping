@@ -120,7 +120,7 @@ class SignInPage extends StatelessWidget {
     }
     return Column(
       children: <Widget>[
-        trustpingImage,
+        trustpingImage100,
         vspace16,
         Center(child: Style.title(Strings.signIn)),
       ],

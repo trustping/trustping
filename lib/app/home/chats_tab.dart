@@ -13,13 +13,14 @@ class ChatsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final db = Provider.of<FirestoreDatabase>(context, listen: false);
+    final myUserID = Provider.of<User>(context, listen: false).uid;
     return StreamBuilder<List<Chat>>(
       stream: db.chatsStream(),
       builder: (context, snapshot) {
         return ListItemsBuilder<Chat>(
           snapshot: snapshot,
           itemBuilder: (context, chat) {
-            return ChatListTile(chat: chat);
+            return ChatListTile(chat: chat, myUserID: myUserID);
           },
         );
       },
@@ -28,14 +29,23 @@ class ChatsTab extends StatelessWidget {
 }
 
 class ChatListTile extends StatelessWidget {
-  const ChatListTile({this.chat});
+  const ChatListTile({this.chat, this.myUserID});
   final Chat chat;
+  final String myUserID;
 
   @override
   Widget build(BuildContext context) {
-    final myUserID = Provider.of<User>(context, listen: false).uid;
     final otherParticipant = chat.otherParticipant(myUserID);
-    return ListTile(
+    return TPStyledListTile(
+      titleString: "Fake name peter",
+      subtitleString: chat.id,
+      trailingString: "Mon 11.",
+      onTap: () {
+        ExtendedNavigator.of(context).pushNamed(
+          Routes.chatPage,
+          arguments: ChatPageArguments(chat: chat),
+        );
+      },
       leading: CircleAvatarWithBorder(
         child: Text(
           otherParticipant[0].toUpperCase(),
@@ -45,26 +55,45 @@ class ChatListTile extends StatelessWidget {
         backgroundColor: Colors.white,
         radius: 25,
       ),
+    );
+  }
+}
+
+class TPStyledListTile extends StatelessWidget {
+  const TPStyledListTile({
+    Key key,
+    @required this.leading,
+    @required this.titleString,
+    @required this.subtitleString,
+    @required this.trailingString,
+    @required this.onTap,
+  }) : super(key: key);
+
+  final Widget leading;
+  final String titleString;
+  final String subtitleString;
+  final String trailingString;
+  final Function onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: leading,
       // title: Text(otherParticipant),
       title: Text(
-        "Fake Name Peter",
+        titleString,
         style: TextStyle(fontWeight: FontWeight.w500),
       ),
       // subtitle: Text(chat.id),
       subtitle: Text(
-        chat.id,
+        subtitleString,
         style: Style.tinyTS.copyWith(color: Style.textLightColor),
       ),
       trailing: Text(
-        "Mon 11.",
+        trailingString,
         style: Style.tinyTS.copyWith(color: Style.blue),
       ),
-      onTap: () {
-        ExtendedNavigator.of(context).pushNamed(
-          Routes.chatPage,
-          arguments: ChatPageArguments(chat: chat),
-        );
-      },
+      onTap: onTap,
     );
   }
 }

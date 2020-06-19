@@ -52,7 +52,7 @@ class IntroductionPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            trustpingImage,
+            trustpingImage100,
             spacer,
             Padding(
               padding: const EdgeInsets.fromLTRB(0.0, 0.0, 40, 0),
