@@ -1,4 +1,4 @@
-import 'package:trust_ping_app/app/home/chats_page.dart';
+import 'package:trust_ping_app/app/home/main_page.dart';
 import 'package:trust_ping_app/app/introduction_page.dart';
 import 'package:trust_ping_app/app/sign_in/sign_in_page.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +23,7 @@ class _LandingPageState extends State<LandingPage> {
   Widget build(BuildContext context) {
     if (widget.userSnapshot.connectionState == ConnectionState.active) {
       if (widget.userSnapshot.hasData) {
-        return ChatsPage();
+        return MainPage();
       } else if (!_introPagesCompleted) {
         return IntroductionPage(
           onDone: () => setState(() => _introPagesCompleted = true),

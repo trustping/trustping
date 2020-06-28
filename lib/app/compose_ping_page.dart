@@ -90,11 +90,12 @@ class _ComposePingCardState extends State<ComposePingCard> {
   Widget build(BuildContext context) {
     return Card(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           const ListTile(leading: Icon(Icons.message), title: Text('Hallo!')),
-          _buildSwitchSentences(),
-          const Text("TODO Alle Daten aus dem Profil anzeigen."),
           _buildCustomMessageComposer(),
+          const ListTile(title: Text('Teile Details aus deinem Profil:')),
+          _buildSwitchSentences(),
           buildButtonBar(context),
         ],
       ),
@@ -137,10 +138,17 @@ class _ComposePingCardState extends State<ComposePingCard> {
           },
         ),
         SwitchSentenceWidget(
-          sentence: widget.pingViewModel.interestSentence,
-          active: widget.pingViewModel.useInterests,
+          sentence: widget.pingViewModel.cancerTypeSentence,
+          active: widget.pingViewModel.useCancer,
           onChanged: (bool value) {
-            setState(() => widget.pingViewModel.useInterests = value);
+            setState(() => widget.pingViewModel.useCancer = value);
+          },
+        ),
+        SwitchSentenceWidget(
+          sentence: widget.pingViewModel.therapySentence,
+          active: widget.pingViewModel.useTherapy,
+          onChanged: (bool value) {
+            setState(() => widget.pingViewModel.useTherapy = value);
           },
         ),
         SwitchSentenceWidget(
@@ -196,7 +204,7 @@ class _ComposePingCardState extends State<ComposePingCard> {
       padding: const EdgeInsets.all(8.0),
       child: TextField(
         controller: _textController,
-        maxLines: 3,
+        maxLines: 4,
         textInputAction: TextInputAction.go,
         onSubmitted: (value) {},
         decoration: InputDecoration(

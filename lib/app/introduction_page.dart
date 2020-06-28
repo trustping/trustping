@@ -14,22 +14,21 @@ class IntroductionPage extends StatelessWidget {
       pages: [
         _buildPageViewModel(
           title: 'Herzlich Willkommen bei Trustping!',
-          body: "",
+          body:
+              "Trustping ist eine App mit der Menschen mit oder nach Krebs gezielt Gesprächspartner finden, ohne sensible Informationen aus der Hand zu geben.",
         ),
         _buildPageViewModel(
-          title: "Trustping",
+          title: "Das ♥ von Trustping sind Transparenz und Integrität.",
           body:
-              "Trustping findet Menschen in ähnlichen Situationen und verbindet sie findet Menschen in ähnlichen Situationen und verbindet ndet Menschen in ähnlichen Situationen und verbindet",
-          subBody:
-              "Trustping findet Menschen in ähnlichen Situationen und verbindet sie findet Menschen in ähnlichen Situationen und verbindet ndet Menschen in ähnlichen Situationen und verbindet",
+              "Gesundheitsdaten verdienen den allerhöchsten Schutz. Deshalb entscheidest nur Du über deine Daten. Alle Einstellungen kannst du jederzeit ändern oder Daten endgültig löschen",
         ),
-        _buildPageViewModel(
-          title: "Let’s start",
-          body:
-              "Um für Dich passende Gesprächspartner zu finden, brauchen wir ein paar Informationen.",
-          subBody:
-              "Usam quo tecus id modi omnihil laccusdant cerferchilia simusam quo tecus idem.",
-        ),
+        // _buildPageViewModel(
+        //   title: "Let’s start",
+        //   body:
+        //       "Um für Dich passende Gesprächspartner zu finden, brauchen wir ein paar Informationen.",
+        //   subBody:
+        //       "Usam quo tecus id modi omnihil laccusdant cerferchilia simusam quo tecus idem.",
+        // ),
       ],
       next: const Icon(Icons.forward),
       done: const Text("FERTIG", style: TextStyle(fontWeight: FontWeight.w600)),
@@ -52,7 +51,7 @@ class IntroductionPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            trustpingImage,
+            trustpingImage100,
             spacer,
             Padding(
               padding: const EdgeInsets.fromLTRB(0.0, 0.0, 40, 0),

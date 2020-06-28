@@ -1,10 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/auto_route_annotations.dart';
+import 'package:trust_ping_app/app/home/main_page.dart';
+import 'package:trust_ping_app/app/home/ping_page.dart';
 import 'package:trust_ping_app/app/landing_page.dart';
 import 'package:trust_ping_app/app/compose_ping_page.dart';
 import 'package:trust_ping_app/app/home/account/account_page.dart';
 import 'package:trust_ping_app/app/home/chat_page.dart';
-import 'package:trust_ping_app/app/home/chats_page.dart';
 import 'package:trust_ping_app/app/introduction_page.dart';
 import 'package:trust_ping_app/app/onboarding/diagnosis_pages.dart';
 import 'package:trust_ping_app/app/onboarding/living_situation_pages.dart';
@@ -22,7 +23,7 @@ class $Router {
   EmailPasswordSignInPageBuilder emailPasswordSignInPageBuilder;
 
   @MaterialRoute(fullscreenDialog: false)
-  ChatsPage chatsPage;
+  MainPage mainPage;
 
   @MaterialRoute(fullscreenDialog: false)
   ChatPage chatPage;
@@ -38,6 +39,9 @@ class $Router {
 
   @MaterialRoute(fullscreenDialog: false)
   ComposePingPage composePingPage;
+
+  @MaterialRoute()
+  PingPage pingPage;
 
   // Onboarding screens
   @CustomRoute(

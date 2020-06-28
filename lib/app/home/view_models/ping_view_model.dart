@@ -16,25 +16,29 @@ class PingViewModel {
   bool useYearOfBirth = true;
   bool useInterests = true;
   bool useCircumstances = true;
+  bool useTherapy = true;
+  bool useCancer = true;
 
-  get nameSentence => 'Mein Name ist *${userProfile.name}*.';
-  get yearOfBirthSentence => 'Ich bin Jahrgang *${userProfile.yearOfBirth}*.';
-  get interestSentence =>
-      'Ich interessiere mich fuer: *${userProfile.interests.join(", ")}*.';
-  get circumstancesSentence =>
-      'Meine Lebensumstaendge: *${userProfile.circumstances.join(", ")}*.';
+  get nameSentence => 'Name: Stefan';
+  get yearOfBirthSentence => 'Jahrgang: 1985';
+  // get yearOfBirthSentence => 'Jahrgang: *${userProfile.yearOfBirth}*.';
+  get cancerTypeSentence => 'Krebstype: Hautkrebs.';
+  get therapySentence => 'Therapy: Operation.';
+  get interestSentence => 'Interessen: *${userProfile.interests.join(", ")}*.';
+  get circumstancesSentence => 'Situation: keine Kinder';
 
   String compose(String customMessage) {
     List<String> result = [
+      "\n",
       if (useName) nameSentence,
       if (useYearOfBirth) yearOfBirthSentence,
       if (useInterests) interestSentence,
+      if (useTherapy) therapySentence,
+      if (useCancer) cancerTypeSentence,
       if (useCircumstances) circumstancesSentence,
-      if (customMessage.isNotEmpty) "\n",
-      if (customMessage.isNotEmpty) customMessage,
     ];
-    String msg = result.join(' ');
-    return msg;
+    String msg = result.join('. ');
+    return [customMessage, msg].join("\n");
   }
 
   void sendPing(String firstMsg) async {

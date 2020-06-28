@@ -40,8 +40,8 @@ class Avatar extends StatelessWidget {
   }
 }
 
-class CircleAvatarWithBorder extends StatelessWidget {
-  const CircleAvatarWithBorder({
+class TPCircleAvatarWithBorder extends StatelessWidget {
+  const TPCircleAvatarWithBorder({
     Key key,
     @required this.radius,
     @required this.child,
