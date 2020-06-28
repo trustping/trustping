@@ -30,8 +30,9 @@ class _UOTherapyPage1State extends State<UOTherapyPage1> {
       appBar: AppBar(title: Text("Trustping")),
       body: buildOnboardingContent(
         context: context,
-        title: "Therapie",
-        body: "Welche Therapien hast du gemacht, machst Du, oder sind geplant?",
+        title:
+            "Welche Therapien hast du gemacht, machst Du, oder sind geplant?",
+        body: "",
         header: TPProgressIndicator(
           i: 1,
           n: 2,
@@ -97,13 +98,23 @@ class _UOTherapyPage2State extends State<UOTherapyPage2> {
   Set<String> _selected = Set();
 
   final Set<String> _options = Set.from([
-    "Erschöpfung",
-    "Immuntherapie",
-    "Operation",
-    "Hormontherapie",
-    "Strahlentherapie",
-    "Psychotherapie",
-    "Komplementäre Medizin",
+    // "Erschöpfung",
+    // "Immuntherapie",
+    // "Operation",
+    // "Hormontherapie",
+    // "Strahlentherapie",
+    // "Psychotherapie",
+    // "Komplementäre Medizin",
+    "Schlaf",
+    "Übelkeit",
+    "Fatigue",
+    "Depression",
+    "Haut",
+    "Neuropathie",
+    "Gewicht",
+    "Fruchtbarkeit",
+    "Haarausfall",
+    "weiteres",
   ]);
 
   @override
@@ -113,7 +124,8 @@ class _UOTherapyPage2State extends State<UOTherapyPage2> {
       body: buildOnboardingContent(
         context: context,
         title: "Nebenwirkungen",
-        body: "TODO fix buildOnboaringContent to not require text",
+        body:
+            "Verschiedene Effekte der Erkrankung und auch der Therapie sind ein Thema für viele Menschen. Wozu genau suchst du Austausch oder kannst vielleicht helfen?",
         header: TPProgressIndicator(
           i: 2,
           n: 2,

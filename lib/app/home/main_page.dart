@@ -55,12 +55,12 @@ class _MainPageState extends State<MainPage> {
           );
         },
       ),
-      IconButton(
-        icon: Icon(Icons.account_box),
-        onPressed: () {
-          ExtendedNavigator.of(context).pushNamed(Routes.userProfilePage);
-        },
-      ),
+      // IconButton(
+      //   icon: Icon(Icons.account_box),
+      //   onPressed: () {
+      //     ExtendedNavigator.of(context).pushNamed(Routes.userProfilePage);
+      //   },
+      // ),
       IconButton(
         icon: Icon(Icons.all_inclusive),
         onPressed: () {

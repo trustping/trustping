@@ -37,8 +37,10 @@ class ChatListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final otherParticipant = chat.otherParticipant(myUserID);
     return TPStyledListTile(
-      titleString: "Fake name peter",
-      subtitleString: chat.id,
+      titleString: "Anonym",
+      // subtitleString: chat.id,
+      subtitleString:
+          "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy",
       trailingString: "Mon 11.",
       onTap: () {
         ExtendedNavigator.of(context).pushNamed(
@@ -46,7 +48,7 @@ class ChatListTile extends StatelessWidget {
           arguments: ChatPageArguments(chat: chat),
         );
       },
-      leading: CircleAvatarWithBorder(
+      leading: TPCircleAvatarWithBorder(
         child: Text(
           otherParticipant[0].toUpperCase(),
           style: TextStyle(color: Style.red),
@@ -87,7 +89,8 @@ class TPStyledListTile extends StatelessWidget {
       // subtitle: Text(chat.id),
       subtitle: Text(
         subtitleString,
-        style: Style.tinyTS.copyWith(color: Style.textLightColor),
+        // style: Style.tinyTS.copyWith(color: Style.textLightColor),
+        style: Style.tinyTS.copyWith(color: Style.textColor),
       ),
       trailing: Text(
         trailingString,

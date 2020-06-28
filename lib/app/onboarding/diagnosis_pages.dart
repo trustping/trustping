@@ -24,9 +24,8 @@ class _UODiagnosisPage1State extends State<UODiagnosisPage1> {
       appBar: AppBar(title: Text("Trustping")),
       body: buildOnboardingContent(
         context: context,
-        title: "Krebstyp",
-        body:
-            "lorem Lorem proident ullamco ex anim est ipsum ad. Irure dolore qui ex laborum. Laboris officia dolore do amet culpa dolore ut. Incididunt magna aliqua pariatur aliquip ex.",
+        title: "Diagnose",
+        body: "Welchen Tumor hast/hattest Du?",
         header: TPProgressIndicator(
           i: 1,
           n: 4,
@@ -174,8 +173,8 @@ class _UODiagnosisPage3State extends State<UODiagnosisPage3> {
       appBar: AppBar(title: Text("Trustping")),
       body: buildOnboardingContent(
         context: context,
-        title: "Eigenschaften / Diagnose",
-        body: "some text required.",
+        title: "Diagnose / Eigenschaften ",
+        body: "",
         header: TPProgressIndicator(
           i: 3,
           n: 4,

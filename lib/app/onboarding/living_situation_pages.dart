@@ -31,9 +31,9 @@ class _UOLivingSituationPage1State extends State<UOLivingSituationPage1> {
       appBar: AppBar(title: Text("Trustping")),
       body: buildOnboardingContent(
         context: context,
-        title: "Situation",
+        title: "Lebenssituation",
         body:
-            "Erzähl uns noch etwas von Dir. Das hilft uns, die passenden Gesprächspartner für Dich zu finden.",
+            "Erzähl uns noch etwas von Dir. Wenn Du bestimmte Fragen hast, können diese Infos helfen, schnell die richtigen Kontakte zu finden.",
         header: TPProgressIndicator(
           i: 1,
           n: 2,
@@ -122,9 +122,9 @@ class _UOLivingSituationPage2State extends State<UOLivingSituationPage2> {
       appBar: AppBar(title: Text("Trustping")),
       body: buildOnboardingContent(
         context: context,
-        title: "Interessen",
+        title: "Interessen und Fragen",
         body:
-            "Was sind Deine Hobbies oder sind Themen, mit denen Du Dich im Zusammenhang mit Deiner Erkrankung beschäftigst oder beschäftigen möchtest?",
+            "Was sind wichtige Themen, mit denen Du Dich beschäftigst oder beschäftigen möchtest?",
         header: TPProgressIndicator(
           i: 2,
           n: 2,

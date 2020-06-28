@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/auto_route_annotations.dart';
 import 'package:trust_ping_app/app/home/main_page.dart';
+import 'package:trust_ping_app/app/home/ping_page.dart';
 import 'package:trust_ping_app/app/landing_page.dart';
 import 'package:trust_ping_app/app/compose_ping_page.dart';
 import 'package:trust_ping_app/app/home/account/account_page.dart';
@@ -38,6 +39,9 @@ class $Router {
 
   @MaterialRoute(fullscreenDialog: false)
   ComposePingPage composePingPage;
+
+  @MaterialRoute()
+  PingPage pingPage;
 
   // Onboarding screens
   @CustomRoute(

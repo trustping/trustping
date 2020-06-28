@@ -74,7 +74,7 @@ class _UOAgePageState extends State<UOAgePage> {
       appBar: AppBar(title: Text("Trustping")),
       body: buildOnboardingContent(
         context: context,
-        title: "Hallo!",
+        title: "Alter",
         body: "Was ist dein Geburtsjahr?",
         header: trustpingImage100,
         form: _buildForm(context),

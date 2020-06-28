@@ -51,8 +51,8 @@ class ListItemsBuilder<T> extends StatelessWidget {
 class EmptyContent extends StatelessWidget {
   const EmptyContent({
     Key key,
-    this.title = 'Nothing here',
-    this.message = 'Add a new item to get started',
+    this.title = 'Noch keine Chats',
+    this.message = 'Finde Gespraechspartner ueber den\ngelben Button.',
   }) : super(key: key);
   final String title;
   final String message;

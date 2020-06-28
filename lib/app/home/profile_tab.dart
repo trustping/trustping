@@ -20,7 +20,12 @@ class ProfileTab extends StatelessWidget {
       children: [
         vspace32,
         vspace32,
-        Text("TODO Profile Widget"),
+        vspace32,
+        vspace32,
+        Center(child: Text("TODO Profil Details + Bearbeiten")),
+        vspace32,
+        vspace32,
+        vspace32,
         vspace32,
         RaisedButton(
           color: Style.yellow,
