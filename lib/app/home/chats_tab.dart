@@ -79,22 +79,29 @@ class TPStyledListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ts = Style.bodyTS;
     return ListTile(
       leading: leading,
       // title: Text(otherParticipant),
       title: Text(
         titleString,
-        style: TextStyle(fontWeight: FontWeight.w500),
+        style: ts.copyWith(fontWeight: FontWeight.w500),
       ),
       // subtitle: Text(chat.id),
       subtitle: Text(
         subtitleString,
         // style: Style.tinyTS.copyWith(color: Style.textLightColor),
-        style: Style.tinyTS.copyWith(color: Style.textColor),
+        style: ts.copyWith(color: Style.textColor),
       ),
-      trailing: Text(
-        trailingString,
-        style: Style.tinyTS.copyWith(color: Style.blue),
+      trailing: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Text(
+            trailingString,
+            style: Style.tinyTS.copyWith(color: Style.blue),
+          ),
+        ],
       ),
       onTap: onTap,
     );

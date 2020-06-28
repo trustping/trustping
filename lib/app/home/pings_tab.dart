@@ -7,10 +7,17 @@ import 'package:trust_ping_app/routing/router.gr.dart';
 class Ping {
   final String request;
   final String requestTS;
+  final int unread;
   final List<PingResponse> responses;
   final PingType pingType;
 
-  Ping({this.request, this.pingType, this.requestTS, this.responses});
+  Ping({
+    @required this.request,
+    @required this.pingType,
+    @required this.unread,
+    @required this.requestTS,
+    @required this.responses,
+  });
 }
 
 enum PingState { ping, pong, done }
@@ -22,13 +29,19 @@ class PingResponse {
   final String chatID;
   final PingState pingState;
 
-  PingResponse({this.response, this.responseTS, this.chatID, this.pingState});
+  PingResponse({
+    @required this.response,
+    @required this.responseTS,
+    @required this.chatID,
+    @required this.pingState,
+  });
 }
 
 List<Ping> _pings = [
   Ping(
     request: "Hallo, ich moechte mich zu Nebenwirkung XYZ auttauschen.",
     requestTS: "Mon 11.",
+    unread: 1,
     pingType: PingType.outgoing,
     responses: [
       PingResponse(
@@ -48,6 +61,7 @@ List<Ping> _pings = [
   Ping(
     request:
         "Hallo, ich moechte nsteinrsati nstmich zu Nebenwirkung XYZ auttauschen.",
+    unread: 0,
     requestTS: "Mon 11.",
     pingType: PingType.outgoing,
     responses: [],
@@ -55,6 +69,7 @@ List<Ping> _pings = [
   Ping(
     request:
         "Hallo, ich moechte mich oaienufn uo rstne aufn ianste ioarnst arst rt ar.",
+    unread: 0,
     requestTS: "Mon 11.",
     pingType: PingType.incoming,
     responses: [],
@@ -62,9 +77,11 @@ List<Ping> _pings = [
   Ping(
     request: "Hallo, ich moechte astrsent ianste ioarnst arst rt ar.",
     requestTS: "Mon 11.",
+    unread: 1,
     pingType: PingType.incoming,
     responses: [
       PingResponse(
+        chatID: null,
         response: "ja, bitte.",
         responseTS: "Sun 20.",
         pingState: PingState.pong,
@@ -87,16 +104,14 @@ class PingsTab extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
             child: TPStyledListTile(
               // leading: Image.asset("assets/images/logo_2of3.png"),
-              leading: Hero(
-                child: trustpingLogo3of3,
-                tag: ping.request,
-              ),
+              leading: trustpingLogo3of3,
               titleString: pingTitle(ping),
               trailingString: ping.requestTS,
-              subtitleString: ping.request,
+              subtitleString: ping.request.substring(0, 40) + "...",
               onTap: () => ExtendedNavigator.of(context).pushNamed(
-                  Routes.pingPage,
-                  arguments: PingPageArguments(ping: ping)),
+                Routes.pingPage,
+                arguments: PingPageArguments(ping: ping),
+              ),
             ),
           );
         },

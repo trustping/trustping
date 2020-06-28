@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:trust_ping_app/app/home/chats_tab.dart';
 import 'package:trust_ping_app/app/home/pings_tab.dart';
 import 'package:trust_ping_app/app/spaces.dart';
 import 'package:trust_ping_app/common_widgets/avatar.dart';
-import 'package:trust_ping_app/common_widgets/images.dart';
 import 'package:trust_ping_app/theme.dart';
 
 class PingPage extends StatelessWidget {
@@ -26,34 +24,35 @@ class PingPage extends StatelessWidget {
       children: <Widget>[
         vspace32,
         // Style.title("Dein Ping"),
-        Card(
-          child: Column(
-            children: <Widget>[
-              _buildRequest(),
-              vspace32,
-              Divider(
-                color: Colors.black,
-                height: 2,
-              ),
-              vspace16,
-              _buildResponses(context),
-            ],
-          ),
+        Column(
+          children: <Widget>[
+            _buildRequest(),
+            vspace32,
+            vspace16,
+            _buildResponses(context),
+          ],
         ),
       ],
     );
   }
 
   Widget _buildRequest() {
-    return TPStyledListTile(
-      leading: Hero(
-        child: trustpingLogo3of3,
-        tag: ping.request,
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 8, 24, 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Center(
+            child: Text(
+              ping.requestTS,
+              style: Style.tinyTS.copyWith(fontWeight: FontWeight.w600),
+              textAlign: TextAlign.justify,
+            ),
+          ),
+          vspace16,
+          Style.body(ping.request),
+        ],
       ),
-      titleString: pingTitle(ping),
-      trailingString: ping.requestTS,
-      subtitleString: ping.request,
-      onTap: null,
     );
   }
 
@@ -70,12 +69,12 @@ class PingPage extends StatelessWidget {
               return Column(
                 children: [
                   _buildSingleResponse(response),
-                  vspace16,
+                  vspace8,
                   if (response.pingState == PingState.pong)
                     Text("Warte auf Bestaetigung..."),
                   if (response.pingState == PingState.done)
                     Text("TODO Jump to chat"),
-                  vspace16,
+                  vspace8,
                 ],
               );
             },
@@ -86,7 +85,7 @@ class PingPage extends StatelessWidget {
       if (responses.length == 0) {
         return Column(
           children: <Widget>[
-            vspace16,
+            vspace8,
             Center(child: Text("Noch keine Antworten...")),
             vspace16,
           ],
@@ -99,10 +98,6 @@ class PingPage extends StatelessWidget {
               children: [
                 _buildSingleResponse(response),
                 _buildButtonsForOutgoingPing(response),
-                Divider(
-                  color: Colors.black,
-                  height: 2,
-                ),
                 vspace16,
               ],
             );
@@ -112,33 +107,71 @@ class PingPage extends StatelessWidget {
     }
   }
 
-  ListTile _buildSingleResponse(PingResponse response) {
-    return ListTile(
-      leading: TPCircleAvatarWithBorder(
-        borderColor: Style.red,
-        backgroundColor: Style.blue,
-        radius: 20,
-        child: Text("P"),
-      ),
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            "Von Hella",
-            style: Style.bodyTS
-                .copyWith(fontWeight: FontWeight.w500, fontSize: 16),
+  Widget _buildSingleResponse(PingResponse response) {
+    return Row(
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TPCircleAvatarWithBorder(
+            borderColor: Style.red,
+            backgroundColor: Style.blue,
+            radius: 20,
+            child: Text("P"),
           ),
-          Text(
-            response.responseTS,
-            style: TextStyle(color: Style.blue),
-          )
-        ],
-      ),
-      subtitle: Text(
-        response.response,
-        style: Style.bodyTS.copyWith(fontSize: 16),
-      ),
+        ),
+        Expanded(
+          child: Container(
+            padding: const EdgeInsets.all(8.0),
+            margin: const EdgeInsets.all(8.0),
+            color: Style.lightGray,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
+                    Text(
+                      "Von Hella",
+                      style: TextStyle(fontWeight: FontWeight.w500),
+                    ),
+                    Text(ping.requestTS),
+                  ],
+                ),
+                Text("Ftensierantei rsantie arnstinar"),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
+    // return ListTile(
+    //   leading: TPCircleAvatarWithBorder(
+    //     borderColor: Style.red,
+    //     backgroundColor: Style.blue,
+    //     radius: 20,
+    //     child: Text("P"),
+    //   ),
+    //   title: Row(
+    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //     children: [
+    //       Text(
+    //         "Von Hella",
+    //         style: Style.bodyTS
+    //             .copyWith(fontWeight: FontWeight.w500, fontSize: 16),
+    //       ),
+    //       Text(
+    //         response.responseTS,
+    //         style: TextStyle(color: Style.blue),
+    //       )
+    //     ],
+    //   ),
+    //   subtitle: Text(
+    //     response.response,
+    //     style: Style.bodyTS.copyWith(fontSize: 16),
+    //   ),
+    // );
   }
 
   Widget _buildButtonsForIncomingPing() {
