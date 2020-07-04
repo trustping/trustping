@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:trust_ping_app/common_widgets/images.dart';
@@ -20,22 +19,54 @@ class IntroductionPage extends StatelessWidget {
         _buildPageViewModel(
           title: "Das ♥ von Trustping sind Transparenz und Integrität.",
           body:
-              "Gesundheitsdaten verdienen den allerhöchsten Schutz. Deshalb entscheidest nur Du über deine Daten. Alle Einstellungen kannst du jederzeit ändern oder Daten endgültig löschen",
+              "Gesundheitsdaten verdienen den allerhöchsten Schutz. Deshalb entscheidest nur Du über deine Daten. Alle Einstellungen kannst Du jederzeit ändern oder Daten endgültig löschen",
         ),
-        // _buildPageViewModel(
-        //   title: "Let’s start",
-        //   body:
-        //       "Um für Dich passende Gesprächspartner zu finden, brauchen wir ein paar Informationen.",
-        //   subBody:
-        //       "Usam quo tecus id modi omnihil laccusdant cerferchilia simusam quo tecus idem.",
-        // ),
+        _buildPageViewModel(
+          title: "Der Ping aus Trustping",
+          body: """Um  neue Gesprächspartner zu finden, erstellst Du einen Ping.
+
+Ein Ping ist eine Kontaktanfrage.
+
+Er enthält von Dir gewählte Interessen und Profilinformationen  und möglicherweise auch eine persönliche Nachricht oder Frage.""",
+          // subBody:
+          //     "Usam quo tecus id modi omnihil laccusdant cerferchilia simusam quo tecus idem.",
+        ),
+        _buildPageViewModel(
+          title: "Das Matching: So finden wir Deine Gesprächspartner",
+          body:
+              """Mithilfe eines Algorithmus und den vorhandenen Informationen wählen wir passende Menschen aus und senden ihnen Deinen Ping anonymisiert zu. Sie können darauf antworten und Du entscheidest, ob ein Chat beginnt.""",
+        ),
+        _buildPageViewModel(
+            title: "Ping erhalten",
+            body:
+                """Wenn Du selbst einen Ping von jemandem erhältst, kannst Du darauf antworten. Reagiert Dein Gesprächspartner auf diese Antwort, beginnt ein Chat.
+
+Ein Ping, der für Dich nicht relevant ist, kannst Du ignorieren oder löschen."""),
+        // subBody:
+        _buildPageViewModel(
+          title: "Los geht's",
+          body:
+              "Um für Dich passende Gesprächspartner zu finden, brauchen wir ein paar Informationen.",
+          // subBody:
+          //     "Usam quo tecus id modi omnihil laccusdant cerferchilia simusam quo tecus idem.",
+        ),
       ],
       next: const Icon(Icons.forward),
       done: const Text("FERTIG", style: TextStyle(fontWeight: FontWeight.w600)),
-      skip: const Text("SKIP", style: TextStyle(fontWeight: FontWeight.w300)),
+      skip: const Text("", style: TextStyle(fontWeight: FontWeight.w300)),
       onDone: onDone,
-      onSkip: onDone,
-      showSkipButton: true,
+      dotsDecorator: DotsDecorator(
+        size: const Size.square(10.0),
+        activeSize: const Size(20.0, 10.0),
+        // activeColor: theme.accentColor,
+        color: Colors.black26,
+        spacing: const EdgeInsets.symmetric(horizontal: 3.0),
+        activeShape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(25.0),
+        ),
+      ),
+      // onSkip: onDone,
+      // showSkipButton: true,
     );
   }
 

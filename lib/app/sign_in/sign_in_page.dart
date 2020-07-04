@@ -75,7 +75,7 @@ class SignInPage extends StatelessWidget {
         children: <Widget>[
           // SizedBox(height: 32.0),
           SizedBox(
-            height: 150.0,
+            height: 220.0,
             child: _buildHeader(),
           ),
           vspace32,
@@ -122,7 +122,9 @@ class SignInPage extends StatelessWidget {
       children: <Widget>[
         trustpingImage100,
         vspace16,
-        Center(child: Style.title(Strings.signIn)),
+        Center(child: Style.title("Konto erstellen")),
+        // vspace8,
+        // Center(child: Style.title(Strings.signIn)),
       ],
     );
   }

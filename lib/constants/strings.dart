@@ -14,7 +14,7 @@ class Strings {
 
   // Sign In Page
   static const String signIn = 'Einloggen';
-  static const String signInWithEmailPassword = 'WIP Mit Email und Passwort';
+  static const String signInWithEmailPassword = 'Mit Email und Passwort';
   static const String goAnonymous = 'Anonym (ohne Email)';
   static const String or = 'oder';
 
