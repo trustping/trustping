@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:trust_ping_app/app/onboarding/utils.dart';
@@ -28,7 +26,7 @@ class _UODiagnosisPage1State extends State<UODiagnosisPage1> {
         body: "Welchen Tumor hast/hattest Du?",
         header: TPProgressIndicator(
           i: 1,
-          n: 4,
+          n: 3,
           section: "Diagnose",
           colors: Style.reds,
         ),
@@ -63,11 +61,11 @@ class _UODiagnosisPage1State extends State<UODiagnosisPage1> {
               if (form.validate()) {
                 setState(() => form.save());
                 ExtendedNavigator.of(context)
-                    .pushNamed(Routes.uoDiagnosisPage2);
+                    .pushNamed(Routes.uoDiagnosisPage3);
               }
             },
             onSkip: () => ExtendedNavigator.of(context)
-                .pushNamed(Routes.uoDiagnosisPage2),
+                .pushNamed(Routes.uoDiagnosisPage3),
           ),
         ],
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -100,7 +98,7 @@ class _UODiagnosisPage2State extends State<UODiagnosisPage2> {
             "lorem Lorem proident ullamco ex anim est ipsum ad. Irure dolore qui ex laborum.",
         header: TPProgressIndicator(
           i: 2,
-          n: 4,
+          n: 3,
           section: "Diagnose",
           colors: Style.reds,
         ),
@@ -176,8 +174,8 @@ class _UODiagnosisPage3State extends State<UODiagnosisPage3> {
         title: "Diagnose / Eigenschaften ",
         body: "",
         header: TPProgressIndicator(
-          i: 3,
-          n: 4,
+          i: 2,
+          n: 3,
           section: "Diagnose",
           colors: Style.reds,
         ),
@@ -277,8 +275,8 @@ class _UODiagnosisPage4State extends State<UODiagnosisPage4> {
         title: "Krankheitsphase",
         body: "Was trifft am ehesten auf dich zu?",
         header: TPProgressIndicator(
-          i: 4,
-          n: 4,
+          i: 3,
+          n: 3,
           section: "Diagnose",
           colors: Style.reds,
         ),

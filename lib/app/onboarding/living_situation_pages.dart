@@ -17,12 +17,12 @@ class _UOLivingSituationPage1State extends State<UOLivingSituationPage1> {
 
   final Set<String> _options = Set.from([
     "Single",
-    "In Partnerschaft/Verheiratet",
-    "In Ausbildung/Studium",
-    "Berufstätig",
-    "Pensioniert",
-    "Schwanger",
-    "Mit Familie",
+    "in Partnerschaft / verheiratet",
+    "in Ausbildung / Studium",
+    "berufstätig",
+    "pensioniert",
+    "schwanger",
+    "mit Familie",
   ]);
 
   @override

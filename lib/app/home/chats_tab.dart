@@ -39,8 +39,7 @@ class ChatListTile extends StatelessWidget {
     return TPStyledListTile(
       titleString: "Anonym",
       // subtitleString: chat.id,
-      subtitleString:
-          "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy",
+      subtitleString: "Lorem ipsum dolor sit amet, consetetur",
       trailingString: "Mon 11.",
       onTap: () {
         ExtendedNavigator.of(context).pushNamed(

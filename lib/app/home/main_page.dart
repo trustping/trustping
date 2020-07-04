@@ -78,7 +78,7 @@ class _MainPageState extends State<MainPage> {
           icon: Icon(Icons.chat_bubble),
         ),
         BottomNavigationBarItem(
-          title: Text("Ping"),
+          title: Text("Matching"),
           icon: Icon(Icons.check),
         ),
         BottomNavigationBarItem(
