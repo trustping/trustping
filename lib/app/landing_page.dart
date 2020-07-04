@@ -21,21 +21,23 @@ class _LandingPageState extends State<LandingPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.userSnapshot.connectionState == ConnectionState.active) {
-      if (widget.userSnapshot.hasData) {
-        return MainPage();
-      } else if (!_introPagesCompleted) {
-        return IntroductionPage(
-          onDone: () => setState(() => _introPagesCompleted = true),
-        );
-      } else {
-        return SignInPageBuilder();
-      }
+    // if ((widget.userSnapshot.connectionState == ConnectionState.active) ||
+    //     (widget.userSnapshot.connectionState == ConnectionState.waiting)) {
+    if (widget.userSnapshot.connectionState == ConnectionState.none) {
+      return Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
     }
-    return Scaffold(
-      body: Center(
-        child: CircularProgressIndicator(),
-      ),
-    );
+    if (widget.userSnapshot.hasData) {
+      return MainPage();
+    } else if (!_introPagesCompleted) {
+      return IntroductionPage(
+        onDone: () => setState(() => _introPagesCompleted = true),
+      );
+    } else {
+      return SignInPageBuilder();
+    }
   }
 }

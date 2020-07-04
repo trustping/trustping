@@ -73,7 +73,7 @@ class PingPage extends StatelessWidget {
                   if (response.pingState == PingState.pong)
                     Text("Warte auf Bestaetigung..."),
                   if (response.pingState == PingState.done)
-                    Text("TODO Jump to chat"),
+                    Text("TODO Jump to Chat"),
                   vspace8,
                 ],
               );
@@ -179,12 +179,12 @@ class PingPage extends StatelessWidget {
       children: <Widget>[
         FlatButton(
           onPressed: () {},
-          child: Text("LOESCHEN"),
+          child: Text("loeschen"),
           textColor: Style.textLightColor,
         ),
         FlatButton(
           onPressed: () {},
-          child: Text("ANTWORTEN"),
+          child: Text("antworten"),
           textColor: Style.blue,
         ),
       ],
@@ -197,12 +197,12 @@ class PingPage extends StatelessWidget {
         children: <Widget>[
           FlatButton(
             onPressed: () {},
-            child: Text("LOESCHEN"),
+            child: Text("loeschen"),
             textColor: Style.textLightColor,
           ),
           FlatButton(
             onPressed: () {},
-            child: Text("CHAT BEGINNEN"),
+            child: Text("Chat beginnen"),
             textColor: Style.blue,
           ),
         ],
@@ -213,8 +213,8 @@ class PingPage extends StatelessWidget {
         FlatButton(
           onPressed: () {},
           child: Text(
-            "ZUM CHAT",
-            style: TextStyle(fontWeight: FontWeight.w600),
+            "zum Chat",
+            style: TextStyle(fontWeight: FontWeight.w500),
           ),
           textColor: Style.blue,
         ),
