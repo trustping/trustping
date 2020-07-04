@@ -21,7 +21,10 @@ class _LandingPageState extends State<LandingPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.userSnapshot.connectionState == ConnectionState.active) {
+    print("${widget.userSnapshot.connectionState}");
+    if ((widget.userSnapshot.connectionState == ConnectionState.active) ||
+        (widget.userSnapshot.connectionState == ConnectionState.waiting)) {
+      // if (true) {
       if (widget.userSnapshot.hasData) {
         return MainPage();
       } else if (!_introPagesCompleted) {
