@@ -65,11 +65,6 @@ class $Router {
   @CustomRoute(
       transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
       durationInMilliseconds: 300)
-  UODiagnosisPage2 uoDiagnosisPage2;
-
-  @CustomRoute(
-      transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
-      durationInMilliseconds: 300)
   UODiagnosisPage3 uoDiagnosisPage3;
 
   @CustomRoute(
