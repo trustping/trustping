@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:trust_ping_app/common_widgets/list_items_builder.dart';
 import 'package:trust_ping_app/services/firestore_database.dart';
+import 'package:trust_ping_app/theme.dart';
 
 import 'models/chat.dart';
 import 'models/message.dart';
@@ -58,39 +59,6 @@ class MessageComposer extends StatefulWidget {
 
   @override
   _State createState() => _State(conversationID: conversationID);
-}
-
-class MessageListTile extends StatelessWidget {
-  final Message message;
-  final String userID;
-  const MessageListTile({this.message, this.userID});
-
-  @override
-  Widget build(BuildContext context) {
-    final alignment =
-        (userID == message.author) ? Alignment.topRight : Alignment.topLeft;
-    final textAlign =
-        (userID == message.author) ? TextAlign.right : TextAlign.left;
-    final left = (userID == message.author) ? 48.0 : 0.0;
-    final right = (userID == message.author) ? 0.0 : 48.0;
-
-    return Padding(
-      padding: EdgeInsets.fromLTRB(left, 0, right, 0),
-      child: Card(
-        child: Padding(
-          child: Align(
-            child: Text(message.body, textAlign: textAlign),
-            alignment: alignment,
-          ),
-          padding: const EdgeInsets.all(10.0),
-        ),
-        elevation: 1.0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12.0),
-        ),
-      ),
-    );
-  }
 }
 
 class _State extends State<MessageComposer> {
@@ -154,5 +122,38 @@ class _State extends State<MessageComposer> {
       body: text,
     );
     db.setMessage(conversationID, message);
+  }
+}
+
+class MessageListTile extends StatelessWidget {
+  final Message message;
+  final String userID;
+  const MessageListTile({this.message, this.userID});
+
+  @override
+  Widget build(BuildContext context) {
+    final bool myMessage = userID == message.author;
+    final alignment = myMessage ? Alignment.topRight : Alignment.topLeft;
+    final textAlign = myMessage ? TextAlign.right : TextAlign.left;
+    final left = myMessage ? 80.0 : 0.0;
+    final right = myMessage ? 0.0 : 80.0;
+
+    return Padding(
+      padding: EdgeInsets.fromLTRB(left, 8, right, 0),
+      child: Card(
+        color: myMessage ? Style.red : Style.yellow,
+        child: Padding(
+          child: Align(
+            child: Text(message.body, textAlign: textAlign),
+            alignment: alignment,
+          ),
+          padding: const EdgeInsets.all(10.0),
+        ),
+        elevation: 1.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+      ),
+    );
   }
 }

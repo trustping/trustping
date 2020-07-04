@@ -7,6 +7,7 @@ class Style {
   static const Color textLightColor = Color.fromRGBO(143, 143, 143, 1.0);
   static const Color textDarkColor = Color.fromRGBO(19, 24, 27, 1.0);
   static const Color lightGray = Color.fromRGBO(239, 240, 240, 1.0);
+  static const Color white = Color.fromRGBO(255, 255, 255, 1.0);
   // blue-ish
   static const Color blue = Color.fromRGBO(76, 108, 184, 1.0);
   static const Color blue70 = Color.fromRGBO(76, 108, 184, 0.7);
