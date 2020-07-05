@@ -1,9 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:trust_ping_app/app/home/models/user_profile.dart';
 import 'package:trust_ping_app/app/home/view_models/ping_view_model.dart';
 import 'package:trust_ping_app/services/firestore_database.dart';
+import 'package:trust_ping_app/theme.dart';
 
 class ComposePingPage extends StatelessWidget {
   @override
@@ -37,7 +39,7 @@ class ComposePingPage extends StatelessWidget {
       stream: db.userProfileStream(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          var userProfile = snapshot.data;
+          final userProfile = snapshot.data;
           return ComposePingCard(
             pingViewModel: PingViewModel(
               userProfile: userProfile,
@@ -108,7 +110,9 @@ class _ComposePingCardState extends State<ComposePingCard> {
     return ButtonBar(
       children: <Widget>[
         FlatButton(
-          child: const Text('WEITER'),
+          child: const Text('weiter'),
+          color: Style.yellow,
+          textColor: Style.textColor,
           onPressed: () {
             showConfirmDialog(
               context: context,
@@ -174,18 +178,22 @@ class _ComposePingCardState extends State<ComposePingCard> {
           ),
           actions: <Widget>[
             FlatButton(
-              child: Text("ABBRECHEN"),
+              child: Text("abbrechen"),
+              textColor: Style.textLightColor,
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             FlatButton(
-              child: Text("SENDEN"),
+              child: Text("senden"),
+              color: Style.yellow,
+              textColor: Style.textColor,
               onPressed: () {
                 widget.pingViewModel.sendPing(
                   widget.pingViewModel.compose(_textController.text),
                 );
-                Navigator.of(context).pop();
+                ExtendedNavigator.of(context)
+                    .popUntil((route) => route.isFirst);
                 Flushbar(
                   message: 'Pings unterwegs...',
                   duration: Duration(seconds: 3),

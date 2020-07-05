@@ -76,8 +76,8 @@ class Style {
   );
   static ThemeData themeData = ThemeData(
     fontFamily: 'Inter',
-    primarySwatch: tpColors,
-    // primaryColor: Colors.white,
+    // primarySwatch: tpColors,
+    primaryColor: Colors.white,
     accentColor: yellow,
     textTheme: TextTheme(
       headline1: titleTS,
