@@ -1,4 +1,6 @@
 class Strings {
+  static const String tp = 'Trustping';
+
   // Generic strings
   static const String ok = 'abschließen';
   static const String cancel = 'abbrechen';
