@@ -4,7 +4,7 @@ import 'package:trust_ping_app/common_widgets/buttons.dart';
 import 'package:trust_ping_app/constants/strings.dart';
 import 'package:trust_ping_app/theme.dart';
 
-Widget buildOnboardingContent({
+Widget buildOnboardingView({
   BuildContext context,
   String title,
   String body,

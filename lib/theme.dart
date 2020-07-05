@@ -7,6 +7,7 @@ class Style {
   static const Color textLightColor = Color.fromRGBO(143, 143, 143, 1.0);
   static const Color textDarkColor = Color.fromRGBO(19, 24, 27, 1.0);
   static const Color lightGray = Color.fromRGBO(239, 240, 240, 1.0);
+  static const Color white = Color.fromRGBO(255, 255, 255, 1.0);
   // blue-ish
   static const Color blue = Color.fromRGBO(76, 108, 184, 1.0);
   static const Color blue70 = Color.fromRGBO(76, 108, 184, 0.7);
@@ -19,10 +20,10 @@ class Style {
   static const Color yellow50 = Color.fromRGBO(255, 217, 76, 0.5);
   static const Color yellow30 = Color.fromRGBO(255, 217, 76, 0.3);
   // red-ish
-  static const Color red = Color.fromRGBO(255, 115, 147, 1.0);
-  static const Color red70 = Color.fromRGBO(255, 115, 147, 0.7);
-  static const Color red50 = Color.fromRGBO(255, 115, 147, 0.5);
-  static const Color red30 = Color.fromRGBO(255, 115, 147, 0.3);
+  static const Color red = Color.fromRGBO(255, 95, 100, 1.0);
+  static const Color red70 = Color.fromRGBO(255, 95, 100, 0.7);
+  static const Color red50 = Color.fromRGBO(255, 95, 100, 0.5);
+  static const Color red30 = Color.fromRGBO(255, 95, 100, 0.3);
 
   // very simple color swatches
   static const List<Color> blues = [blue, blue70, blue50, blue30];
@@ -75,8 +76,8 @@ class Style {
   );
   static ThemeData themeData = ThemeData(
     fontFamily: 'Inter',
-    primarySwatch: tpColors,
-    // primaryColor: Colors.white,
+    // primarySwatch: tpColors,
+    primaryColor: Colors.white,
     accentColor: yellow,
     textTheme: TextTheme(
       headline1: titleTS,

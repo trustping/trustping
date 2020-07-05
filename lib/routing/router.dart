@@ -7,11 +7,8 @@ import 'package:trust_ping_app/app/compose_ping_page.dart';
 import 'package:trust_ping_app/app/home/account/account_page.dart';
 import 'package:trust_ping_app/app/home/chat_page.dart';
 import 'package:trust_ping_app/app/introduction_page.dart';
-import 'package:trust_ping_app/app/onboarding/diagnosis_pages.dart';
-import 'package:trust_ping_app/app/onboarding/living_situation_pages.dart';
-import 'package:trust_ping_app/app/onboarding/therapy_pages.dart';
+import 'package:trust_ping_app/app/onboarding/onboarding_main_page.dart';
 import 'package:trust_ping_app/app/sign_in/email_password/email_password_sign_in_page.dart';
-import 'package:trust_ping_app/app/onboarding/user_onboarding_page.dart';
 import 'package:trust_ping_app/app/user_profile_page.dart';
 
 @MaterialAutoRouter()
@@ -45,55 +42,8 @@ class $Router {
 
   // Onboarding screens
   @CustomRoute(
-      transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
-      durationInMilliseconds: 300)
-  UONamePage uoNamePage;
-
-  @CustomRoute(
-      transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
-      durationInMilliseconds: 300)
-  UOAgePage uoAgePage;
-
-  @CustomRoute(
-      transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
-      durationInMilliseconds: 300)
-  @CustomRoute(
-      transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
-      durationInMilliseconds: 300)
-  UODiagnosisPage1 uoDiagnosisPage1;
-
-  @CustomRoute(
-      transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
-      durationInMilliseconds: 300)
-  UODiagnosisPage2 uoDiagnosisPage2;
-
-  @CustomRoute(
-      transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
-      durationInMilliseconds: 300)
-  UODiagnosisPage3 uoDiagnosisPage3;
-
-  @CustomRoute(
-      transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
-      durationInMilliseconds: 300)
-  UODiagnosisPage4 uoDiagnosisPage4;
-
-  @CustomRoute(
-      transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
-      durationInMilliseconds: 300)
-  UOTherapyPage1 uoTherapyPage1;
-
-  @CustomRoute(
-      transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
-      durationInMilliseconds: 300)
-  UOTherapyPage2 uoTherapyPage2;
-
-  @CustomRoute(
-      transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
-      durationInMilliseconds: 300)
-  UOLivingSituationPage1 uoLivingSituationPage1;
-
-  @CustomRoute(
-      transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
-      durationInMilliseconds: 300)
-  UOLivingSituationPage2 uoLivingSituationPage2;
+    transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
+    durationInMilliseconds: 300,
+  )
+  OnboardingMainPage uoNamePage;
 }

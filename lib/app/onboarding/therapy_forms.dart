@@ -1,16 +1,17 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:trust_ping_app/app/onboarding/utils.dart';
 import 'package:trust_ping_app/common_widgets/chips.dart';
-import 'package:trust_ping_app/routing/router.gr.dart';
 import 'package:trust_ping_app/theme.dart';
 
-class UOTherapyPage1 extends StatefulWidget {
+class TherapyTherapyForm extends StatefulWidget {
+  final Function onNext;
+  const TherapyTherapyForm({Key key, @required this.onNext}) : super(key: key);
+
   @override
-  _UOTherapyPage1State createState() => _UOTherapyPage1State();
+  _TherapyTherapyFormState createState() => _TherapyTherapyFormState();
 }
 
-class _UOTherapyPage1State extends State<UOTherapyPage1> {
+class _TherapyTherapyFormState extends State<TherapyTherapyForm> {
   final key = GlobalKey<FormState>();
   Set<String> _selected = Set();
 
@@ -26,26 +27,6 @@ class _UOTherapyPage1State extends State<UOTherapyPage1> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Trustping")),
-      body: buildOnboardingContent(
-        context: context,
-        title:
-            "Welche Therapien hast du gemacht, machst Du, oder sind geplant?",
-        body: "",
-        header: TPProgressIndicator(
-          i: 1,
-          n: 2,
-          section: "Therapie",
-          colors: Style.blues,
-        ),
-        form: _buildForm(context),
-      ),
-      resizeToAvoidBottomInset: false,
-    );
-  }
-
-  Widget _buildForm(context) {
     return Form(
       key: key,
       child: Column(
@@ -58,11 +39,10 @@ class _UOTherapyPage1State extends State<UOTherapyPage1> {
               final form = this.key.currentState;
               if (form.validate()) {
                 setState(() => form.save());
-                ExtendedNavigator.of(context).pushNamed(Routes.uoTherapyPage2);
+                widget.onNext();
               }
             },
-            onSkip: () =>
-                ExtendedNavigator.of(context).pushNamed(Routes.uoTherapyPage2),
+            onSkip: () => widget.onNext(),
           ),
         ],
       ),
@@ -70,6 +50,7 @@ class _UOTherapyPage1State extends State<UOTherapyPage1> {
   }
 
   Wrap _buildChips() {
+    // TODO extract logic into class independent function
     return Wrap(
       runSpacing: -8,
       spacing: 8,
@@ -88,23 +69,20 @@ class _UOTherapyPage1State extends State<UOTherapyPage1> {
   }
 }
 
-class UOTherapyPage2 extends StatefulWidget {
+class TherapySideEffectForm extends StatefulWidget {
+  final Function onNext;
+  const TherapySideEffectForm({Key key, @required this.onNext})
+      : super(key: key);
+
   @override
-  _UOTherapyPage2State createState() => _UOTherapyPage2State();
+  _TherapySideEffectFormState createState() => _TherapySideEffectFormState();
 }
 
-class _UOTherapyPage2State extends State<UOTherapyPage2> {
+class _TherapySideEffectFormState extends State<TherapySideEffectForm> {
   final key = GlobalKey<FormState>();
   Set<String> _selected = Set();
 
   final Set<String> _options = Set.from([
-    // "Erschöpfung",
-    // "Immuntherapie",
-    // "Operation",
-    // "Hormontherapie",
-    // "Strahlentherapie",
-    // "Psychotherapie",
-    // "Komplementäre Medizin",
     "Schlaf",
     "Übelkeit",
     "Fatigue",
@@ -119,26 +97,6 @@ class _UOTherapyPage2State extends State<UOTherapyPage2> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Trustping")),
-      body: buildOnboardingContent(
-        context: context,
-        title: "Nebenwirkungen",
-        body:
-            "Verschiedene Effekte der Erkrankung und auch der Therapie sind ein Thema für viele Menschen. Wozu genau suchst du Austausch oder kannst vielleicht helfen?",
-        header: TPProgressIndicator(
-          i: 2,
-          n: 2,
-          section: "Therapie",
-          colors: Style.blues,
-        ),
-        form: _buildForm(context),
-      ),
-      resizeToAvoidBottomInset: false,
-    );
-  }
-
-  Widget _buildForm(context) {
     return Form(
       key: key,
       child: Column(
@@ -151,12 +109,10 @@ class _UOTherapyPage2State extends State<UOTherapyPage2> {
               final form = this.key.currentState;
               if (form.validate()) {
                 setState(() => form.save());
-                ExtendedNavigator.of(context)
-                    .pushNamed(Routes.uoLivingSituationPage1);
+                widget.onNext();
               }
             },
-            onSkip: () => ExtendedNavigator.of(context)
-                .pushNamed(Routes.uoLivingSituationPage1),
+            onSkip: () => widget.onNext(),
           ),
         ],
       ),
@@ -164,6 +120,7 @@ class _UOTherapyPage2State extends State<UOTherapyPage2> {
   }
 
   Wrap _buildChips() {
+    // TODO extract logic into class independent function
     return Wrap(
       runSpacing: -8,
       spacing: 8,

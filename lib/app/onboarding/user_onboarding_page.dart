@@ -1,32 +1,23 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:trust_ping_app/app/onboarding/utils.dart';
-import 'package:trust_ping_app/common_widgets/images.dart';
-import 'package:trust_ping_app/routing/router.gr.dart';
 
-class UONamePage extends StatefulWidget {
+// =============================================================================
+class UserNameForm extends StatefulWidget {
+  final Function onNext;
+  const UserNameForm({Key key, @required this.onNext}) : super(key: key);
+
   @override
-  _UONamePageState createState() => _UONamePageState();
+  _UserNameFormState createState() => _UserNameFormState();
 }
 
-class _UONamePageState extends State<UONamePage> {
+class _UserNameFormState extends State<UserNameForm> {
   final key = GlobalKey<FormState>();
   String _name = "";
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Trustping")),
-      body: buildOnboardingContent(
-        context: context,
-        title: "Hallo!",
-        body: "Wie möchtest Du angesprochen werden?",
-        header: trustpingImage100,
-        form: _buildForm(context),
-      ),
-      resizeToAvoidBottomInset: false,
-    );
+    return _buildForm(context);
   }
 
   Widget _buildForm(BuildContext context) {
@@ -47,11 +38,10 @@ class _UONamePageState extends State<UONamePage> {
               final form = this.key.currentState;
               if (form.validate()) {
                 setState(() => form.save());
-                ExtendedNavigator.of(context).pushNamed(Routes.uoAgePage);
+                widget.onNext();
               }
             },
-            onSkip: () =>
-                ExtendedNavigator.of(context).pushNamed(Routes.uoAgePage),
+            onSkip: () => widget.onNext(),
           ),
         ],
       ),
@@ -59,31 +49,20 @@ class _UONamePageState extends State<UONamePage> {
   }
 }
 
-class UOAgePage extends StatefulWidget {
+class UserAgeForm extends StatefulWidget {
+  const UserAgeForm({Key key, @required this.onNext}) : super(key: key);
+  final Function onNext;
+
   @override
-  _UOAgePageState createState() => _UOAgePageState();
+  _UserAgeFormState createState() => _UserAgeFormState();
 }
 
-class _UOAgePageState extends State<UOAgePage> {
+class _UserAgeFormState extends State<UserAgeForm> {
   final key = GlobalKey<FormState>();
   String _yearOfBirth = "";
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Trustping")),
-      body: buildOnboardingContent(
-        context: context,
-        title: "Alter",
-        body: "Was ist dein Geburtsjahr?",
-        header: trustpingImage100,
-        form: _buildForm(context),
-      ),
-      resizeToAvoidBottomInset: false,
-    );
-  }
-
-  Widget _buildForm(context) {
     return Form(
       key: key,
       child: Column(
@@ -103,12 +82,10 @@ class _UOAgePageState extends State<UOAgePage> {
               final form = this.key.currentState;
               if (form.validate()) {
                 setState(() => form.save());
-                ExtendedNavigator.of(context)
-                    .pushNamed(Routes.uoDiagnosisPage1);
+                widget.onNext();
               }
             },
-            onSkip: () => ExtendedNavigator.of(context)
-                .pushNamed(Routes.uoDiagnosisPage1),
+            onSkip: () => widget.onNext(),
           ),
         ],
       ),

@@ -53,7 +53,7 @@ Ein Ping, der für Dich nicht relevant ist, kannst Du ignorieren oder löschen."
       ],
       next: const Icon(Icons.forward),
       done: const Text("FERTIG", style: TextStyle(fontWeight: FontWeight.w600)),
-      skip: const Text("", style: TextStyle(fontWeight: FontWeight.w300)),
+      skip: const Text("SKIP", style: TextStyle(fontWeight: FontWeight.w300)),
       onDone: onDone,
       dotsDecorator: DotsDecorator(
         size: const Size.square(10.0),
@@ -65,8 +65,8 @@ Ein Ping, der für Dich nicht relevant ist, kannst Du ignorieren oder löschen."
           borderRadius: BorderRadius.circular(25.0),
         ),
       ),
-      // onSkip: onDone,
-      // showSkipButton: true,
+      onSkip: onDone,
+      showSkipButton: true,
     );
   }
 
