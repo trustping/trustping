@@ -1,18 +1,19 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:trust_ping_app/app/onboarding/utils.dart';
 import 'package:trust_ping_app/common_widgets/chips.dart';
-import 'package:trust_ping_app/routing/router.gr.dart';
 import 'package:trust_ping_app/theme.dart';
 
 // =============================================================================
 // Page 1
-class UODiagnosisPage1 extends StatefulWidget {
+class DiagnosisCancerForm extends StatefulWidget {
+  final Function onNext;
+  const DiagnosisCancerForm({Key key, @required this.onNext}) : super(key: key);
+
   @override
-  _UODiagnosisPage1State createState() => _UODiagnosisPage1State();
+  _DiagnosisCancerFormState createState() => _DiagnosisCancerFormState();
 }
 
-class _UODiagnosisPage1State extends State<UODiagnosisPage1> {
+class _DiagnosisCancerFormState extends State<DiagnosisCancerForm> {
   final key = GlobalKey<FormState>();
 
   final List<String> _options = ["Keine Angabe", "Brustkrebs", "Andere"];
@@ -20,25 +21,6 @@ class _UODiagnosisPage1State extends State<UODiagnosisPage1> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Trustping")),
-      body: buildOnboardingContent(
-        context: context,
-        title: "Diagnose",
-        body: "Welchen Tumor hast/hattest Du?",
-        header: TPProgressIndicator(
-          i: 1,
-          n: 3,
-          section: "Diagnose",
-          colors: Style.reds,
-        ),
-        form: _buildForm(context),
-      ),
-      resizeToAvoidBottomInset: false,
-    );
-  }
-
-  Widget _buildForm(BuildContext context) {
     return Form(
       key: key,
       child: Column(
@@ -62,12 +44,10 @@ class _UODiagnosisPage1State extends State<UODiagnosisPage1> {
               final form = this.key.currentState;
               if (form.validate()) {
                 setState(() => form.save());
-                ExtendedNavigator.of(context)
-                    .pushNamed(Routes.uoDiagnosisPage3);
+                widget.onNext();
               }
             },
-            onSkip: () => ExtendedNavigator.of(context)
-                .pushNamed(Routes.uoDiagnosisPage3),
+            onSkip: () => widget.onNext(),
           ),
         ],
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -77,16 +57,18 @@ class _UODiagnosisPage1State extends State<UODiagnosisPage1> {
 }
 
 // =============================================================================
-// Page 2 --> gone
-
-// =============================================================================
 // Page 3
-class UODiagnosisPage3 extends StatefulWidget {
+class DiagnosisPropertiesForm extends StatefulWidget {
+  final Function onNext;
+  const DiagnosisPropertiesForm({Key key, @required this.onNext})
+      : super(key: key);
+
   @override
-  _UODiagnosisPage3State createState() => _UODiagnosisPage3State();
+  _DiagnosisPropertiesFormState createState() =>
+      _DiagnosisPropertiesFormState();
 }
 
-class _UODiagnosisPage3State extends State<UODiagnosisPage3> {
+class _DiagnosisPropertiesFormState extends State<DiagnosisPropertiesForm> {
   final key = GlobalKey<FormState>();
 
   final Set<String> _options = Set.from([
@@ -100,24 +82,6 @@ class _UODiagnosisPage3State extends State<UODiagnosisPage3> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Trustping")),
-      body: buildOnboardingContent(
-        context: context,
-        title: "Diagnose / Eigenschaften ",
-        body: "",
-        header: TPProgressIndicator(
-          i: 2,
-          n: 3,
-          section: "Diagnose",
-          colors: Style.reds,
-        ),
-        form: _buildForm(context),
-      ),
-    );
-  }
-
-  Widget _buildForm(context) {
     return Form(
       key: key,
       child: Column(
@@ -130,12 +94,10 @@ class _UODiagnosisPage3State extends State<UODiagnosisPage3> {
               final form = this.key.currentState;
               if (form.validate()) {
                 setState(() => form.save());
-                ExtendedNavigator.of(context)
-                    .pushNamed(Routes.uoDiagnosisPage4);
+                widget.onNext();
               }
             },
-            onSkip: () => ExtendedNavigator.of(context)
-                .pushNamed(Routes.uoDiagnosisPage4),
+            onSkip: () => widget.onNext(),
           ),
         ],
       ),
@@ -143,6 +105,7 @@ class _UODiagnosisPage3State extends State<UODiagnosisPage3> {
   }
 
   Widget _buildChips() {
+    // TODO extract logic into class independent function
     // TODO split item on sep. lines
     // TODO talk to anke about logic
     return Wrap(
@@ -168,12 +131,15 @@ class _UODiagnosisPage3State extends State<UODiagnosisPage3> {
 
 // =============================================================================
 // Page 4
-class UODiagnosisPage4 extends StatefulWidget {
+class DiagnosisPhaseForm extends StatefulWidget {
+  final Function onNext;
+  const DiagnosisPhaseForm({Key key, @required this.onNext}) : super(key: key);
+
   @override
-  _UODiagnosisPage4State createState() => _UODiagnosisPage4State();
+  _DiagnosisPhaseFormState createState() => _DiagnosisPhaseFormState();
 }
 
-class _UODiagnosisPage4State extends State<UODiagnosisPage4> {
+class _DiagnosisPhaseFormState extends State<DiagnosisPhaseForm> {
   final key = GlobalKey<FormState>();
 
   final List<String> _options = [
@@ -188,25 +154,6 @@ class _UODiagnosisPage4State extends State<UODiagnosisPage4> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Trustping")),
-      body: buildOnboardingContent(
-        context: context,
-        title: "Krankheitsphase",
-        body: "Was trifft am ehesten auf dich zu?",
-        header: TPProgressIndicator(
-          i: 3,
-          n: 3,
-          section: "Diagnose",
-          colors: Style.reds,
-        ),
-        form: _buildForm(context),
-      ),
-      resizeToAvoidBottomInset: false,
-    );
-  }
-
-  Widget _buildForm(context) {
     return Form(
       key: key,
       child: Column(
@@ -219,11 +166,10 @@ class _UODiagnosisPage4State extends State<UODiagnosisPage4> {
               final form = this.key.currentState;
               if (form.validate()) {
                 setState(() => form.save());
-                ExtendedNavigator.of(context).pushNamed(Routes.uoTherapyPage1);
+                widget.onNext();
               }
             },
-            onSkip: () =>
-                ExtendedNavigator.of(context).pushNamed(Routes.uoTherapyPage1),
+            onSkip: () => widget.onNext(),
           ),
         ],
       ),
@@ -231,6 +177,7 @@ class _UODiagnosisPage4State extends State<UODiagnosisPage4> {
   }
 
   Widget _buildChips() {
+    // TODO extract logic into class independent function
     return Wrap(
       runSpacing: -8,
       spacing: 8,

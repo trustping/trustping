@@ -1,17 +1,18 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:trust_ping_app/app/onboarding/utils.dart';
 import 'package:trust_ping_app/common_widgets/chips.dart';
 import 'package:trust_ping_app/constants/strings.dart';
-import 'package:trust_ping_app/routing/router.gr.dart';
 import 'package:trust_ping_app/theme.dart';
 
-class UOLivingSituationPage1 extends StatefulWidget {
+class LivingSituationForm extends StatefulWidget {
+  final Function onNext;
+  const LivingSituationForm({Key key, @required this.onNext}) : super(key: key);
+
   @override
-  _UOLivingSituationPage1State createState() => _UOLivingSituationPage1State();
+  _LivingSituationFormState createState() => _LivingSituationFormState();
 }
 
-class _UOLivingSituationPage1State extends State<UOLivingSituationPage1> {
+class _LivingSituationFormState extends State<LivingSituationForm> {
   final key = GlobalKey<FormState>();
   Set<String> _selected = Set();
 
@@ -27,26 +28,6 @@ class _UOLivingSituationPage1State extends State<UOLivingSituationPage1> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Trustping")),
-      body: buildOnboardingContent(
-        context: context,
-        title: "Lebenssituation",
-        body:
-            "Erzähl uns noch etwas von Dir. Wenn Du bestimmte Fragen hast, können diese Infos helfen, schnell die richtigen Kontakte zu finden.",
-        header: TPProgressIndicator(
-          i: 1,
-          n: 2,
-          section: "Situation",
-          colors: Style.yellows,
-        ),
-        form: _buildForm(context),
-      ),
-      resizeToAvoidBottomInset: false,
-    );
-  }
-
-  Widget _buildForm(context) {
     return Form(
       key: key,
       child: Column(
@@ -59,12 +40,10 @@ class _UOLivingSituationPage1State extends State<UOLivingSituationPage1> {
               final form = this.key.currentState;
               if (form.validate()) {
                 setState(() => form.save());
-                ExtendedNavigator.of(context)
-                    .pushNamed(Routes.uoLivingSituationPage2);
+                widget.onNext();
               }
             },
-            onSkip: () => ExtendedNavigator.of(context)
-                .pushNamed(Routes.uoLivingSituationPage2),
+            onSkip: () => widget.onNext(),
           ),
         ],
       ),
@@ -90,12 +69,18 @@ class _UOLivingSituationPage1State extends State<UOLivingSituationPage1> {
   }
 }
 
-class UOLivingSituationPage2 extends StatefulWidget {
+class LivingSituationInterestsForm extends StatefulWidget {
+  final Function onNext;
+  const LivingSituationInterestsForm({Key key, @required this.onNext})
+      : super(key: key);
+
   @override
-  _UOLivingSituationPage2State createState() => _UOLivingSituationPage2State();
+  _LivingSituationInterestsFormState createState() =>
+      _LivingSituationInterestsFormState();
 }
 
-class _UOLivingSituationPage2State extends State<UOLivingSituationPage2> {
+class _LivingSituationInterestsFormState
+    extends State<LivingSituationInterestsForm> {
   final key = GlobalKey<FormState>();
   Set<String> _selected = Set();
 
@@ -118,26 +103,6 @@ class _UOLivingSituationPage2State extends State<UOLivingSituationPage2> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Trustping")),
-      body: buildOnboardingContent(
-        context: context,
-        title: "Interessen und Fragen",
-        body:
-            "Was sind wichtige Themen, mit denen Du Dich beschäftigst oder beschäftigen möchtest?",
-        header: TPProgressIndicator(
-          i: 2,
-          n: 2,
-          section: "Situation",
-          colors: Style.yellows,
-        ),
-        form: _buildForm(context),
-      ),
-      resizeToAvoidBottomInset: false,
-    );
-  }
-
-  Widget _buildForm(context) {
     return Form(
       key: key,
       child: Column(
@@ -150,13 +115,11 @@ class _UOLivingSituationPage2State extends State<UOLivingSituationPage2> {
               final form = this.key.currentState;
               if (form.validate()) {
                 setState(() => form.save());
-                ExtendedNavigator.of(context)
-                    .popUntil((route) => route.isFirst);
+                widget.onNext();
               }
             },
             onNextButtonText: Strings.ok,
-            onSkip: () => ExtendedNavigator.of(context)
-                .popUntil((route) => route.isFirst),
+            onSkip: () => widget.onNext(),
           ),
         ],
       ),
