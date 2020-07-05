@@ -20,10 +20,10 @@ class Style {
   static const Color yellow50 = Color.fromRGBO(255, 217, 76, 0.5);
   static const Color yellow30 = Color.fromRGBO(255, 217, 76, 0.3);
   // red-ish
-  static const Color red = Color.fromRGBO(255, 115, 147, 1.0);
-  static const Color red70 = Color.fromRGBO(255, 115, 147, 0.7);
-  static const Color red50 = Color.fromRGBO(255, 115, 147, 0.5);
-  static const Color red30 = Color.fromRGBO(255, 115, 147, 0.3);
+  static const Color red = Color.fromRGBO(255, 95, 100, 1.0);
+  static const Color red70 = Color.fromRGBO(255, 95, 100, 0.7);
+  static const Color red50 = Color.fromRGBO(255, 95, 100, 0.5);
+  static const Color red30 = Color.fromRGBO(255, 95, 100, 0.3);
 
   // very simple color swatches
   static const List<Color> blues = [blue, blue70, blue50, blue30];
