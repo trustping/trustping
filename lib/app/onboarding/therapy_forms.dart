@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:trust_ping_app/app/home/models/user_profile_v2.dart' as UP;
 import 'package:trust_ping_app/app/onboarding/utils.dart';
 import 'package:trust_ping_app/common_widgets/chips.dart';
 import 'package:trust_ping_app/theme.dart';
 
+// =============================================================================
 class TherapyTherapyForm extends StatefulWidget {
   final Function onNext;
   const TherapyTherapyForm({Key key, @required this.onNext}) : super(key: key);
@@ -13,17 +15,9 @@ class TherapyTherapyForm extends StatefulWidget {
 
 class _TherapyTherapyFormState extends State<TherapyTherapyForm> {
   final key = GlobalKey<FormState>();
-  Set<String> _selected = Set();
 
-  final Set<String> _options = Set.from([
-    "Chemotherapie",
-    "Immuntherapie",
-    "Operation",
-    "Hormontherapie",
-    "Strahlentherapie",
-    "Psychotherapie",
-    "Komplementäre Medizin",
-  ]);
+  final List<UP.Item> _options = UP.THERAPY_METHODS;
+  Set<String> _selectedIDs = Set();
 
   @override
   Widget build(BuildContext context) {
@@ -54,14 +48,15 @@ class _TherapyTherapyFormState extends State<TherapyTherapyForm> {
     return Wrap(
       runSpacing: -8,
       spacing: 8,
-      children: _options.map((option) {
+      children: _options.map((UP.Item item) {
         return TPFilterChip(
-          label: option,
-          selected: _selected.contains(option),
+          label: item.text,
+          selected: _selectedIDs.contains(item.id),
           colors: Style.blues,
           onSelected: (bool selected) {
-            setState(() =>
-                selected ? _selected.add(option) : _selected.remove(option));
+            setState(() => selected
+                ? _selectedIDs.add(item.id)
+                : _selectedIDs.remove(item.id));
           },
         );
       }).toList(),
@@ -69,6 +64,7 @@ class _TherapyTherapyFormState extends State<TherapyTherapyForm> {
   }
 }
 
+// =============================================================================
 class TherapySideEffectForm extends StatefulWidget {
   final Function onNext;
   const TherapySideEffectForm({Key key, @required this.onNext})
@@ -80,20 +76,9 @@ class TherapySideEffectForm extends StatefulWidget {
 
 class _TherapySideEffectFormState extends State<TherapySideEffectForm> {
   final key = GlobalKey<FormState>();
-  Set<String> _selected = Set();
 
-  final Set<String> _options = Set.from([
-    "Schlaf",
-    "Übelkeit",
-    "Fatigue",
-    "Depression",
-    "Haut",
-    "Neuropathie",
-    "Gewicht",
-    "Fruchtbarkeit",
-    "Haarausfall",
-    "weiteres",
-  ]);
+  final List<UP.Item> _options = UP.THERAPY_SIDE_EFFECTS;
+  Set<String> _selectedIDs = Set();
 
   @override
   Widget build(BuildContext context) {
@@ -124,14 +109,15 @@ class _TherapySideEffectFormState extends State<TherapySideEffectForm> {
     return Wrap(
       runSpacing: -8,
       spacing: 8,
-      children: _options.map((option) {
+      children: _options.map((UP.Item item) {
         return TPFilterChip(
-          label: option,
-          selected: _selected.contains(option),
+          label: item.text,
+          selected: _selectedIDs.contains(item.id),
           colors: Style.blues,
           onSelected: (bool selected) {
-            setState(() =>
-                selected ? _selected.add(option) : _selected.remove(option));
+            setState(() => selected
+                ? _selectedIDs.add(item.id)
+                : _selectedIDs.remove(item.id));
           },
         );
       }).toList(),

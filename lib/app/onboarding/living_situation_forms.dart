@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:trust_ping_app/app/home/models/user_profile_v2.dart' as UP;
 import 'package:trust_ping_app/app/onboarding/utils.dart';
 import 'package:trust_ping_app/common_widgets/chips.dart';
 import 'package:trust_ping_app/constants/strings.dart';
 import 'package:trust_ping_app/theme.dart';
 
+// =============================================================================
 class LivingSituationForm extends StatefulWidget {
   final Function onNext;
   const LivingSituationForm({Key key, @required this.onNext}) : super(key: key);
@@ -14,17 +16,9 @@ class LivingSituationForm extends StatefulWidget {
 
 class _LivingSituationFormState extends State<LivingSituationForm> {
   final key = GlobalKey<FormState>();
-  Set<String> _selected = Set();
 
-  final Set<String> _options = Set.from([
-    "Single",
-    "in Partnerschaft / verheiratet",
-    "in Ausbildung / Studium",
-    "berufstätig",
-    "pensioniert",
-    "schwanger",
-    "mit Familie",
-  ]);
+  final List<UP.Item> _options = UP.SITUATION_GENERAL;
+  Set<String> _selectedIDs = Set();
 
   @override
   Widget build(BuildContext context) {
@@ -54,14 +48,15 @@ class _LivingSituationFormState extends State<LivingSituationForm> {
     return Wrap(
       runSpacing: -8,
       spacing: 8,
-      children: _options.map((option) {
+      children: _options.map((UP.Item item) {
         return TPFilterChip(
-          label: option,
-          selected: _selected.contains(option),
+          label: item.text,
+          selected: _selectedIDs.contains(item.id),
           colors: Style.yellows,
           onSelected: (bool selected) {
-            setState(() =>
-                selected ? _selected.add(option) : _selected.remove(option));
+            setState(() => selected
+                ? _selectedIDs.add(item.id)
+                : _selectedIDs.remove(item.id));
           },
         );
       }).toList(),
@@ -69,6 +64,7 @@ class _LivingSituationFormState extends State<LivingSituationForm> {
   }
 }
 
+// =============================================================================
 class LivingSituationInterestsForm extends StatefulWidget {
   final Function onNext;
   const LivingSituationInterestsForm({Key key, @required this.onNext})
@@ -82,24 +78,9 @@ class LivingSituationInterestsForm extends StatefulWidget {
 class _LivingSituationInterestsFormState
     extends State<LivingSituationInterestsForm> {
   final key = GlobalKey<FormState>();
-  Set<String> _selected = Set();
 
-  final Set<String> _options = Set.from([
-    "Sport",
-    "Yoga",
-    "Meditation",
-    "Entspannung",
-    "Ernährung",
-    "Job",
-    "Selbsthilfe",
-    "Reha",
-    "Sozialrecht",
-    "Politik",
-    "Kultur",
-    "Kosmetik",
-    "Sexualität",
-    "Nebenwirkungen",
-  ]);
+  final List<UP.Item> _options = UP.SITUATION_INTERESTS;
+  Set<String> _selectedIDs = Set();
 
   @override
   Widget build(BuildContext context) {
@@ -130,14 +111,15 @@ class _LivingSituationInterestsFormState
     return Wrap(
       runSpacing: -8,
       spacing: 8,
-      children: _options.map((option) {
+      children: _options.map((UP.Item item) {
         return TPFilterChip(
-          label: option,
-          selected: _selected.contains(option),
+          label: item.text,
+          selected: _selectedIDs.contains(item.id),
           colors: Style.yellows,
           onSelected: (bool selected) {
-            setState(() =>
-                selected ? _selected.add(option) : _selected.remove(option));
+            setState(() => selected
+                ? _selectedIDs.add(item.id)
+                : _selectedIDs.remove(item.id));
           },
         );
       }).toList(),

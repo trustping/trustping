@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:trust_ping_app/app/home/models/user_profile_v2.dart'
+    as UserProfile;
 import 'package:trust_ping_app/app/onboarding/utils.dart';
 import 'package:trust_ping_app/common_widgets/chips.dart';
 import 'package:trust_ping_app/theme.dart';
 
 // =============================================================================
-// Page 1
 class DiagnosisCancerForm extends StatefulWidget {
   final Function onNext;
   const DiagnosisCancerForm({Key key, @required this.onNext}) : super(key: key);
@@ -16,8 +17,8 @@ class DiagnosisCancerForm extends StatefulWidget {
 class _DiagnosisCancerFormState extends State<DiagnosisCancerForm> {
   final key = GlobalKey<FormState>();
 
-  final List<String> _options = ["Keine Angabe", "Brustkrebs", "Andere"];
-  String _cancerType = "Keine Angabe";
+  final List<UserProfile.Item> _options = UserProfile.CANCER_TYPES;
+  String _selectedID = "";
 
   @override
   Widget build(BuildContext context) {
@@ -26,15 +27,18 @@ class _DiagnosisCancerFormState extends State<DiagnosisCancerForm> {
       child: Column(
         children: <Widget>[
           DropdownButtonFormField<String>(
-            value: _cancerType,
+            // value: _cancerType,
             onChanged: (String value) {
-              setState(() => _cancerType = value);
+              setState(() => _selectedID = value);
             },
             onSaved: (String value) {
-              setState(() => _cancerType = value);
+              setState(() => _selectedID = value);
             },
-            items: _options.map((e) {
-              return DropdownMenuItem<String>(value: e, child: Text(e));
+            items: _options.map((UserProfile.Item item) {
+              return DropdownMenuItem<String>(
+                value: item.id,
+                child: Text(item.text),
+              );
             }).toList(),
             isExpanded: true,
           ),
@@ -57,7 +61,6 @@ class _DiagnosisCancerFormState extends State<DiagnosisCancerForm> {
 }
 
 // =============================================================================
-// Page 3
 class DiagnosisPropertiesForm extends StatefulWidget {
   final Function onNext;
   const DiagnosisPropertiesForm({Key key, @required this.onNext})
@@ -71,14 +74,8 @@ class DiagnosisPropertiesForm extends StatefulWidget {
 class _DiagnosisPropertiesFormState extends State<DiagnosisPropertiesForm> {
   final key = GlobalKey<FormState>();
 
-  final Set<String> _options = Set.from([
-    "Vorstufe / DCIS",
-    "Hormonsensitiv",
-    "HER2+",
-    "Triple negative+",
-    "Fortgeschritten / Metastasen",
-  ]);
-  Set<String> _selected = Set();
+  final List<UserProfile.Item> _options = UserProfile.CANCER_PROPERTIES;
+  Set<String> _selectedIDs = Set();
 
   @override
   Widget build(BuildContext context) {
@@ -105,20 +102,19 @@ class _DiagnosisPropertiesFormState extends State<DiagnosisPropertiesForm> {
   }
 
   Widget _buildChips() {
-    // TODO extract logic into class independent function
-    // TODO split item on sep. lines
-    // TODO talk to anke about logic
     return Wrap(
       runSpacing: -8,
       spacing: 8,
       children: _options.map(
-        (option) {
+        (UserProfile.Item item) {
           return TPFilterChip(
-            label: option,
-            selected: _selected.contains(option),
+            label: item.text,
+            selected: _selectedIDs.contains(item.id),
             onSelected: (bool selected) {
               setState(() {
-                selected ? _selected.add(option) : _selected.remove(option);
+                selected
+                    ? _selectedIDs.add(item.id)
+                    : _selectedIDs.remove(item.id);
               });
             },
             colors: Style.reds,
@@ -130,7 +126,6 @@ class _DiagnosisPropertiesFormState extends State<DiagnosisPropertiesForm> {
 }
 
 // =============================================================================
-// Page 4
 class DiagnosisPhaseForm extends StatefulWidget {
   final Function onNext;
   const DiagnosisPhaseForm({Key key, @required this.onNext}) : super(key: key);
@@ -142,15 +137,8 @@ class DiagnosisPhaseForm extends StatefulWidget {
 class _DiagnosisPhaseFormState extends State<DiagnosisPhaseForm> {
   final key = GlobalKey<FormState>();
 
-  final List<String> _options = [
-    "Diagnose gerade bekommen",
-    "in Behandlung",
-    "Rezidiv",
-    "Akutbehandlung abgeschlossen",
-    "in Dauerbehandlung",
-    "Leben nach Krebs (Survivorship)",
-  ];
-  Set<String> _selected = Set();
+  final List<UserProfile.Item> _options = UserProfile.CANCER_PHASES;
+  Set<String> _selectedIDs = Set();
 
   @override
   Widget build(BuildContext context) {
@@ -182,13 +170,15 @@ class _DiagnosisPhaseFormState extends State<DiagnosisPhaseForm> {
       runSpacing: -8,
       spacing: 8,
       children: _options.map(
-        (option) {
+        (UserProfile.Item item) {
           return TPFilterChip(
-            label: option,
-            selected: _selected.contains(option),
+            label: item.text,
+            selected: _selectedIDs.contains(item.id),
             onSelected: (bool selected) {
               setState(() {
-                selected ? _selected.add(option) : _selected.remove(option);
+                selected
+                    ? _selectedIDs.add(item.id)
+                    : _selectedIDs.remove(item.id);
               });
             },
             colors: Style.reds,

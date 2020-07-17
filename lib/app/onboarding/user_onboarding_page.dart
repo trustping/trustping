@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:trust_ping_app/app/home/models/user_profile_v2.dart';
 import 'package:trust_ping_app/app/onboarding/utils.dart';
 
 // =============================================================================
 class UserNameForm extends StatefulWidget {
   final Function onNext;
-  const UserNameForm({Key key, @required this.onNext}) : super(key: key);
+  final UserProfileV2 profile;
+  const UserNameForm({Key key, @required this.profile, @required this.onNext})
+      : super(key: key);
 
   @override
   _UserNameFormState createState() => _UserNameFormState();
@@ -14,6 +17,14 @@ class UserNameForm extends StatefulWidget {
 class _UserNameFormState extends State<UserNameForm> {
   final key = GlobalKey<FormState>();
   String _name = "";
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.profile.name != null) {
+      _name = widget.profile.name;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +60,7 @@ class _UserNameFormState extends State<UserNameForm> {
   }
 }
 
+// =============================================================================
 class UserAgeForm extends StatefulWidget {
   const UserAgeForm({Key key, @required this.onNext}) : super(key: key);
   final Function onNext;
