@@ -31,7 +31,6 @@ class _OnboardingMainPageState extends State<OnboardingMainPage> {
     super.initState();
     currentPage = 0;
     maxPages = 9;
-    print("INIT");
   }
 
   @override
@@ -72,7 +71,7 @@ class _OnboardingMainPageState extends State<OnboardingMainPage> {
   }
 
   Widget _buildPageView(BuildContext context, int index, profile) {
-    print("_itemBuilder");
+    // print("_itemBuilder");
     switch (index) {
       case 0:
         return buildOnboardingView(
@@ -86,7 +85,7 @@ class _OnboardingMainPageState extends State<OnboardingMainPage> {
 
       case 1:
         return buildOnboardingView(
-          form: UserAgeForm(onNext: nextPage),
+          form: UserAgeForm(profile: profile, onNext: nextPage),
           context: context,
           title: "Alter",
           body: "Was ist dein Geburtsjahr?",
@@ -217,7 +216,7 @@ class _OnboardingMainPageState extends State<OnboardingMainPage> {
 
   void previousPage() {
     currentPage = min(currentPage - 0, 0);
-    print("previousPage $currentPage");
+    // print("previousPage $currentPage");
     pageController.animateToPage(
       currentPage,
       duration: Duration(milliseconds: 350),
@@ -227,7 +226,7 @@ class _OnboardingMainPageState extends State<OnboardingMainPage> {
 
   void nextPage() {
     currentPage = min(currentPage + 1, maxPages);
-    print("nextPage $currentPage");
+    // print("nextPage $currentPage");
     pageController.animateToPage(
       currentPage,
       duration: Duration(milliseconds: 350),

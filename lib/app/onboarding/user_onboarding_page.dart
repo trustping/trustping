@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:trust_ping_app/app/home/models/user_profile_v2.dart';
 import 'package:trust_ping_app/app/onboarding/utils.dart';
+import 'package:trust_ping_app/services/firestore_database.dart';
 
 // =============================================================================
 class UserNameForm extends StatefulWidget {
@@ -45,25 +47,39 @@ class _UserNameFormState extends State<UserNameForm> {
           ),
           buildButtonNav(
             context: context,
-            onNext: () {
-              final form = this.key.currentState;
-              if (form.validate()) {
-                setState(() => form.save());
-                widget.onNext();
-              }
-            },
+            onNext: _submit,
             onSkip: () => widget.onNext(),
           ),
         ],
       ),
     );
   }
+
+  void _submit() {
+    final form = this.key.currentState;
+    if (form.validate()) {
+      setState(() => form.save());
+
+      final db = Provider.of<FirestoreDatabase>(context, listen: false);
+      db.setUserProfileV2(_userProfileFromState());
+
+      widget.onNext();
+    }
+  }
+
+  UserProfileV2 _userProfileFromState() {
+    final newProfile = widget.profile.copyWith(name: _name);
+    return newProfile;
+  }
 }
 
 // =============================================================================
 class UserAgeForm extends StatefulWidget {
-  const UserAgeForm({Key key, @required this.onNext}) : super(key: key);
+  final UserProfileV2 profile;
   final Function onNext;
+  const UserAgeForm({Key key, @required this.profile, @required this.onNext})
+      : assert(profile != null),
+        super(key: key);
 
   @override
   _UserAgeFormState createState() => _UserAgeFormState();
@@ -71,7 +87,13 @@ class UserAgeForm extends StatefulWidget {
 
 class _UserAgeFormState extends State<UserAgeForm> {
   final key = GlobalKey<FormState>();
-  String _yearOfBirth = "";
+  int _yearOfBirth;
+
+  @override
+  void initState() {
+    super.initState();
+    _yearOfBirth = widget.profile.yearOfBirth;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,26 +103,36 @@ class _UserAgeFormState extends State<UserAgeForm> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           TextFormField(
-            initialValue: _yearOfBirth,
+            initialValue: _yearOfBirth.toString(),
             decoration: InputDecoration(hintText: "Geburtsjahr"),
             validator: (value) => null,
-            onSaved: (value) => _yearOfBirth = value,
+            onSaved: (value) => _yearOfBirth = int.tryParse(value),
             keyboardType: TextInputType.number,
             inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
           ),
           buildButtonNav(
             context: context,
-            onNext: () {
-              final form = this.key.currentState;
-              if (form.validate()) {
-                setState(() => form.save());
-                widget.onNext();
-              }
-            },
+            onNext: _submit,
             onSkip: () => widget.onNext(),
           ),
         ],
       ),
     );
+  }
+
+  void _submit() {
+    final form = this.key.currentState;
+    if (form.validate()) {
+      setState(() => form.save());
+
+      final db = Provider.of<FirestoreDatabase>(context, listen: false);
+      db.setUserProfileV2(_userProfileFromState());
+
+      widget.onNext();
+    }
+  }
+
+  UserProfileV2 _userProfileFromState() {
+    return widget.profile.copyWith(yearOfBirth: _yearOfBirth);
   }
 }

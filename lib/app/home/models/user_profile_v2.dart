@@ -22,8 +22,17 @@ abstract class UserProfileV2 implements _$UserProfileV2 {
   }) = _UserProfileV2;
 
   Map<String, dynamic> toMap() {
-    print("TODO implement toMap");
-    return {};
+    return {
+      "name": name,
+      "yearOfBirth": yearOfBirth,
+      "diagnosisCancerType": diagnosisCancerType,
+      "diagnosisCancerProperties": diagnosisCancerProperties,
+      "diagnosisPhase": diagnosisPhase,
+      "therapyMethods": therapyMethods,
+      "therapySideEffects": therapySideEffects,
+      "situationGeneral": situationGeneral,
+      "situationInterests": situationInterests,
+    };
   }
 
   factory UserProfileV2.fromMap(Map<String, dynamic> data, String documentID) {
@@ -43,8 +52,19 @@ abstract class UserProfileV2 implements _$UserProfileV2 {
         situationInterests: [],
       );
     }
-    print("TODO implement fromMap for not null data");
-    return null;
+
+    return UserProfileV2(
+      id: documentID,
+      name: data["name"] ?? "",
+      yearOfBirth: data["yearOfBirth"],
+      diagnosisCancerType: [],
+      diagnosisCancerProperties: [],
+      diagnosisPhase: [],
+      therapyMethods: [],
+      therapySideEffects: [],
+      situationGeneral: [],
+      situationInterests: [],
+    );
   }
 }
 
