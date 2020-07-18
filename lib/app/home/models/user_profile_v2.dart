@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:trust_ping_app/utils.dart';
 part 'user_profile_v2.freezed.dart';
 
 @freezed
@@ -25,14 +26,18 @@ abstract class UserProfileV2 implements _$UserProfileV2 {
     return {
       "name": name,
       "yearOfBirth": yearOfBirth,
-      "diagnosisCancerType": diagnosisCancerType,
-      "diagnosisCancerProperties": diagnosisCancerProperties,
-      "diagnosisPhase": diagnosisPhase,
-      "therapyMethods": therapyMethods,
-      "therapySideEffects": therapySideEffects,
-      "situationGeneral": situationGeneral,
-      "situationInterests": situationInterests,
+      "diagnosisCancerType": _ids(diagnosisCancerType),
+      "diagnosisCancerProperties": _ids(diagnosisCancerProperties),
+      "diagnosisPhase": _ids(diagnosisPhase),
+      "therapyMethods": _ids(therapyMethods),
+      "therapySideEffects": _ids(therapySideEffects),
+      "situationGeneral": _ids(situationGeneral),
+      "situationInterests": _ids(situationInterests),
     };
+  }
+
+  List<String> _ids(List<Item> items) {
+    return (items == null) ? [] : items.map((e) => e.id).toList();
   }
 
   factory UserProfileV2.fromMap(Map<String, dynamic> data, String documentID) {
@@ -55,16 +60,23 @@ abstract class UserProfileV2 implements _$UserProfileV2 {
 
     return UserProfileV2(
       id: documentID,
-      name: data["name"] ?? "",
-      yearOfBirth: data["yearOfBirth"],
-      diagnosisCancerType: [],
-      diagnosisCancerProperties: [],
-      diagnosisPhase: [],
-      therapyMethods: [],
-      therapySideEffects: [],
-      situationGeneral: [],
-      situationInterests: [],
+      name: data.get("name", ""),
+      yearOfBirth: data.get("yearOfBirth", null),
+      diagnosisCancerType: _items(CANCER_TYPES, data["diagnosisCancerType"]),
+      diagnosisCancerProperties:
+          _items(CANCER_PROPERTIES, data["diagnosisCancerProperties"]),
+      diagnosisPhase: _items(CANCER_PHASES, data["diagnosisPhase"]),
+      therapyMethods: _items(THERAPY_METHODS, data["therapyMethods"]),
+      therapySideEffects:
+          _items(THERAPY_SIDE_EFFECTS, data["therapySideEffects"]),
+      situationGeneral: _items(SITUATION_GENERAL, data["situationGeneral"]),
+      situationInterests:
+          _items(SITUATION_INTERESTS, data["situationInterests"]),
     );
+  }
+  static List<Item> _items(List<Item> items, dynamic ids) {
+    final _ids = Set<String>.from(ids);
+    return items.where((item) => _ids.contains(item.id)).toList();
   }
 }
 
@@ -85,80 +97,80 @@ class Item {
 // DIAGNOSE / CANCER
 // The order of this list detemines the order in the view.
 const List<Item> CANCER_TYPES = [
-  Item("0", "Brustkrebs"),
-  Item("1", "Andere"),
-  Item("99", "Keine Angabe"),
+  const Item("0", "Brustkrebs"),
+  const Item("1", "Andere"),
+  const Item("99", "Keine Angabe"),
 ];
 
 const List<Item> CANCER_PROPERTIES = [
-  Item("0", "Vorstufe / DCIS"),
-  Item("1", "Hormonsensitiv"),
-  Item("2", "HER2+"),
-  Item("3", "Triple negative+"),
-  Item("4", "Fortgeschritten / Metastasen"),
+  const Item("0", "Vorstufe / DCIS"),
+  const Item("1", "Hormonsensitiv"),
+  const Item("2", "HER2+"),
+  const Item("3", "Triple negative+"),
+  const Item("4", "Fortgeschritten / Metastasen"),
 ];
 
 const List<Item> CANCER_PHASES = [
-  Item("0", "Diagnose gerade bekommen"),
-  Item("1", "in Behandlung"),
-  Item("2", "Rezidiv"),
-  Item("3", "Akutbehandlung abgeschlossen"),
-  Item("4", "in Dauerbehandlung"),
-  Item("5", "Leben nach Krebs (Survivorship)"),
+  const Item("0", "Diagnose gerade bekommen"),
+  const Item("1", "in Behandlung"),
+  const Item("2", "Rezidiv"),
+  const Item("3", "Akutbehandlung abgeschlossen"),
+  const Item("4", "in Dauerbehandlung"),
+  const Item("5", "Leben nach Krebs (Survivorship)"),
 ];
 
 // =============================================================================
 // THERAPY
 // The order of this list detemines the order in the view.
 const List<Item> THERAPY_METHODS = [
-  Item("0", "Chemotherapie"),
-  Item("1", "Immuntherapie"),
-  Item("2", "Operation"),
-  Item("3", "Hormontherapie"),
-  Item("4", "Strahlentherapie"),
-  Item("5", "Psychotherapie"),
-  Item("6", "Komplementäre Medizin"),
+  const Item("0", "Chemotherapie"),
+  const Item("1", "Immuntherapie"),
+  const Item("2", "Operation"),
+  const Item("3", "Hormontherapie"),
+  const Item("4", "Strahlentherapie"),
+  const Item("5", "Psychotherapie"),
+  const Item("6", "Komplementäre Medizin"),
 ];
 
 const List<Item> THERAPY_SIDE_EFFECTS = [
-  Item("0", "Schlaf"),
-  Item("1", "Übelkeit"),
-  Item("2", "Fatigue"),
-  Item("3", "Depression"),
-  Item("4", "Haut"),
-  Item("5", "Neuropathie"),
-  Item("6", "Gewicht"),
-  Item("7", "Fruchtbarkeit"),
-  Item("8", "Haarausfall"),
-  Item("9", "weitere"),
+  const Item("0", "Schlaf"),
+  const Item("1", "Übelkeit"),
+  const Item("2", "Fatigue"),
+  const Item("3", "Depression"),
+  const Item("4", "Haut"),
+  const Item("5", "Neuropathie"),
+  const Item("6", "Gewicht"),
+  const Item("7", "Fruchtbarkeit"),
+  const Item("8", "Haarausfall"),
+  const Item("9", "weitere"),
 ];
 
 // =============================================================================
 // Situation
 // The order of this list detemines the order in the view.
 const List<Item> SITUATION_GENERAL = [
-  Item("0", "Single"),
-  Item("1", "in Partnerschaft / verheiratet"),
-  Item("2", "in Ausbildung / Studium"),
-  Item("3", "berufstätig"),
-  Item("4", "pensioniert"),
-  Item("5", "schwanger"),
-  Item("6", "mit Familie"),
+  const Item("0", "Single"),
+  const Item("1", "in Partnerschaft / verheiratet"),
+  const Item("2", "in Ausbildung / Studium"),
+  const Item("3", "berufstätig"),
+  const Item("4", "pensioniert"),
+  const Item("5", "schwanger"),
+  const Item("6", "mit Familie"),
 ];
 
 const List<Item> SITUATION_INTERESTS = [
-  Item("0", "Sport"),
-  Item("1", "Yoga"),
-  Item("2", "Meditation"),
-  Item("3", "Entspannung"),
-  Item("4", "Ernährung"),
-  Item("5", "Job"),
-  Item("6", "Selbsthilfe"),
-  Item("7", "Reha"),
-  Item("8", "Sozialrecht"),
-  Item("9", "Politik"),
-  Item("10", "Kultur"),
-  Item("11", "Kosmetik"),
-  Item("12", "Sexualität"),
-  Item("13", "Nebenwirkungen"),
+  const Item("0", "Sport"),
+  const Item("1", "Yoga"),
+  const Item("2", "Meditation"),
+  const Item("3", "Entspannung"),
+  const Item("4", "Ernährung"),
+  const Item("5", "Job"),
+  const Item("6", "Selbsthilfe"),
+  const Item("7", "Reha"),
+  const Item("8", "Sozialrecht"),
+  const Item("9", "Politik"),
+  const Item("10", "Kultur"),
+  const Item("11", "Kosmetik"),
+  const Item("12", "Sexualität"),
+  const Item("13", "Nebenwirkungen"),
 ];

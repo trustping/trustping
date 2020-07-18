@@ -95,7 +95,7 @@ class _OnboardingMainPageState extends State<OnboardingMainPage> {
 
       case 2:
         return buildOnboardingView(
-          form: DiagnosisCancerForm(onNext: nextPage),
+          form: DiagnosisCancerForm(profile: profile, onNext: nextPage),
           context: context,
           title: "Diagnose",
           body: "Welchen Tumor hast/hattest Du?",
@@ -110,7 +110,7 @@ class _OnboardingMainPageState extends State<OnboardingMainPage> {
 
       case 3:
         return buildOnboardingView(
-          form: DiagnosisPropertiesForm(onNext: nextPage),
+          form: DiagnosisPropertiesForm(profile: profile, onNext: nextPage),
           context: context,
           title: "Diagnose / Eigenschaften ",
           body: "",
@@ -125,7 +125,7 @@ class _OnboardingMainPageState extends State<OnboardingMainPage> {
 
       case 4:
         return buildOnboardingView(
-          form: DiagnosisPhaseForm(onNext: nextPage),
+          form: DiagnosisPhaseForm(profile: profile, onNext: nextPage),
           context: context,
           title: "Krankheitsphase",
           body: "Was trifft am ehesten auf dich zu?",
