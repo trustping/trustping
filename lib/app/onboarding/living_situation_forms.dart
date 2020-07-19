@@ -31,9 +31,7 @@ class _LivingSituationFormState extends State<LivingSituationForm> {
   @override
   void initState() {
     super.initState();
-    _selectedIDs = listify<UP.Item>(widget.profile.situationGeneral)
-        .map((e) => e.id)
-        .toSet();
+    _selectedIDs = widget.profile.situationGeneralIDs.toSet();
   }
 
   @override
@@ -88,9 +86,8 @@ class _LivingSituationFormState extends State<LivingSituationForm> {
   UP.UserProfileV2 _userProfileFromState() {
     final ids = Set.from(listify(_selectedIDs));
     return widget.profile.copyWith(
-      situationGeneral: UP.SITUATION_GENERAL
-          .where((element) => ids.contains(element.id))
-          .toList(),
+      situationGeneral:
+          _options.where((item) => ids.contains(item.id)).toList(),
     );
   }
 }
@@ -178,9 +175,8 @@ class _LivingSituationInterestsFormState
   UP.UserProfileV2 _userProfileFromState() {
     final ids = Set.from(listify(_selectedIDs));
     return widget.profile.copyWith(
-      situationInterests: UP.SITUATION_INTERESTS
-          .where((element) => ids.contains(element.id))
-          .toList(),
+      situationInterests:
+          _options.where((item) => ids.contains(item.id)).toList(),
     );
   }
 }

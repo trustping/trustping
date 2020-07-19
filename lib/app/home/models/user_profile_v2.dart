@@ -36,10 +36,6 @@ abstract class UserProfileV2 implements _$UserProfileV2 {
     };
   }
 
-  List<String> _ids(List<Item> items) {
-    return (items == null) ? [] : items.map((e) => e.id).toList();
-  }
-
   factory UserProfileV2.fromMap(Map<String, dynamic> data, String documentID) {
     assert(documentID != null);
 
@@ -74,6 +70,21 @@ abstract class UserProfileV2 implements _$UserProfileV2 {
           _items(SITUATION_INTERESTS, data["situationInterests"]),
     );
   }
+
+  List<String> get diagnosisCancerTypeIDs => _ids(diagnosisCancerType);
+  List<String> get diagnosisCancerPropertiesIDs =>
+      _ids(diagnosisCancerProperties);
+  List<String> get diagnosisPhaseIDs => _ids(diagnosisPhase);
+  List<String> get therapyMethodsIDs => _ids(therapyMethods);
+  List<String> get therapySideEffectsIDs => _ids(therapySideEffects);
+  List<String> get situationGeneralIDs => _ids(situationGeneral);
+  List<String> get situationInterestsIDs => _ids(situationInterests);
+
+  // Low-level helpers
+  List<String> _ids(List<Item> items) {
+    return (items == null) ? [] : items.map((e) => e.id).toList();
+  }
+
   static List<Item> _items(List<Item> items, dynamic ids) {
     final _ids = Set<String>.from(ids);
     return items.where((item) => _ids.contains(item.id)).toList();
@@ -85,7 +96,6 @@ abstract class UserProfileV2 implements _$UserProfileV2 {
 /// Generic Item used for the onbording information of the user.
 /// The ID is what's stored in the DB and must not change.
 /// The text can change.
-///
 @freezed
 abstract class Item implements _$Item {
   const factory Item(

@@ -87,9 +87,8 @@ class _DiagnosisCancerFormState extends State<DiagnosisCancerForm> {
       return widget.profile;
     }
     return widget.profile.copyWith(
-      diagnosisCancerType: UP.CANCER_TYPES
-          .where((element) => element.id == _selectedID)
-          .toList(),
+      diagnosisCancerType:
+          _options.where((item) => item.id == _selectedID).toList(),
     );
   }
 }
@@ -119,9 +118,7 @@ class _DiagnosisPropertiesFormState extends State<DiagnosisPropertiesForm> {
   @override
   void initState() {
     super.initState();
-    _selectedIDs = listify<Item>(widget.profile.diagnosisCancerProperties)
-        .map((e) => e.id)
-        .toSet();
+    _selectedIDs = widget.profile.diagnosisCancerPropertiesIDs.toSet();
   }
 
   @override
@@ -180,9 +177,8 @@ class _DiagnosisPropertiesFormState extends State<DiagnosisPropertiesForm> {
   UP.UserProfileV2 _userProfileFromState() {
     var ids = Set.from(listify(_selectedIDs));
     return widget.profile.copyWith(
-      diagnosisCancerProperties: UP.CANCER_PROPERTIES
-          .where((element) => ids.contains(element.id))
-          .toList(),
+      diagnosisCancerProperties:
+          _options.where((item) => ids.contains(item.id)).toList(),
     );
   }
 }
@@ -211,8 +207,7 @@ class _DiagnosisPhaseFormState extends State<DiagnosisPhaseForm> {
   @override
   void initState() {
     super.initState();
-    _selectedIDs =
-        listify<Item>(widget.profile.diagnosisPhase).map((e) => e.id).toSet();
+    _selectedIDs = widget.profile.diagnosisPhaseIDs.toSet();
   }
 
   @override
@@ -272,9 +267,7 @@ class _DiagnosisPhaseFormState extends State<DiagnosisPhaseForm> {
   UserProfileV2 _userProfileFromState() {
     var ids = Set.from(listify(_selectedIDs));
     return widget.profile.copyWith(
-      diagnosisPhase: UP.CANCER_PHASES
-          .where((element) => ids.contains(element.id))
-          .toList(),
+      diagnosisPhase: _options.where((item) => ids.contains(item.id)).toList(),
     );
   }
 }

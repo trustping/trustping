@@ -30,9 +30,7 @@ class _TherapyMethodFormState extends State<TherapyMethodForm> {
   @override
   void initState() {
     super.initState();
-    _selectedIDs = listify<UP.Item>(widget.profile.therapyMethods)
-        .map((e) => e.id)
-        .toSet();
+    _selectedIDs = widget.profile.therapyMethodsIDs.toSet();
   }
 
   @override
@@ -88,9 +86,7 @@ class _TherapyMethodFormState extends State<TherapyMethodForm> {
   UP.UserProfileV2 _userProfileFromState() {
     var ids = Set.from(listify(_selectedIDs));
     return widget.profile.copyWith(
-      therapyMethods: UP.THERAPY_METHODS
-          .where((element) => ids.contains(element.id))
-          .toList(),
+      therapyMethods: _options.where((item) => ids.contains(item.id)).toList(),
     );
   }
 }
@@ -118,9 +114,7 @@ class _TherapySideEffectFormState extends State<TherapySideEffectForm> {
   @override
   void initState() {
     super.initState();
-    _selectedIDs = listify<UP.Item>(widget.profile.therapySideEffects)
-        .map((e) => e.id)
-        .toSet();
+    _selectedIDs = widget.profile.therapySideEffectsIDs.toSet();
   }
 
   @override
@@ -176,9 +170,8 @@ class _TherapySideEffectFormState extends State<TherapySideEffectForm> {
   UP.UserProfileV2 _userProfileFromState() {
     var ids = Set.from(listify(_selectedIDs));
     return widget.profile.copyWith(
-      therapySideEffects: UP.THERAPY_SIDE_EFFECTS
-          .where((element) => ids.contains(element.id))
-          .toList(),
+      therapySideEffects:
+          _options.where((item) => ids.contains(item.id)).toList(),
     );
   }
 }
