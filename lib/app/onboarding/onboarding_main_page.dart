@@ -35,8 +35,6 @@ class _OnboardingMainPageState extends State<OnboardingMainPage> {
 
   @override
   Widget build(BuildContext context) {
-    print("build $currentPage");
-
     return Scaffold(
       appBar: AppBar(title: Text(Strings.tp)),
       body: Column(
@@ -71,7 +69,6 @@ class _OnboardingMainPageState extends State<OnboardingMainPage> {
   }
 
   Widget _buildPageView(BuildContext context, int index, profile) {
-    // print("_itemBuilder");
     switch (index) {
       case 0:
         return buildOnboardingView(
@@ -217,7 +214,6 @@ class _OnboardingMainPageState extends State<OnboardingMainPage> {
 
   void previousPage() {
     currentPage = min(currentPage - 0, 0);
-    // print("previousPage $currentPage");
     pageController.animateToPage(
       currentPage,
       duration: Duration(milliseconds: 350),
@@ -227,7 +223,6 @@ class _OnboardingMainPageState extends State<OnboardingMainPage> {
 
   void nextPage() {
     currentPage = min(currentPage + 1, maxPages);
-    // print("nextPage $currentPage");
     pageController.animateToPage(
       currentPage,
       duration: Duration(milliseconds: 350),
