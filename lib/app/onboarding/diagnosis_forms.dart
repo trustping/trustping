@@ -276,6 +276,5 @@ class _DiagnosisPhaseFormState extends State<DiagnosisPhaseForm> {
           .where((element) => ids.contains(element.id))
           .toList(),
     );
-    //
   }
 }

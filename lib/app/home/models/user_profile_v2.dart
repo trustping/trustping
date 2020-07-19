@@ -85,12 +85,14 @@ abstract class UserProfileV2 implements _$UserProfileV2 {
 /// Generic Item used for the onbording information of the user.
 /// The ID is what's stored in the DB and must not change.
 /// The text can change.
-class Item {
-  const Item(this.id, this.text)
-      : assert(id != null),
-        assert(text != null);
-  final String id;
-  final String text;
+///
+@freezed
+abstract class Item implements _$Item {
+  const factory Item(
+    String id,
+    String text,
+  ) = _Item;
+  const Item._();
 }
 
 // =============================================================================

@@ -140,7 +140,7 @@ class _OnboardingMainPageState extends State<OnboardingMainPage> {
 
       case 5:
         return buildOnboardingView(
-          form: TherapyTherapyForm(onNext: nextPage),
+          form: TherapyMethodForm(profile: profile, onNext: nextPage),
           context: context,
           title:
               "Welche Therapien hast du gemacht, machst Du, oder sind geplant?",
@@ -156,7 +156,7 @@ class _OnboardingMainPageState extends State<OnboardingMainPage> {
 
       case 6:
         return buildOnboardingView(
-          form: TherapySideEffectForm(onNext: nextPage),
+          form: TherapySideEffectForm(profile: profile, onNext: nextPage),
           context: context,
           title: "Nebenwirkungen",
           body:
@@ -172,7 +172,7 @@ class _OnboardingMainPageState extends State<OnboardingMainPage> {
 
       case 7:
         return buildOnboardingView(
-          form: LivingSituationForm(onNext: nextPage),
+          form: LivingSituationForm(profile: profile, onNext: nextPage),
           context: context,
           title: "Lebenssituation",
           body:
@@ -189,6 +189,7 @@ class _OnboardingMainPageState extends State<OnboardingMainPage> {
       case 8:
         return buildOnboardingView(
           form: LivingSituationInterestsForm(
+            profile: profile,
             onNext: () {
               ExtendedNavigator.of(context).popUntil((route) => route.isFirst);
             },

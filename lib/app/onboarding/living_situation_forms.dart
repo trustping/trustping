@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:trust_ping_app/app/home/models/user_profile_v2.dart' as UP;
 import 'package:trust_ping_app/app/onboarding/utils.dart';
 import 'package:trust_ping_app/common_widgets/chips.dart';
 import 'package:trust_ping_app/constants/strings.dart';
+import 'package:trust_ping_app/services/firestore_database.dart';
 import 'package:trust_ping_app/theme.dart';
+import 'package:trust_ping_app/utils.dart';
 
 // =============================================================================
 class LivingSituationForm extends StatefulWidget {
+  final UP.UserProfileV2 profile;
   final Function onNext;
-  const LivingSituationForm({Key key, @required this.onNext}) : super(key: key);
+
+  const LivingSituationForm(
+      {Key key, @required this.profile, @required this.onNext})
+      : assert(profile != null),
+        super(key: key);
 
   @override
   _LivingSituationFormState createState() => _LivingSituationFormState();
@@ -18,7 +26,15 @@ class _LivingSituationFormState extends State<LivingSituationForm> {
   final key = GlobalKey<FormState>();
 
   final List<UP.Item> _options = UP.SITUATION_GENERAL;
-  Set<String> _selectedIDs = Set();
+  Set<String> _selectedIDs;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedIDs = listify<UP.Item>(widget.profile.situationGeneral)
+        .map((e) => e.id)
+        .toSet();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +46,7 @@ class _LivingSituationFormState extends State<LivingSituationForm> {
           _buildChips(),
           buildButtonNav(
             context: context,
-            onNext: () {
-              final form = this.key.currentState;
-              if (form.validate()) {
-                setState(() => form.save());
-                widget.onNext();
-              }
-            },
+            onNext: _submit,
             onSkip: () => widget.onNext(),
           ),
         ],
@@ -62,13 +72,38 @@ class _LivingSituationFormState extends State<LivingSituationForm> {
       }).toList(),
     );
   }
+
+  void _submit() {
+    final form = this.key.currentState;
+    if (form.validate()) {
+      setState(() => form.save());
+
+      final db = Provider.of<FirestoreDatabase>(context, listen: false);
+      db.setUserProfileV2(_userProfileFromState());
+
+      widget.onNext();
+    }
+  }
+
+  UP.UserProfileV2 _userProfileFromState() {
+    final ids = Set.from(listify(_selectedIDs));
+    return widget.profile.copyWith(
+      situationGeneral: UP.SITUATION_GENERAL
+          .where((element) => ids.contains(element.id))
+          .toList(),
+    );
+  }
 }
 
 // =============================================================================
 class LivingSituationInterestsForm extends StatefulWidget {
+  final UP.UserProfileV2 profile;
   final Function onNext;
-  const LivingSituationInterestsForm({Key key, @required this.onNext})
-      : super(key: key);
+
+  const LivingSituationInterestsForm(
+      {Key key, @required this.profile, @required this.onNext})
+      : assert(profile != null),
+        super(key: key);
 
   @override
   _LivingSituationInterestsFormState createState() =>
@@ -80,7 +115,15 @@ class _LivingSituationInterestsFormState
   final key = GlobalKey<FormState>();
 
   final List<UP.Item> _options = UP.SITUATION_INTERESTS;
-  Set<String> _selectedIDs = Set();
+  Set<String> _selectedIDs;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedIDs = listify<UP.Item>(widget.profile.situationGeneral)
+        .map((e) => e.id)
+        .toSet();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,13 +135,7 @@ class _LivingSituationInterestsFormState
           _buildChips(),
           buildButtonNav(
             context: context,
-            onNext: () {
-              final form = this.key.currentState;
-              if (form.validate()) {
-                setState(() => form.save());
-                widget.onNext();
-              }
-            },
+            onNext: _submit,
             onNextButtonText: Strings.ok,
             onSkip: () => widget.onNext(),
           ),
@@ -123,6 +160,27 @@ class _LivingSituationInterestsFormState
           },
         );
       }).toList(),
+    );
+  }
+
+  void _submit() {
+    final form = this.key.currentState;
+    if (form.validate()) {
+      setState(() => form.save());
+
+      final db = Provider.of<FirestoreDatabase>(context, listen: false);
+      db.setUserProfileV2(_userProfileFromState());
+
+      widget.onNext();
+    }
+  }
+
+  UP.UserProfileV2 _userProfileFromState() {
+    final ids = Set.from(listify(_selectedIDs));
+    return widget.profile.copyWith(
+      situationInterests: UP.SITUATION_INTERESTS
+          .where((element) => ids.contains(element.id))
+          .toList(),
     );
   }
 }
