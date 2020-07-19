@@ -4,6 +4,7 @@ import 'package:meta/meta.dart';
 import 'package:trust_ping_app/app/home/models/chat.dart';
 import 'package:trust_ping_app/app/home/models/message.dart';
 import 'package:trust_ping_app/app/home/models/user_profile.dart';
+import 'package:trust_ping_app/app/home/models/user_profile_v2.dart';
 
 String documentIdFromCurrentDate() => DateTime.now().toIso8601String();
 
@@ -18,6 +19,9 @@ class _Path {
 
   static String userProfile(String userID) => 'user_profile/$userID';
   static String userProfiles() => 'user_profile/';
+
+  static String userProfileV2(String userID) => 'user_profile_v2/$userID';
+  static String userProfilesV2() => 'user_profile_v2/';
 }
 
 /// The main interface to entities that live in the firebase database.
@@ -43,6 +47,25 @@ class FirestoreDatabase {
     return _service.collectionStream(
       path: _Path.userProfiles(),
       builder: (data, documentID) => UserProfile.fromMap(data, documentID),
+    );
+  }
+
+  // USER PROFILE V2
+  Future<void> setUserProfileV2(UserProfileV2 userProfile) async =>
+      await _service.setData(
+        path: _Path.userProfileV2(userProfile.id),
+        data: userProfile.toMap(),
+      );
+
+  Stream<UserProfileV2> userProfileV2Stream() => _service.documentStream(
+        path: _Path.userProfileV2(userID),
+        builder: (data, documentId) => UserProfileV2.fromMap(data, documentId),
+      );
+
+  Stream<List<UserProfileV2>> userProfilesV2Stream() {
+    return _service.collectionStream(
+      path: _Path.userProfilesV2(),
+      builder: (data, documentID) => UserProfileV2.fromMap(data, documentID),
     );
   }
 
