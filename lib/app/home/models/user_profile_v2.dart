@@ -42,7 +42,7 @@ abstract class UserProfileV2 implements _$UserProfileV2 {
     if (data == null) {
       return UserProfileV2(
         id: documentID,
-        name: "Dummy :)",
+        name: "",
         yearOfBirth: null,
         diagnosisCancerType: [],
         diagnosisCancerProperties: [],

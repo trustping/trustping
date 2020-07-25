@@ -121,7 +121,7 @@ class ProfileTab extends StatelessWidget {
     );
   }
 
-  ListTile _bulidNameYearHeader(BuildContext context, UserProfileV2 profile) {
+  Widget _bulidNameYearHeader(BuildContext context, UserProfileV2 profile) {
     final editButton = IconButton(
       icon: editIcon,
       onPressed: () {
@@ -130,6 +130,44 @@ class ProfileTab extends StatelessWidget {
           duration: Duration(seconds: 3),
         ).show(context);
       },
+    );
+    return Row(
+      children: <Widget>[
+        Expanded(
+          flex: 3,
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: TPCircleAvatarWithBorder(
+              radius: 28,
+              child: Text(profile.name[0]),
+              borderColor: Style.red,
+              backgroundColor: Colors.white,
+            ),
+          ),
+        ),
+        Expanded(
+          flex: 8,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Style.title(profile.name),
+                  editButton,
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Style.subtitle(profile.yearOfBirth.toString()),
+                  editButton,
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
     );
     return ListTile(
       leading: TPCircleAvatarWithBorder(
@@ -192,7 +230,13 @@ class ProfileTab extends StatelessWidget {
     );
   }
 
-  Wrap _buildWrap(List<Item> items, List<Color> colors) {
+  Widget _buildWrap(List<Item> items, List<Color> colors) {
+    if (items.length == 0) {
+      return Text(
+        "Nichts aus­ge­wählt.",
+        style: Style.bodyTS.copyWith(color: Style.textLightColor),
+      );
+    }
     return Wrap(
       runSpacing: -8,
       spacing: 8,
