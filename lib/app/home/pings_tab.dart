@@ -104,7 +104,7 @@ class PingsTab extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
             child: TPStyledListTile(
               // leading: Image.asset("assets/images/logo_2of3.png"),
-              leading: trustpingLogo3of3,
+              leading: trustpingImage,
               titleString: pingTitle(ping),
               trailingString: ping.requestTS,
               subtitleString: ping.request.substring(0, 40) + "...",
