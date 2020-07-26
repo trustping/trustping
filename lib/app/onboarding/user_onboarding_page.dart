@@ -103,7 +103,7 @@ class _UserAgeFormState extends State<UserAgeForm> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           TextFormField(
-            initialValue: _yearOfBirth.toString(),
+            initialValue: (_yearOfBirth != null) ? _yearOfBirth.toString() : "",
             decoration: InputDecoration(hintText: "Geburtsjahr"),
             validator: (value) => null,
             onSaved: (value) => _yearOfBirth = int.tryParse(value),

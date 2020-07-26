@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -7,6 +6,7 @@ import 'package:trust_ping_app/app/home/models/user_profile_v2.dart';
 import 'package:trust_ping_app/app/onboarding/diagnosis_forms.dart';
 import 'package:trust_ping_app/app/onboarding/living_situation_forms.dart';
 import 'package:trust_ping_app/app/onboarding/therapy_forms.dart';
+import 'package:trust_ping_app/app/onboarding/user_onboarding_page.dart';
 import 'package:trust_ping_app/app/spaces.dart';
 import 'package:trust_ping_app/common_widgets/avatar.dart';
 import 'package:trust_ping_app/common_widgets/chips.dart';
@@ -51,64 +51,68 @@ class ProfileTab extends StatelessWidget {
                 vspace16,
                 Divider(),
                 vspace16,
-                _bulidNameYearHeader(context, profile),
+                _bulidNameYearHeader(context, profile, _onNext),
                 _buildSection(
-                  context,
-                  "Tumorart",
-                  profile.diagnosisCancerType,
-                  Style.reds,
-                  profile,
-                  () => DiagnosisCancerForm(profile: profile, onNext: _onNext),
+                  context: context,
+                  name: "Tumorart",
+                  items: profile.diagnosisCancerType,
+                  colors: Style.reds,
+                  profile: profile,
+                  formBuilder: () =>
+                      DiagnosisCancerForm(profile: profile, onNext: _onNext),
                 ),
                 _buildSection(
-                  context,
-                  "Diagnose/Eigenschaften",
-                  profile.diagnosisCancerProperties,
-                  Style.reds,
-                  profile,
-                  () => DiagnosisPropertiesForm(
+                  context: context,
+                  name: "Diagnose/Eigenschaften",
+                  items: profile.diagnosisCancerProperties,
+                  colors: Style.reds,
+                  profile: profile,
+                  formBuilder: () => DiagnosisPropertiesForm(
                       profile: profile, onNext: _onNext),
                 ),
                 _buildSection(
-                  context,
-                  "Krankheitsphase",
-                  profile.diagnosisPhase,
-                  Style.reds,
-                  profile,
-                  () => DiagnosisPhaseForm(profile: profile, onNext: _onNext),
+                  context: context,
+                  name: "Krankheitsphase",
+                  items: profile.diagnosisPhase,
+                  colors: Style.reds,
+                  profile: profile,
+                  formBuilder: () =>
+                      DiagnosisPhaseForm(profile: profile, onNext: _onNext),
                 ),
                 _buildSection(
-                  context,
-                  "Therapie",
-                  profile.therapyMethods,
-                  Style.blues,
-                  profile,
-                  () => TherapyMethodForm(profile: profile, onNext: _onNext),
+                  context: context,
+                  name: "Therapie",
+                  items: profile.therapyMethods,
+                  colors: Style.blues,
+                  profile: profile,
+                  formBuilder: () =>
+                      TherapyMethodForm(profile: profile, onNext: _onNext),
                 ),
                 _buildSection(
-                  context,
-                  "Nebenwirkungen",
-                  profile.therapySideEffects,
-                  Style.blues,
-                  profile,
-                  () =>
+                  context: context,
+                  name: "Nebenwirkungen",
+                  items: profile.therapySideEffects,
+                  colors: Style.blues,
+                  profile: profile,
+                  formBuilder: () =>
                       TherapySideEffectForm(profile: profile, onNext: _onNext),
                 ),
                 _buildSection(
-                  context,
-                  "Situation",
-                  profile.situationGeneral,
-                  Style.yellows,
-                  profile,
-                  () => LivingSituationForm(profile: profile, onNext: _onNext),
+                  context: context,
+                  name: "Situation",
+                  items: profile.situationGeneral,
+                  colors: Style.yellows,
+                  profile: profile,
+                  formBuilder: () =>
+                      LivingSituationForm(profile: profile, onNext: _onNext),
                 ),
                 _buildSection(
-                  context,
-                  "Interessen",
-                  profile.situationInterests,
-                  Style.yellows,
-                  profile,
-                  () => LivingSituationInterestsForm(
+                  context: context,
+                  name: "Interessen",
+                  items: profile.situationInterests,
+                  colors: Style.yellows,
+                  profile: profile,
+                  formBuilder: () => LivingSituationInterestsForm(
                       profile: profile, onNext: _onNext),
                 ),
               ],
@@ -121,16 +125,11 @@ class ProfileTab extends StatelessWidget {
     );
   }
 
-  Widget _bulidNameYearHeader(BuildContext context, UserProfileV2 profile) {
-    final editButton = IconButton(
-      icon: editIcon,
-      onPressed: () {
-        Flushbar(
-          message: 'TODO not implemented yet',
-          duration: Duration(seconds: 3),
-        ).show(context);
-      },
-    );
+  Widget _bulidNameYearHeader(
+    BuildContext context,
+    UserProfileV2 profile,
+    Function onNext,
+  ) {
     return Row(
       children: <Widget>[
         Expanded(
@@ -139,7 +138,7 @@ class ProfileTab extends StatelessWidget {
             padding: const EdgeInsets.all(12.0),
             child: TPCircleAvatarWithBorder(
               radius: 28,
-              child: Text(profile.name[0]),
+              child: Text((profile.name.length > 0) ? profile.name[0] : "?"),
               borderColor: Style.red,
               backgroundColor: Colors.white,
             ),
@@ -153,15 +152,25 @@ class ProfileTab extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Style.title(profile.name),
-                  editButton,
+                  _formatProfileName(profile),
+                  _buildEditButton(
+                    context: context,
+                    name: "Name",
+                    formBuilder: () =>
+                        UserNameForm(profile: profile, onNext: onNext),
+                  )
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Style.subtitle(profile.yearOfBirth.toString()),
-                  editButton,
+                  _formatYearOfBirth(profile),
+                  _buildEditButton(
+                    context: context,
+                    name: "Geburtsjahr",
+                    formBuilder: () =>
+                        UserAgeForm(profile: profile, onNext: onNext),
+                  )
                 ],
               ),
             ],
@@ -169,38 +178,16 @@ class ProfileTab extends StatelessWidget {
         ),
       ],
     );
-    return ListTile(
-      leading: TPCircleAvatarWithBorder(
-        radius: 28,
-        child: Text(profile.name[0]),
-        borderColor: Style.red,
-        backgroundColor: Colors.white,
-      ),
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Style.title(profile.name),
-          editButton,
-        ],
-      ),
-      subtitle: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Style.subtitle(profile.yearOfBirth.toString()),
-          editButton,
-        ],
-      ),
-    );
   }
 
-  Widget _buildSection(
+  Widget _buildSection({
     BuildContext context,
     String name,
     List<Item> items,
     List<Color> colors,
     UserProfileV2 profile,
     Function formBuilder,
-  ) {
+  }) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 12),
       child: Column(
@@ -210,23 +197,35 @@ class ProfileTab extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(name, style: TextStyle(fontWeight: FontWeight.w600)),
-              IconButton(
-                icon: Icon(Icons.edit, color: Style.textLightColor),
-                onPressed: () {
-                  ExtendedNavigator.of(context).pushNamed(
-                    Routes.profileEditPage,
-                    arguments: ProfileEditPageArguments(
-                      title: name,
-                      formBuilder: formBuilder,
-                    ),
-                  );
-                },
+              _buildEditButton(
+                context: context,
+                name: name,
+                formBuilder: formBuilder,
               ),
             ],
           ),
           _buildWrap(items, colors),
         ],
       ),
+    );
+  }
+
+  IconButton _buildEditButton({
+    BuildContext context,
+    String name,
+    Function formBuilder,
+  }) {
+    return IconButton(
+      icon: Icon(Icons.edit, color: Style.textLightColor),
+      onPressed: () {
+        ExtendedNavigator.of(context).pushNamed(
+          Routes.profileEditPage,
+          arguments: ProfileEditPageArguments(
+            title: name,
+            formBuilder: formBuilder,
+          ),
+        );
+      },
     );
   }
 
@@ -264,6 +263,24 @@ class ProfileTab extends StatelessWidget {
     );
   }
 
+  Text _formatProfileName(UserProfileV2 profile) {
+    return (profile.name.length > 0)
+        ? Style.title(profile.name)
+        : Text(
+            "Kein Name",
+            style: Style.titleTS.copyWith(color: Style.textLightColor),
+          );
+  }
+
+  Text _formatYearOfBirth(UserProfileV2 profile) {
+    return (profile.yearOfBirth != null)
+        ? Style.subtitle(profile.yearOfBirth.toString())
+        : Text(
+            "Kein Geburtsjahr",
+            style: Style.subtitleTS.copyWith(color: Style.textLightColor),
+          );
+  }
+
   // SIGNOUT
   Future<void> _confirmSignOut(BuildContext context) async {
     final bool didRequestSignOut = await PlatformAlertDialog(
@@ -292,6 +309,7 @@ class ProfileTab extends StatelessWidget {
 }
 
 // =============================================================================
+/// Edit a simple section
 class ProfileEditPage extends StatelessWidget {
   final String title;
   final Function formBuilder;
@@ -307,6 +325,7 @@ class ProfileEditPage extends StatelessWidget {
         padding: EdgeInsets.all(32),
         children: <Widget>[
           Style.title(title),
+          vspace32,
           formBuilder(),
         ],
       ),
