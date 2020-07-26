@@ -22,6 +22,10 @@ abstract class UserProfileV2 implements _$UserProfileV2 {
     List<Item> situationInterests,
   }) = _UserProfileV2;
 
+  String get yearOfBirthString {
+    return (yearOfBirth == null) ? "" : yearOfBirth.toString();
+  }
+
   Map<String, dynamic> toMap() {
     return {
       "name": name,
@@ -42,7 +46,7 @@ abstract class UserProfileV2 implements _$UserProfileV2 {
     if (data == null) {
       return UserProfileV2(
         id: documentID,
-        name: "Dummy :)",
+        name: "",
         yearOfBirth: null,
         diagnosisCancerType: [],
         diagnosisCancerProperties: [],

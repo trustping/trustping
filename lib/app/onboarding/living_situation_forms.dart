@@ -117,9 +117,7 @@ class _LivingSituationInterestsFormState
   @override
   void initState() {
     super.initState();
-    _selectedIDs = listify<UP.Item>(widget.profile.situationGeneral)
-        .map((e) => e.id)
-        .toSet();
+    _selectedIDs = widget.profile.situationInterestsIDs.toSet();
   }
 
   @override
