@@ -91,7 +91,8 @@ List<Ping> _pings = [
   ),
   Ping(
     subject: "Haarausfall",
-    request: "Hallo, ich moechte mich lorem ipsum...",
+    request:
+        "Hallo, ich moechte mich lorem ipsum dolor sit amet, consectetur adipisici ...",
     requestTS: "11. Aug",
     unread: 1,
     pingType: PingType.incoming,
@@ -148,7 +149,9 @@ class PingsTab extends StatelessWidget {
             ping.author == "Stefan" ? randomChoice(boxes) : trustpingImage100,
         titleString: ping.subject,
         trailingString: ping.requestTS,
-        subtitleString: ping.request.substring(0, 40) + "...",
+        subtitleString: ping.request.length > 40
+            ? ping.request.substring(0, 40) + "..."
+            : ping.request,
         onTap: () => ExtendedNavigator.of(context).pushNamed(
           Routes.pingPage,
           arguments: PingPageArguments(ping: ping),

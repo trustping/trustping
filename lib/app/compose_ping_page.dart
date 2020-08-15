@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:trust_ping_app/app/home/models/user_profile.dart';
 import 'package:trust_ping_app/app/home/view_models/ping_view_model.dart';
+import 'package:trust_ping_app/app/spaces.dart';
 import 'package:trust_ping_app/services/firestore_database.dart';
 import 'package:trust_ping_app/theme.dart';
 
@@ -24,7 +25,7 @@ class ComposePingPage extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
-            buildIntroText(),
+            // buildIntroText(),
             buildPingCard(context),
           ],
         ),
@@ -86,22 +87,48 @@ class ComposePingCard extends StatefulWidget {
 }
 
 class _ComposePingCardState extends State<ComposePingCard> {
-  final TextEditingController _textController = TextEditingController();
+  final TextEditingController _subjectTextController = TextEditingController();
+  final TextEditingController _msgTextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          const ListTile(leading: Icon(Icons.message), title: Text('Hallo!')),
-          _buildCustomMessageComposer(),
-          const ListTile(title: Text('Teile Details aus deinem Profil:')),
-          _buildSwitchSentences(),
-          buildButtonBar(context),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            vspace16,
+            ListTile(
+              title: Text(
+                'Wir haben potentielle Gespraechspartner fuer dich gefunden.',
+                style: Style.bodyTS.copyWith(fontWeight: FontWeight.w600),
+              ),
+              subtitle: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: Style.tiny(
+                    'Erstelle eine Ping-Nachricht und kontaktiere sie.'),
+              ),
+            ),
+            _buildCustomMessageComposer(),
+            vspace16,
+            ListTile(
+              title: Text(
+                "Moechtest du Infos aus deinem Profil teilen?",
+                style: Style.bodyTS.copyWith(fontWeight: FontWeight.w600),
+              ),
+              subtitle: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: Style.tiny(
+                    "Diese Informationen werden in Deiner Profilansicht hinterlegt"),
+              ),
+            ),
+            _buildSwitchSentences(),
+            buildButtonBar(context),
+          ],
+        ),
       ),
-      margin: EdgeInsets.all(16.0),
+      // margin: EdgeInsets.all(4.0),
       elevation: 8,
     );
   }
@@ -116,7 +143,8 @@ class _ComposePingCardState extends State<ComposePingCard> {
           onPressed: () {
             showConfirmDialog(
               context: context,
-              msg: widget.pingViewModel.compose(_textController.text),
+              subject: _subjectTextController.text,
+              msg: _msgTextController.text,
             );
           },
         ),
@@ -141,40 +169,44 @@ class _ComposePingCardState extends State<ComposePingCard> {
             setState(() => widget.pingViewModel.useYearOfBirth = value);
           },
         ),
-        SwitchSentenceWidget(
-          sentence: widget.pingViewModel.cancerTypeSentence,
-          active: widget.pingViewModel.useCancer,
-          onChanged: (bool value) {
-            setState(() => widget.pingViewModel.useCancer = value);
-          },
-        ),
-        SwitchSentenceWidget(
-          sentence: widget.pingViewModel.therapySentence,
-          active: widget.pingViewModel.useTherapy,
-          onChanged: (bool value) {
-            setState(() => widget.pingViewModel.useTherapy = value);
-          },
-        ),
-        SwitchSentenceWidget(
-          sentence: widget.pingViewModel.circumstancesSentence,
-          active: widget.pingViewModel.useCircumstances,
-          onChanged: (bool value) {
-            setState(() => widget.pingViewModel.useCircumstances = value);
-          },
-        ),
+        // SwitchSentenceWidget(
+        //   sentence: widget.pingViewModel.cancerTypeSentence,
+        //   active: widget.pingViewModel.useCancer,
+        //   onChanged: (bool value) {
+        //     setState(() => widget.pingViewModel.useCancer = value);
+        //   },
+        // ),
+        // SwitchSentenceWidget(
+        //   sentence: widget.pingViewModel.therapySentence,
+        //   active: widget.pingViewModel.useTherapy,
+        //   onChanged: (bool value) {
+        //     setState(() => widget.pingViewModel.useTherapy = value);
+        //   },
+        // ),
+        // SwitchSentenceWidget(
+        //   sentence: widget.pingViewModel.circumstancesSentence,
+        //   active: widget.pingViewModel.useCircumstances,
+        //   onChanged: (bool value) {
+        //     setState(() => widget.pingViewModel.useCircumstances = value);
+        //   },
+        // ),
       ],
     );
   }
 
-  showConfirmDialog({BuildContext context, String msg}) {
+  showConfirmDialog({BuildContext context, String subject, String msg}) {
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
           title: Text("Ping senden?"),
-          content: Text(
-            msg,
-            style: TextStyle(fontStyle: FontStyle.italic),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(subject, style: TextStyle(fontWeight: FontWeight.w600)),
+              Text(msg),
+            ],
           ),
           actions: <Widget>[
             FlatButton(
@@ -190,7 +222,7 @@ class _ComposePingCardState extends State<ComposePingCard> {
               textColor: Style.textColor,
               onPressed: () {
                 widget.pingViewModel.sendPing(
-                  widget.pingViewModel.compose(_textController.text),
+                  widget.pingViewModel.compose(_msgTextController.text),
                 );
                 ExtendedNavigator.of(context)
                     .popUntil((route) => route.isFirst);
@@ -207,20 +239,37 @@ class _ComposePingCardState extends State<ComposePingCard> {
     );
   }
 
-  Padding _buildCustomMessageComposer() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: TextField(
-        controller: _textController,
-        maxLines: 4,
-        textInputAction: TextInputAction.go,
-        onSubmitted: (value) {},
-        decoration: InputDecoration(
-          border: OutlineInputBorder(),
-          hintText:
-              "Schreibe eine persoenliche Nachricht an deinen Gespraechstpartner.",
+  Widget _buildCustomMessageComposer() {
+    return Column(
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextField(
+            controller: _subjectTextController,
+            maxLines: 1,
+            textInputAction: TextInputAction.go,
+            onSubmitted: (value) {},
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              hintText: "Betreff",
+            ),
+          ),
         ),
-      ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextField(
+            controller: _msgTextController,
+            maxLines: 4,
+            textInputAction: TextInputAction.go,
+            onSubmitted: (value) {},
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              hintText:
+                  "Schreibe eine persoenliche Nachricht an deinen Gespraechstpartner.",
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
