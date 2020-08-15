@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:trust_ping_app/app/home/chats_tab.dart';
 import 'package:trust_ping_app/app/home/pings_tab.dart';
 import 'package:trust_ping_app/app/home/profile_tab.dart';
+import 'package:trust_ping_app/common_widgets/images.dart';
 import 'package:trust_ping_app/routing/router.gr.dart';
 import 'package:trust_ping_app/theme.dart';
 
@@ -31,7 +32,11 @@ class _MainPageState extends State<MainPage> {
     return FloatingActionButton(
       onPressed: () =>
           ExtendedNavigator.of(context).pushNamed(Routes.composePingPage),
-      child: Icon(Icons.person_add),
+      child: Padding(
+        child: trustpingImage,
+        padding: EdgeInsets.all(8),
+      ),
+      backgroundColor: Colors.white,
     );
   }
 
