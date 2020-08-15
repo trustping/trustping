@@ -26,6 +26,38 @@ class ComposePingPage extends StatelessWidget {
         child: Column(
           children: <Widget>[
             // buildIntroText(),
+            Container(
+              color: Style.red,
+              height: 200,
+              width: 360,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text("Diagnose"),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  color: Style.blue,
+                  height: 300,
+                  width: 200,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("Therapie"),
+                  ),
+                ),
+                Container(
+                  color: Style.yellow,
+                  height: 300,
+                  width: 160,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("Therapie"),
+                  ),
+                ),
+              ],
+            ),
             buildPingCard(context),
           ],
         ),
