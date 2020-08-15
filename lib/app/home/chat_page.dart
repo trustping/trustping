@@ -141,17 +141,22 @@ class MessageListTile extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.fromLTRB(left, 8, right, 0),
       child: Card(
-        color: myMessage ? Style.red : Style.yellow,
+        color: myMessage ? Style.blue : Style.lightGray,
         child: Padding(
           child: Align(
-            child: Text(message.body, textAlign: textAlign),
+            child: Text(
+              message.body,
+              textAlign: textAlign,
+              style: TextStyle(
+                  color: myMessage ? Style.white : Style.textDarkColor),
+            ),
             alignment: alignment,
           ),
           padding: const EdgeInsets.all(10.0),
         ),
         elevation: 1.0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12.0),
+          borderRadius: BorderRadius.circular(4.0),
         ),
       ),
     );
