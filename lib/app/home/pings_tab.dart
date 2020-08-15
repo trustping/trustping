@@ -115,6 +115,14 @@ class PingsTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return ListView.separated(
+      itemBuilder: _buildItem,
+      itemCount: _pings.length,
+      separatorBuilder: (context, index) => Divider(),
+    );
+  }
+
+  Widget _buildItem(context, index) {
     final boxes = [
       SizedBox(
           height: 48,
@@ -131,31 +139,21 @@ class PingsTab extends StatelessWidget {
           child:
               Container(color: Style.yellow, child: Icon(Icons.arrow_forward))),
     ];
-    return ListView(
-      children: _pings.map(
-        (ping) {
-          return Padding(
-            padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-            child: TPStyledListTile(
-              // leading: Image.asset("assets/images/logo_2of3.png"),
-              leading: ping.author == "Stefan"
-                  ? randomChoice(boxes)
-                  : trustpingImage100,
-              titleString: pingTitle(ping),
-              trailingString: ping.requestTS,
-              subtitleString: ping.request.substring(0, 40) + "...",
-              onTap: () => ExtendedNavigator.of(context).pushNamed(
-                Routes.pingPage,
-                arguments: PingPageArguments(ping: ping),
-              ),
-            ),
-          );
-        },
-      ).toList(),
+    final ping = _pings[index];
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+      child: TPStyledListTile(
+        // leading: Image.asset("assets/images/logo_2of3.png"),
+        leading:
+            ping.author == "Stefan" ? randomChoice(boxes) : trustpingImage100,
+        titleString: ping.subject,
+        trailingString: ping.requestTS,
+        subtitleString: ping.request.substring(0, 40) + "...",
+        onTap: () => ExtendedNavigator.of(context).pushNamed(
+          Routes.pingPage,
+          arguments: PingPageArguments(ping: ping),
+        ),
+      ),
     );
   }
-}
-
-String pingTitle(Ping ping) {
-  return ping.subject;
 }
