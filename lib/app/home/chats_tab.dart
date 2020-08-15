@@ -98,7 +98,7 @@ class TPStyledListTile extends StatelessWidget {
         children: [
           Text(
             trailingString,
-            style: Style.tinyTS.copyWith(color: Style.blue),
+            style: Style.tinyTS.copyWith(color: Style.textLightColor),
           ),
         ],
       ),
