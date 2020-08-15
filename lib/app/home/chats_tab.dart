@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -33,14 +35,36 @@ class ChatListTile extends StatelessWidget {
   final Chat chat;
   final String myUserID;
 
+  String randomChoice(List<String> choices) =>
+      choices[Random().nextInt(choices.length)];
+
   @override
   Widget build(BuildContext context) {
     final otherParticipant = chat.otherParticipant(myUserID);
+
+    final fakeDates = [
+      "Mon 11. Aug",
+      "17:05",
+      "17:35",
+      "16:43",
+      "13:33",
+      "jetzt"
+    ];
+    final fakeNames = [
+      "Stefan",
+      "Anke",
+      "Alice",
+      "Bob",
+      "Susanne",
+      "Anonym",
+      "Veronika"
+    ];
+
     return TPStyledListTile(
-      titleString: "Anonym",
+      titleString: randomChoice(fakeNames),
       // subtitleString: chat.id,
       subtitleString: "Lorem ipsum dolor sit amet, consetetur",
-      trailingString: "Mon 11.",
+      trailingString: randomChoice(fakeDates),
       onTap: () {
         ExtendedNavigator.of(context).pushNamed(
           Routes.chatPage,
