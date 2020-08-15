@@ -71,7 +71,7 @@ class SignInPage extends StatelessWidget {
       padding: EdgeInsets.all(16.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           // SizedBox(height: 32.0),
           SizedBox(
@@ -81,6 +81,7 @@ class SignInPage extends StatelessWidget {
           vspace32,
           SizedBox(
             height: 45.0,
+            width: 250,
             child: RaisedButton(
               key: anonymousButtonKey,
               child: Text(Strings.goAnonymous),
@@ -99,13 +100,14 @@ class SignInPage extends StatelessWidget {
           vspace16,
           SizedBox(
             height: 45.0,
+            width: 250,
             child: RaisedButton(
               key: emailPasswordButtonKey,
               child: Text(Strings.signInWithEmailPassword),
               onPressed: viewModel.isLoading
                   ? null
                   : () => EmailPasswordSignInPageBuilder.show(context),
-              color: Style.yellow,
+              color: Style.lightGray,
             ),
           ),
           vspace16,
