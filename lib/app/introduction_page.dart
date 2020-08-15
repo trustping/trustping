@@ -15,11 +15,14 @@ class IntroductionPage extends StatelessWidget {
           title: 'Herzlich Willkommen bei Trustping!',
           body:
               "Trustping ist eine App mit der Menschen mit oder nach Krebs gezielt Gesprächspartner finden, ohne sensible Informationen aus der Hand zu geben.",
+          image: tpIntro1(),
+          // image: trustpingImage100,
         ),
         _buildPageViewModel(
           title: "Das ♥ von Trustping sind Transparenz und Integrität.",
           body:
               "Gesundheitsdaten verdienen den allerhöchsten Schutz. Deshalb entscheidest nur Du über deine Daten. Alle Einstellungen kannst Du jederzeit ändern oder Daten endgültig löschen",
+          image: tpIntro2(),
         ),
         _buildPageViewModel(
           title: "Der Ping aus Trustping",
@@ -28,6 +31,7 @@ class IntroductionPage extends StatelessWidget {
 Ein Ping ist eine Kontaktanfrage.
 
 Er enthält von Dir gewählte Interessen und Profilinformationen  und möglicherweise auch eine persönliche Nachricht oder Frage.""",
+          image: tpIntro3(),
           // subBody:
           //     "Usam quo tecus id modi omnihil laccusdant cerferchilia simusam quo tecus idem.",
         ),
@@ -35,18 +39,22 @@ Er enthält von Dir gewählte Interessen und Profilinformationen  und möglicher
           title: "Das Matching: So finden wir Deine Gesprächspartner",
           body:
               """Mithilfe eines Algorithmus und den vorhandenen Informationen wählen wir passende Menschen aus und senden ihnen Deinen Ping anonymisiert zu. Sie können darauf antworten und Du entscheidest, ob ein Chat beginnt.""",
+          image: tpIntro4(),
         ),
         _buildPageViewModel(
-            title: "Ping erhalten",
-            body:
-                """Wenn Du selbst einen Ping von jemandem erhältst, kannst Du darauf antworten. Reagiert Dein Gesprächspartner auf diese Antwort, beginnt ein Chat.
+          title: "Ping erhalten",
+          body:
+              """Wenn Du selbst einen Ping von jemandem erhältst, kannst Du darauf antworten. Reagiert Dein Gesprächspartner auf diese Antwort, beginnt ein Chat.
 
-Ein Ping, der für Dich nicht relevant ist, kannst Du ignorieren oder löschen."""),
-        // subBody:
+Ein Ping, der für Dich nicht relevant ist, kannst Du ignorieren oder löschen.""",
+          image: tpIntro5(),
+          // subBody:
+        ),
         _buildPageViewModel(
           title: "Los geht's",
           body:
               "Um für Dich passende Gesprächspartner zu finden, brauchen wir ein paar Informationen.",
+          image: tpIntro6(),
           // subBody:
           //     "Usam quo tecus id modi omnihil laccusdant cerferchilia simusam quo tecus idem.",
         ),
@@ -74,15 +82,16 @@ Ein Ping, der für Dich nicht relevant ist, kannst Du ignorieren oder löschen."
     String title,
     String body,
     String subBody,
+    Widget image,
   }) {
     const spacer = SizedBox(height: 16.0);
     return PageViewModel(
       titleWidget: Padding(
-        padding: const EdgeInsets.fromLTRB(16.0, 92.0, 24.0, 8.0),
+        padding: const EdgeInsets.fromLTRB(18.0, 92.0, 42.0, 8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            trustpingImage100,
+            image,
             spacer,
             Padding(
               padding: const EdgeInsets.fromLTRB(0.0, 0.0, 40, 0),
