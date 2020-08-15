@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,6 +8,7 @@ import 'package:trust_ping_app/common_widgets/list_items_builder.dart';
 import 'package:trust_ping_app/routing/router.gr.dart';
 import 'package:trust_ping_app/services/firestore_database.dart';
 import 'package:trust_ping_app/theme.dart';
+import 'package:trust_ping_app/utils.dart';
 
 class ChatsTab extends StatelessWidget {
   @override
@@ -34,9 +33,6 @@ class ChatListTile extends StatelessWidget {
   const ChatListTile({this.chat, this.myUserID});
   final Chat chat;
   final String myUserID;
-
-  String randomChoice(List<String> choices) =>
-      choices[Random().nextInt(choices.length)];
 
   @override
   Widget build(BuildContext context) {

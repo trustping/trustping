@@ -1,3 +1,5 @@
+import 'dart:math';
+
 /// Like python's dict.get("key", "default_value").
 extension DefaultMap<K, V> on Map<K, V> {
   V get(K key, V defaultValue) {
@@ -12,3 +14,5 @@ List<T> listify<T>(dynamic listlike) {
   if (listlike is Iterable) return List.from(listlike).cast<T>();
   return [listlike].cast<T>();
 }
+
+T randomChoice<T>(List<T> choices) => choices[Random().nextInt(choices.length)];
