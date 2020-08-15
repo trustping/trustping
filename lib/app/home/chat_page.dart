@@ -135,8 +135,8 @@ class MessageListTile extends StatelessWidget {
     final bool myMessage = userID == message.author;
     final alignment = myMessage ? Alignment.topRight : Alignment.topLeft;
     final textAlign = myMessage ? TextAlign.right : TextAlign.left;
-    final left = myMessage ? 80.0 : 0.0;
-    final right = myMessage ? 0.0 : 80.0;
+    final left = !myMessage ? 0.0 : 130.0;
+    final right = myMessage ? 0.0 : 130.0;
 
     return Padding(
       padding: EdgeInsets.fromLTRB(left, 8, right, 0),
