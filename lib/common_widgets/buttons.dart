@@ -48,7 +48,7 @@ class TPButton extends StatelessWidget {
     return TPButton(
       child: Style.body(text),
       onPressed: onPressed,
-      color: Style.yellow,
+      color: Style.lightGray,
       width: width,
       borderRadius: 4.0,
     );
