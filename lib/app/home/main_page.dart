@@ -30,8 +30,8 @@ class _MainPageState extends State<MainPage> {
 
   FloatingActionButton _buildFloatingActionButton(BuildContext context) {
     return FloatingActionButton(
-      onPressed: () =>
-          ExtendedNavigator.of(context).pushNamed(Routes.composePingPage),
+      onPressed: () => ExtendedNavigator.of(context)
+          .pushNamed(Routes.composePingSelectorPage),
       child: Padding(
         child: trustpingImage,
         padding: EdgeInsets.all(8),

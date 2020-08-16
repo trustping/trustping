@@ -5,8 +5,91 @@ import 'package:provider/provider.dart';
 import 'package:trust_ping_app/app/home/models/user_profile.dart';
 import 'package:trust_ping_app/app/home/view_models/ping_view_model.dart';
 import 'package:trust_ping_app/app/spaces.dart';
+import 'package:trust_ping_app/routing/router.gr.dart';
 import 'package:trust_ping_app/services/firestore_database.dart';
 import 'package:trust_ping_app/theme.dart';
+
+class ComposePingSelectorPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final gotoComposePingPage =
+        () => ExtendedNavigator.of(context).pushNamed(Routes.composePingPage);
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Ping senden"),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            _buildArea(
+              child: Text(
+                "Diagnose",
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+              ),
+              width: 1.0,
+              height: 0.35,
+              color: Style.red,
+              onTap: gotoComposePingPage,
+              context: context,
+            ),
+            Row(
+              children: <Widget>[
+                _buildArea(
+                  child: Text(
+                    "Therapie",
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.w600),
+                  ),
+                  onTap: gotoComposePingPage,
+                  context: context,
+                  color: Style.blue,
+                  height: 0.6,
+                  width: 0.62,
+                ),
+                _buildArea(
+                  child: Text(
+                    "Situation",
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.w600),
+                  ),
+                  onTap: gotoComposePingPage,
+                  context: context,
+                  color: Style.yellow,
+                  height: 0.6,
+                  width: 0.38,
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  InkWell _buildArea({
+    Function onTap,
+    BuildContext context,
+    Widget child,
+    Color color,
+    double height,
+    double width,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      child: Ink(
+        color: color,
+        height: MediaQuery.of(context).size.height * height,
+        width: MediaQuery.of(context).size.width * width,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: child,
+        ),
+      ),
+    );
+  }
+}
 
 class ComposePingPage extends StatelessWidget {
   @override
@@ -25,39 +108,6 @@ class ComposePingPage extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
-            // buildIntroText(),
-            Container(
-              color: Style.red,
-              height: 200,
-              width: 360,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text("Diagnose"),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  color: Style.blue,
-                  height: 300,
-                  width: 200,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text("Therapie"),
-                  ),
-                ),
-                Container(
-                  color: Style.yellow,
-                  height: 300,
-                  width: 160,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text("Therapie"),
-                  ),
-                ),
-              ],
-            ),
             buildPingCard(context),
           ],
         ),

@@ -39,6 +39,9 @@ class $Router {
   ComposePingPage composePingPage;
 
   @MaterialRoute()
+  ComposePingSelectorPage composePingSelectorPage;
+
+  @MaterialRoute()
   PingPage pingPage;
 
   @MaterialRoute()
