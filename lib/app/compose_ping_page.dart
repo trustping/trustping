@@ -12,9 +12,6 @@ import 'package:trust_ping_app/theme.dart';
 class ComposePingSelectorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final gotoComposePingPage =
-        () => ExtendedNavigator.of(context).pushNamed(Routes.composePingPage);
-
     return Scaffold(
       appBar: AppBar(
         title: Text("Ping senden"),
@@ -31,7 +28,6 @@ class ComposePingSelectorPage extends StatelessWidget {
               width: 1.0,
               height: 0.35,
               color: Style.red,
-              onTap: gotoComposePingPage,
               context: context,
             ),
             Row(
@@ -42,7 +38,6 @@ class ComposePingSelectorPage extends StatelessWidget {
                     style: TextStyle(
                         color: Colors.white, fontWeight: FontWeight.w600),
                   ),
-                  onTap: gotoComposePingPage,
                   context: context,
                   color: Style.blue,
                   height: 0.6,
@@ -54,7 +49,6 @@ class ComposePingSelectorPage extends StatelessWidget {
                     style: TextStyle(
                         color: Colors.white, fontWeight: FontWeight.w600),
                   ),
-                  onTap: gotoComposePingPage,
                   context: context,
                   color: Style.yellow,
                   height: 0.6,
@@ -69,7 +63,6 @@ class ComposePingSelectorPage extends StatelessWidget {
   }
 
   InkWell _buildArea({
-    Function onTap,
     BuildContext context,
     Widget child,
     Color color,
@@ -77,7 +70,9 @@ class ComposePingSelectorPage extends StatelessWidget {
     double width,
   }) {
     return InkWell(
-      onTap: onTap,
+      onTap: () => ExtendedNavigator.of(context).pushNamed(
+          Routes.composePingPage,
+          arguments: ComposePingPageArguments(backgroundColor: color)),
       child: Ink(
         color: color,
         height: MediaQuery.of(context).size.height * height,
@@ -92,26 +87,16 @@ class ComposePingSelectorPage extends StatelessWidget {
 }
 
 class ComposePingPage extends StatelessWidget {
+  final Color backgroundColor;
+  const ComposePingPage({Key key, this.backgroundColor}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Ping senden"),
       ),
-      body: buildBody(context),
-    );
-  }
-
-  Widget buildBody(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: <Widget>[
-            buildPingCard(context),
-          ],
-        ),
-      ),
+      body: SingleChildScrollView(child: buildPingCard(context)),
     );
   }
 
@@ -128,6 +113,7 @@ class ComposePingPage extends StatelessWidget {
               userProfile: userProfile,
               db: db,
             ),
+            backgroundColor: backgroundColor,
           );
         } else {
           return CircularProgressIndicator();
@@ -159,9 +145,11 @@ class ComposePingPage extends StatelessWidget {
 
 class ComposePingCard extends StatefulWidget {
   final PingViewModel pingViewModel;
+  final Color backgroundColor;
   const ComposePingCard({
     Key key,
     this.pingViewModel,
+    this.backgroundColor,
   }) : super(key: key);
 
   @override
@@ -174,44 +162,56 @@ class _ComposePingCardState extends State<ComposePingCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            vspace16,
-            ListTile(
-              title: Text(
-                'Wir haben potentielle Gespraechspartner fuer dich gefunden.',
-                style: Style.bodyTS.copyWith(fontWeight: FontWeight.w600),
-              ),
-              subtitle: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                child: Style.tiny(
-                    'Erstelle eine Ping-Nachricht und kontaktiere sie.'),
-              ),
-            ),
-            _buildCustomMessageComposer(),
-            vspace16,
-            ListTile(
-              title: Text(
-                "Moechtest du Infos aus deinem Profil teilen?",
-                style: Style.bodyTS.copyWith(fontWeight: FontWeight.w600),
-              ),
-              subtitle: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                child: Style.tiny(
-                    "Diese Informationen werden in Deiner Profilansicht hinterlegt"),
-              ),
-            ),
-            _buildSwitchSentences(),
-            buildButtonBar(context),
-          ],
+    return Stack(
+      children: <Widget>[
+        Container(
+          color: widget.backgroundColor,
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
         ),
-      ),
-      // margin: EdgeInsets.all(4.0),
-      elevation: 8,
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Card(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  vspace16,
+                  ListTile(
+                    title: Text(
+                      'Wir haben potentielle Gespraechspartner fuer dich gefunden.',
+                      style: Style.bodyTS.copyWith(fontWeight: FontWeight.w600),
+                    ),
+                    subtitle: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      child: Style.tiny(
+                          'Erstelle eine Ping-Nachricht und kontaktiere sie.'),
+                    ),
+                  ),
+                  _buildCustomMessageComposer(),
+                  vspace16,
+                  ListTile(
+                    title: Text(
+                      "Moechtest du Infos aus deinem Profil teilen?",
+                      style: Style.bodyTS.copyWith(fontWeight: FontWeight.w600),
+                    ),
+                    subtitle: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      child: Style.tiny(
+                          "Diese Informationen werden in Deiner Profilansicht hinterlegt"),
+                    ),
+                  ),
+                  _buildSwitchSentences(),
+                  buildButtonBar(context),
+                ],
+              ),
+            ),
+            // margin: EdgeInsets.all(4.0),
+            elevation: 8,
+          ),
+        ),
+      ],
     );
   }
 

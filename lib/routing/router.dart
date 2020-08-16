@@ -35,7 +35,10 @@ class $Router {
   @MaterialRoute(fullscreenDialog: false)
   UserProfilePage userProfilePage;
 
-  @MaterialRoute(fullscreenDialog: false)
+  @CustomRoute(
+    fullscreenDialog: false,
+    transitionsBuilder: TransitionsBuilders.zoomIn,
+  )
   ComposePingPage composePingPage;
 
   @MaterialRoute()
