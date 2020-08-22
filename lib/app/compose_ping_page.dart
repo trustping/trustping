@@ -185,8 +185,7 @@ class _ComposePingCardState extends State<ComposePingCard> {
                     ),
                     subtitle: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16),
-                      child: Style.tiny(
-                          'Erstelle eine Ping-Nachricht und kontaktiere sie.'),
+                      child: Style.tiny('Erstelle eine Ping-Nachricht.'),
                     ),
                   ),
                   _buildCustomMessageComposer(),
@@ -304,7 +303,7 @@ class _ComposePingCardState extends State<ComposePingCard> {
               textColor: Style.textColor,
               onPressed: () {
                 widget.pingViewModel.sendPing(
-                  widget.pingViewModel.compose(_msgTextController.text),
+                  _subjectTextController.text + "\n" + _msgTextController.text,
                 );
                 ExtendedNavigator.of(context)
                     .popUntil((route) => route.isFirst);
