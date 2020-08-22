@@ -4,8 +4,8 @@ import 'package:trust_ping_app/app/home/chats_tab.dart';
 import 'package:trust_ping_app/app/home/pings_tab.dart';
 import 'package:trust_ping_app/app/home/profile_tab.dart';
 import 'package:trust_ping_app/common_widgets/images.dart';
-import 'package:trust_ping_app/routing/router.gr.dart';
-import 'package:trust_ping_app/theme.dart';
+import 'package:trust_ping_app/router.gr.dart';
+import 'package:trust_ping_app/tpstyle.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -92,7 +92,7 @@ class _MainPageState extends State<MainPage> {
         ),
       ],
       currentIndex: _selectedIndex,
-      selectedItemColor: Style.red,
+      selectedItemColor: TPStyle.red,
       onTap: (int index) => setState(() => _selectedIndex = index),
     );
   }

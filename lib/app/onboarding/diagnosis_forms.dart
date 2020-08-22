@@ -5,7 +5,7 @@ import 'package:trust_ping_app/app/home/models/user_profile_v2.dart';
 import 'package:trust_ping_app/app/onboarding/utils.dart';
 import 'package:trust_ping_app/common_widgets/chips.dart';
 import 'package:trust_ping_app/services/firestore_database.dart';
-import 'package:trust_ping_app/theme.dart';
+import 'package:trust_ping_app/tpstyle.dart';
 import 'package:trust_ping_app/utils.dart';
 
 // =============================================================================
@@ -155,7 +155,7 @@ class _DiagnosisPropertiesFormState extends State<DiagnosisPropertiesForm> {
                     : _selectedIDs.remove(item.id);
               });
             },
-            colors: Style.reds,
+            colors: TPStyle.reds,
           );
         },
       ).toList(),
@@ -245,7 +245,7 @@ class _DiagnosisPhaseFormState extends State<DiagnosisPhaseForm> {
                     : _selectedIDs.remove(item.id);
               });
             },
-            colors: Style.reds,
+            colors: TPStyle.reds,
           );
         },
       ).toList(),

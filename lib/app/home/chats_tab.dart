@@ -5,9 +5,9 @@ import 'package:trust_ping_app/app/home/models/chat.dart';
 import 'package:trust_ping_app/app/home/models/user.dart';
 import 'package:trust_ping_app/common_widgets/avatar.dart';
 import 'package:trust_ping_app/common_widgets/list_items_builder.dart';
-import 'package:trust_ping_app/routing/router.gr.dart';
+import 'package:trust_ping_app/router.gr.dart';
 import 'package:trust_ping_app/services/firestore_database.dart';
-import 'package:trust_ping_app/theme.dart';
+import 'package:trust_ping_app/tpstyle.dart';
 import 'package:trust_ping_app/utils.dart';
 
 class ChatsTab extends StatelessWidget {
@@ -70,9 +70,9 @@ class ChatListTile extends StatelessWidget {
       leading: TPCircleAvatarWithBorder(
         child: Text(
           otherParticipant[0].toUpperCase(),
-          style: TextStyle(color: Style.red),
+          style: TextStyle(color: TPStyle.red),
         ),
-        borderColor: Style.red,
+        borderColor: TPStyle.red,
         backgroundColor: Colors.white,
         radius: 25,
       ),
@@ -98,7 +98,7 @@ class TPStyledListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ts = Style.bodyTS;
+    final ts = TPStyle.bodyTS;
     return ListTile(
       leading: leading,
       // title: Text(otherParticipant),
@@ -110,7 +110,7 @@ class TPStyledListTile extends StatelessWidget {
       subtitle: Text(
         subtitleString,
         // style: Style.tinyTS.copyWith(color: Style.textLightColor),
-        style: ts.copyWith(color: Style.textColor),
+        style: ts.copyWith(color: TPStyle.textColor),
       ),
       trailing: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -118,7 +118,7 @@ class TPStyledListTile extends StatelessWidget {
         children: [
           Text(
             trailingString,
-            style: Style.tinyTS.copyWith(color: Style.textLightColor),
+            style: TPStyle.tinyTS.copyWith(color: TPStyle.textLightColor),
           ),
         ],
       ),
