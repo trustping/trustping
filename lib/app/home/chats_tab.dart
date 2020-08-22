@@ -8,6 +8,7 @@ import 'package:trust_ping_app/common_widgets/list_items_builder.dart';
 import 'package:trust_ping_app/routing/router.gr.dart';
 import 'package:trust_ping_app/services/firestore_database.dart';
 import 'package:trust_ping_app/theme.dart';
+import 'package:trust_ping_app/utils.dart';
 
 class ChatsTab extends StatelessWidget {
   @override
@@ -36,11 +37,30 @@ class ChatListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final otherParticipant = chat.otherParticipant(myUserID);
+
+    final fakeDates = [
+      "Mon 11. Aug",
+      "17:05",
+      "17:35",
+      "16:43",
+      "13:33",
+      "jetzt"
+    ];
+    final fakeNames = [
+      "Stefan",
+      "Anke",
+      "Alice",
+      "Bob",
+      "Susanne",
+      "Anonym",
+      "Veronika"
+    ];
+
     return TPStyledListTile(
-      titleString: "Anonym",
+      titleString: randomChoice(fakeNames),
       // subtitleString: chat.id,
       subtitleString: "Lorem ipsum dolor sit amet, consetetur",
-      trailingString: "Mon 11.",
+      trailingString: randomChoice(fakeDates),
       onTap: () {
         ExtendedNavigator.of(context).pushNamed(
           Routes.chatPage,
@@ -98,7 +118,7 @@ class TPStyledListTile extends StatelessWidget {
         children: [
           Text(
             trailingString,
-            style: Style.tinyTS.copyWith(color: Style.blue),
+            style: Style.tinyTS.copyWith(color: Style.textLightColor),
           ),
         ],
       ),

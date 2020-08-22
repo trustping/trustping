@@ -84,8 +84,8 @@ class _OnboardingMainPageState extends State<OnboardingMainPage> {
         return buildOnboardingView(
           form: UserAgeForm(profile: profile, onNext: nextPage),
           context: context,
-          title: "Alter",
-          body: "Was ist dein Geburtsjahr?",
+          title: "Was ist dein Geburtsjahr?",
+          body: "",
           header: trustpingImage100,
         );
         break;

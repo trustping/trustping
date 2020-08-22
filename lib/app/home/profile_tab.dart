@@ -46,11 +46,6 @@ class ProfileTab extends StatelessWidget {
             child: ListView(
               padding: EdgeInsets.all(24),
               children: <Widget>[
-                Text("TODO move this button"),
-                _buildActionArea(context),
-                vspace16,
-                Divider(),
-                vspace16,
                 _bulidNameYearHeader(context, profile, _onNext),
                 _buildSection(
                   context: context,
@@ -115,6 +110,10 @@ class ProfileTab extends StatelessWidget {
                   formBuilder: () => LivingSituationInterestsForm(
                       profile: profile, onNext: _onNext),
                 ),
+                vspace40,
+                Divider(),
+                vspace40,
+                _buildActionArea(context),
               ],
             ),
           );
@@ -251,7 +250,7 @@ class ProfileTab extends StatelessWidget {
 
   RaisedButton _buildActionArea(BuildContext context) {
     return RaisedButton(
-      color: Style.yellow,
+      color: Style.lightGray,
       child: Text(
         Strings.logout,
         style: TextStyle(

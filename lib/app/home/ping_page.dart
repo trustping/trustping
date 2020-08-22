@@ -42,13 +42,16 @@ class PingPage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Center(
+          Container(
+            alignment: Alignment.topRight,
             child: Text(
               ping.requestTS,
               style: Style.tinyTS.copyWith(fontWeight: FontWeight.w600),
-              textAlign: TextAlign.justify,
+              textAlign: TextAlign.right,
             ),
           ),
+          Style.title(ping.subject),
+          vspace8,
           vspace16,
           Style.body(ping.request),
         ],
@@ -86,7 +89,7 @@ class PingPage extends StatelessWidget {
         return Column(
           children: <Widget>[
             vspace8,
-            Center(child: Text("Noch keine Antworten...")),
+            Style.tiny("Warte auf Antworten..."),
             vspace16,
           ],
         );
@@ -133,13 +136,13 @@ class PingPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
                     Text(
-                      "Von Hella",
+                      response.authorName,
                       style: TextStyle(fontWeight: FontWeight.w500),
                     ),
-                    Text(ping.requestTS),
+                    Style.tiny(ping.requestTS),
                   ],
                 ),
-                Text("Ftensierantei rsantie arnstinar"),
+                Text(response.response),
               ],
             ),
           ),
