@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:trust_ping_app/common_widgets/list_items_builder.dart';
 import 'package:trust_ping_app/services/firestore_database.dart';
-import 'package:trust_ping_app/theme.dart';
+import 'package:trust_ping_app/tpstyle.dart';
 
 import 'models/chat.dart';
 import 'models/message.dart';
@@ -141,14 +141,14 @@ class MessageListTile extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.fromLTRB(left, 8, right, 0),
       child: Card(
-        color: myMessage ? Style.blue : Style.lightGray,
+        color: myMessage ? TPStyle.blue : TPStyle.lightGray,
         child: Padding(
           child: Align(
             child: Text(
               message.body,
               textAlign: textAlign,
               style: TextStyle(
-                  color: myMessage ? Style.white : Style.textDarkColor),
+                  color: myMessage ? TPStyle.white : TPStyle.textDarkColor),
             ),
             alignment: alignment,
           ),

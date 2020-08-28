@@ -1,4 +1,4 @@
-import 'package:trust_ping_app/app/home/main_page.dart';
+import 'package:trust_ping_app/app/home/page.dart';
 import 'package:trust_ping_app/app/introduction_page.dart';
 import 'package:trust_ping_app/app/sign_in/sign_in_page.dart';
 import 'package:flutter/material.dart';

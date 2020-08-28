@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:trust_ping_app/app/home/models/user_profile.dart';
 import 'package:trust_ping_app/app/home/view_models/ping_view_model.dart';
-import 'package:trust_ping_app/app/spaces.dart';
-import 'package:trust_ping_app/routing/router.gr.dart';
+import 'package:trust_ping_app/common_widgets/spaces.dart';
+import 'package:trust_ping_app/router.gr.dart';
 import 'package:trust_ping_app/services/firestore_database.dart';
-import 'package:trust_ping_app/theme.dart';
+import 'package:trust_ping_app/tpstyle.dart';
 
 class ComposePingSelectorPage extends StatelessWidget {
   @override
@@ -27,7 +27,7 @@ class ComposePingSelectorPage extends StatelessWidget {
               ),
               width: 1.0,
               height: 0.35,
-              color: Style.red,
+              color: TPStyle.red,
               context: context,
             ),
             Row(
@@ -39,7 +39,7 @@ class ComposePingSelectorPage extends StatelessWidget {
                         color: Colors.white, fontWeight: FontWeight.w600),
                   ),
                   context: context,
-                  color: Style.blue,
+                  color: TPStyle.blue,
                   height: 0.6,
                   width: 0.62,
                 ),
@@ -50,7 +50,7 @@ class ComposePingSelectorPage extends StatelessWidget {
                         color: Colors.white, fontWeight: FontWeight.w600),
                   ),
                   context: context,
-                  color: Style.yellow,
+                  color: TPStyle.yellow,
                   height: 0.6,
                   width: 0.38,
                 ),
@@ -181,11 +181,12 @@ class _ComposePingCardState extends State<ComposePingCard> {
                   ListTile(
                     title: Text(
                       'Wir haben potentielle Gespraechspartner fuer dich gefunden.',
-                      style: Style.bodyTS.copyWith(fontWeight: FontWeight.w600),
+                      style:
+                          TPStyle.bodyTS.copyWith(fontWeight: FontWeight.w600),
                     ),
                     subtitle: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16),
-                      child: Style.tiny('Erstelle eine Ping-Nachricht.'),
+                      child: TPStyle.tiny('Erstelle eine Ping-Nachricht.'),
                     ),
                   ),
                   _buildCustomMessageComposer(),
@@ -193,11 +194,12 @@ class _ComposePingCardState extends State<ComposePingCard> {
                   ListTile(
                     title: Text(
                       "Moechtest du Infos aus deinem Profil teilen?",
-                      style: Style.bodyTS.copyWith(fontWeight: FontWeight.w600),
+                      style:
+                          TPStyle.bodyTS.copyWith(fontWeight: FontWeight.w600),
                     ),
                     subtitle: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16),
-                      child: Style.tiny(
+                      child: TPStyle.tiny(
                           "Diese Informationen werden in Deiner Profilansicht hinterlegt"),
                     ),
                   ),
@@ -219,8 +221,8 @@ class _ComposePingCardState extends State<ComposePingCard> {
       children: <Widget>[
         FlatButton(
           child: const Text('weiter'),
-          color: Style.yellow,
-          textColor: Style.textColor,
+          color: TPStyle.yellow,
+          textColor: TPStyle.textColor,
           onPressed: () {
             showConfirmDialog(
               context: context,
@@ -292,15 +294,15 @@ class _ComposePingCardState extends State<ComposePingCard> {
           actions: <Widget>[
             FlatButton(
               child: Text("abbrechen"),
-              textColor: Style.textLightColor,
+              textColor: TPStyle.textLightColor,
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             FlatButton(
               child: Text("senden"),
-              color: Style.yellow,
-              textColor: Style.textColor,
+              color: TPStyle.yellow,
+              textColor: TPStyle.textColor,
               onPressed: () {
                 widget.pingViewModel.sendPing(
                   _subjectTextController.text + "\n" + _msgTextController.text,

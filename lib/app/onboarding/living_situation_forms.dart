@@ -5,7 +5,7 @@ import 'package:trust_ping_app/app/onboarding/utils.dart';
 import 'package:trust_ping_app/common_widgets/chips.dart';
 import 'package:trust_ping_app/constants/strings.dart';
 import 'package:trust_ping_app/services/firestore_database.dart';
-import 'package:trust_ping_app/theme.dart';
+import 'package:trust_ping_app/tpstyle.dart';
 import 'package:trust_ping_app/utils.dart';
 
 // =============================================================================
@@ -60,7 +60,7 @@ class _LivingSituationFormState extends State<LivingSituationForm> {
         return TPFilterChip(
           label: item.text,
           selected: _selectedIDs.contains(item.id),
-          colors: Style.yellows,
+          colors: TPStyle.yellows,
           onSelected: (bool selected) {
             setState(() => selected
                 ? _selectedIDs.add(item.id)
@@ -147,7 +147,7 @@ class _LivingSituationInterestsFormState
         return TPFilterChip(
           label: item.text,
           selected: _selectedIDs.contains(item.id),
-          colors: Style.yellows,
+          colors: TPStyle.yellows,
           onSelected: (bool selected) {
             setState(() => selected
                 ? _selectedIDs.add(item.id)

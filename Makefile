@@ -8,7 +8,7 @@ watch:
 build:
 	flutter packages pub run build_runner build
 
-.PHONY: build
+.PHONY: test
 #: Run tests
 test:
 	flutter test

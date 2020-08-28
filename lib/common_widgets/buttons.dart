@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:trust_ping_app/theme.dart';
+import 'package:trust_ping_app/tpstyle.dart';
 
 @immutable
 class TPButton extends StatelessWidget {
@@ -46,9 +46,9 @@ class TPButton extends StatelessWidget {
     width = 180.0,
   }) {
     return TPButton(
-      child: Style.body(text),
+      child: TPStyle.body(text),
       onPressed: onPressed,
-      color: Style.lightGray,
+      color: TPStyle.lightGray,
       width: width,
       borderRadius: 4.0,
     );
@@ -66,7 +66,7 @@ class TPButton extends StatelessWidget {
         style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
       ),
       onPressed: onPressed,
-      textColor: Style.textLightColor,
+      textColor: TPStyle.textLightColor,
       width: width,
       borderRadius: 4.0,
     );

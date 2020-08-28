@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:trust_ping_app/app/spaces.dart';
+import 'package:trust_ping_app/common_widgets/spaces.dart';
 import 'package:trust_ping_app/common_widgets/buttons.dart';
 import 'package:trust_ping_app/constants/strings.dart';
-import 'package:trust_ping_app/theme.dart';
+import 'package:trust_ping_app/tpstyle.dart';
 
 Widget buildOnboardingView({
   BuildContext context,
@@ -18,9 +18,9 @@ Widget buildOnboardingView({
         children: <Widget>[
           header,
           vspace40,
-          Style.title(title),
+          TPStyle.title(title),
           vspace16,
-          Style.body(body),
+          TPStyle.body(body),
           vspace16,
           form,
           vspace32,
@@ -74,7 +74,7 @@ class TPProgressIndicator extends StatelessWidget {
         if (section != null)
           Text(
             section,
-            style: Style.tinyTS.copyWith(color: colors[0]),
+            style: TPStyle.tinyTS.copyWith(color: colors[0]),
           ),
         Row(
           children: List.generate(n, (index) => index < i ? doneDot : todoDot),

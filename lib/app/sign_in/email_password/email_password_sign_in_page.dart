@@ -4,7 +4,7 @@ import 'package:trust_ping_app/common_widgets/form_submit_button.dart';
 import 'package:trust_ping_app/common_widgets/platform_alert_dialog.dart';
 import 'package:trust_ping_app/common_widgets/platform_exception_alert_dialog.dart';
 import 'package:trust_ping_app/constants/strings.dart';
-import 'package:trust_ping_app/routing/router.gr.dart';
+import 'package:trust_ping_app/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';

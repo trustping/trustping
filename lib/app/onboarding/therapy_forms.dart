@@ -4,7 +4,7 @@ import 'package:trust_ping_app/app/home/models/user_profile_v2.dart' as UP;
 import 'package:trust_ping_app/app/onboarding/utils.dart';
 import 'package:trust_ping_app/common_widgets/chips.dart';
 import 'package:trust_ping_app/services/firestore_database.dart';
-import 'package:trust_ping_app/theme.dart';
+import 'package:trust_ping_app/tpstyle.dart';
 import 'package:trust_ping_app/utils.dart';
 
 // =============================================================================
@@ -60,7 +60,7 @@ class _TherapyMethodFormState extends State<TherapyMethodForm> {
         return TPFilterChip(
           label: item.text,
           selected: _selectedIDs.contains(item.id),
-          colors: Style.blues,
+          colors: TPStyle.blues,
           onSelected: (bool selected) {
             setState(() => selected
                 ? _selectedIDs.add(item.id)
@@ -144,7 +144,7 @@ class _TherapySideEffectFormState extends State<TherapySideEffectForm> {
         return TPFilterChip(
           label: item.text,
           selected: _selectedIDs.contains(item.id),
-          colors: Style.blues,
+          colors: TPStyle.blues,
           onSelected: (bool selected) {
             setState(() => selected
                 ? _selectedIDs.add(item.id)

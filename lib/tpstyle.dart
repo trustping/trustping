@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// This defines the entire style for the Trustping app
-class Style {
+class TPStyle {
   // COLORS
   static const Color textColor = Color.fromRGBO(48, 61, 68, 1.0);
   static const Color textLightColor = Color.fromRGBO(143, 143, 143, 1.0);
@@ -59,7 +59,7 @@ class Style {
     height: 1.2,
     color: textColor,
   );
-  static MaterialColor tpColors = const MaterialColor(
+  static MaterialColor colors = const MaterialColor(
     0xFFFFFFFF,
     const <int, Color>{
       50: const Color(0xFFFFFFFF),
@@ -76,7 +76,6 @@ class Style {
   );
   static ThemeData themeData = ThemeData(
     fontFamily: 'Inter',
-    // primarySwatch: tpColors,
     primaryColor: Colors.white,
     accentColor: yellow,
     textTheme: TextTheme(

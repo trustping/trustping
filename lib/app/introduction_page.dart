@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:trust_ping_app/common_widgets/images.dart';
-import 'package:trust_ping_app/theme.dart';
+import 'package:trust_ping_app/tpstyle.dart';
 
 class IntroductionPage extends StatelessWidget {
   final Function onDone;
@@ -95,12 +95,12 @@ Ein Ping, der für Dich nicht relevant ist, kannst Du ignorieren oder löschen."
             spacer,
             Padding(
               padding: const EdgeInsets.fromLTRB(0.0, 0.0, 40, 0),
-              child: Style.title(title),
+              child: TPStyle.title(title),
             ),
             spacer,
-            Style.body(body),
+            TPStyle.body(body),
             if (subBody != null) spacer,
-            if (subBody != null) Style.tiny(subBody)
+            if (subBody != null) TPStyle.tiny(subBody)
           ],
         ),
       ),

@@ -2,8 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:trust_ping_app/app/home/chats_tab.dart';
 import 'package:trust_ping_app/common_widgets/images.dart';
-import 'package:trust_ping_app/routing/router.gr.dart';
-import 'package:trust_ping_app/theme.dart';
+import 'package:trust_ping_app/router.gr.dart';
+import 'package:trust_ping_app/tpstyle.dart';
 import 'package:trust_ping_app/utils.dart';
 
 class Ping {
@@ -128,17 +128,18 @@ class PingsTab extends StatelessWidget {
       SizedBox(
           height: 48,
           width: 48,
-          child: Container(color: Style.red, child: Icon(Icons.arrow_forward))),
+          child:
+              Container(color: TPStyle.red, child: Icon(Icons.arrow_forward))),
       SizedBox(
           height: 48,
           width: 48,
           child:
-              Container(color: Style.blue, child: Icon(Icons.arrow_forward))),
+              Container(color: TPStyle.blue, child: Icon(Icons.arrow_forward))),
       SizedBox(
           height: 48,
           width: 48,
-          child:
-              Container(color: Style.yellow, child: Icon(Icons.arrow_forward))),
+          child: Container(
+              color: TPStyle.yellow, child: Icon(Icons.arrow_forward))),
     ];
     final ping = _pings[index];
     return Padding(

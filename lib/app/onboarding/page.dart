@@ -7,12 +7,12 @@ import 'package:trust_ping_app/app/home/models/user_profile_v2.dart';
 import 'package:trust_ping_app/app/onboarding/diagnosis_forms.dart';
 import 'package:trust_ping_app/app/onboarding/living_situation_forms.dart';
 import 'package:trust_ping_app/app/onboarding/therapy_forms.dart';
-import 'package:trust_ping_app/app/onboarding/user_onboarding_page.dart';
+import 'package:trust_ping_app/app/onboarding/user_forms.dart';
 import 'package:trust_ping_app/app/onboarding/utils.dart';
 import 'package:trust_ping_app/common_widgets/images.dart';
 import 'package:trust_ping_app/constants/strings.dart';
 import 'package:trust_ping_app/services/firestore_database.dart';
-import 'package:trust_ping_app/theme.dart';
+import 'package:trust_ping_app/tpstyle.dart';
 
 // Pageviews for all the onboarding parts
 class OnboardingMainPage extends StatefulWidget {
@@ -100,7 +100,7 @@ class _OnboardingMainPageState extends State<OnboardingMainPage> {
             i: 1,
             n: 3,
             section: "Diagnose",
-            colors: Style.reds,
+            colors: TPStyle.reds,
           ),
         );
         break;
@@ -115,7 +115,7 @@ class _OnboardingMainPageState extends State<OnboardingMainPage> {
             i: 2,
             n: 3,
             section: "Diagnose",
-            colors: Style.reds,
+            colors: TPStyle.reds,
           ),
         );
         break;
@@ -130,7 +130,7 @@ class _OnboardingMainPageState extends State<OnboardingMainPage> {
             i: 3,
             n: 3,
             section: "Diagnose",
-            colors: Style.reds,
+            colors: TPStyle.reds,
           ),
         );
         break;
@@ -146,7 +146,7 @@ class _OnboardingMainPageState extends State<OnboardingMainPage> {
             i: 1,
             n: 2,
             section: "Therapie",
-            colors: Style.blues,
+            colors: TPStyle.blues,
           ),
         );
         break;
@@ -162,7 +162,7 @@ class _OnboardingMainPageState extends State<OnboardingMainPage> {
             i: 2,
             n: 2,
             section: "Therapie",
-            colors: Style.blues,
+            colors: TPStyle.blues,
           ),
         );
         break;
@@ -178,7 +178,7 @@ class _OnboardingMainPageState extends State<OnboardingMainPage> {
             i: 1,
             n: 2,
             section: "Situation",
-            colors: Style.yellows,
+            colors: TPStyle.yellows,
           ),
         );
         break;
@@ -199,7 +199,7 @@ class _OnboardingMainPageState extends State<OnboardingMainPage> {
             i: 2,
             n: 2,
             section: "Situation",
-            colors: Style.yellows,
+            colors: TPStyle.yellows,
           ),
         );
         break;
@@ -207,7 +207,7 @@ class _OnboardingMainPageState extends State<OnboardingMainPage> {
       default:
         return Container(
           child: Center(child: Text("We should not be here")),
-          color: Style.red,
+          color: TPStyle.red,
         );
     }
   }

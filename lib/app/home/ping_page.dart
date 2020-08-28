@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:trust_ping_app/app/home/pings_tab.dart';
-import 'package:trust_ping_app/app/spaces.dart';
+import 'package:trust_ping_app/common_widgets/spaces.dart';
 import 'package:trust_ping_app/common_widgets/avatar.dart';
-import 'package:trust_ping_app/theme.dart';
+import 'package:trust_ping_app/tpstyle.dart';
 
 class PingPage extends StatelessWidget {
   const PingPage({Key key, @required this.ping}) : super(key: key);
@@ -46,14 +46,14 @@ class PingPage extends StatelessWidget {
             alignment: Alignment.topRight,
             child: Text(
               ping.requestTS,
-              style: Style.tinyTS.copyWith(fontWeight: FontWeight.w600),
+              style: TPStyle.tinyTS.copyWith(fontWeight: FontWeight.w600),
               textAlign: TextAlign.right,
             ),
           ),
-          Style.title(ping.subject),
+          TPStyle.title(ping.subject),
           vspace8,
           vspace16,
-          Style.body(ping.request),
+          TPStyle.body(ping.request),
         ],
       ),
     );
@@ -89,7 +89,7 @@ class PingPage extends StatelessWidget {
         return Column(
           children: <Widget>[
             vspace8,
-            Style.tiny("Warte auf Antworten..."),
+            TPStyle.tiny("Warte auf Antworten..."),
             vspace16,
           ],
         );
@@ -116,8 +116,8 @@ class PingPage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: TPCircleAvatarWithBorder(
-            borderColor: Style.red,
-            backgroundColor: Style.blue,
+            borderColor: TPStyle.red,
+            backgroundColor: TPStyle.blue,
             radius: 20,
             child: Text("P"),
           ),
@@ -126,7 +126,7 @@ class PingPage extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(8.0),
             margin: const EdgeInsets.all(8.0),
-            color: Style.lightGray,
+            color: TPStyle.lightGray,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -139,7 +139,7 @@ class PingPage extends StatelessWidget {
                       response.authorName,
                       style: TextStyle(fontWeight: FontWeight.w500),
                     ),
-                    Style.tiny(ping.requestTS),
+                    TPStyle.tiny(ping.requestTS),
                   ],
                 ),
                 Text(response.response),
@@ -183,12 +183,12 @@ class PingPage extends StatelessWidget {
         FlatButton(
           onPressed: () {},
           child: Text("loeschen"),
-          textColor: Style.textLightColor,
+          textColor: TPStyle.textLightColor,
         ),
         FlatButton(
           onPressed: () {},
           child: Text("antworten"),
-          textColor: Style.blue,
+          textColor: TPStyle.blue,
         ),
       ],
     );
@@ -201,12 +201,12 @@ class PingPage extends StatelessWidget {
           FlatButton(
             onPressed: () {},
             child: Text("loeschen"),
-            textColor: Style.textLightColor,
+            textColor: TPStyle.textLightColor,
           ),
           FlatButton(
             onPressed: () {},
             child: Text("Chat beginnen"),
-            textColor: Style.blue,
+            textColor: TPStyle.blue,
           ),
         ],
       );
@@ -219,7 +219,7 @@ class PingPage extends StatelessWidget {
             "zum Chat",
             style: TextStyle(fontWeight: FontWeight.w500),
           ),
-          textColor: Style.blue,
+          textColor: TPStyle.blue,
         ),
       ],
     );

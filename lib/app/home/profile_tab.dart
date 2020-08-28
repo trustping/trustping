@@ -6,21 +6,21 @@ import 'package:trust_ping_app/app/home/models/user_profile_v2.dart';
 import 'package:trust_ping_app/app/onboarding/diagnosis_forms.dart';
 import 'package:trust_ping_app/app/onboarding/living_situation_forms.dart';
 import 'package:trust_ping_app/app/onboarding/therapy_forms.dart';
-import 'package:trust_ping_app/app/onboarding/user_onboarding_page.dart';
-import 'package:trust_ping_app/app/spaces.dart';
+import 'package:trust_ping_app/app/onboarding/user_forms.dart';
+import 'package:trust_ping_app/common_widgets/spaces.dart';
 import 'package:trust_ping_app/common_widgets/avatar.dart';
 import 'package:trust_ping_app/common_widgets/chips.dart';
 import 'package:trust_ping_app/common_widgets/platform_alert_dialog.dart';
 import 'package:trust_ping_app/common_widgets/platform_exception_alert_dialog.dart';
 import 'package:trust_ping_app/constants/strings.dart';
-import 'package:trust_ping_app/routing/router.gr.dart';
+import 'package:trust_ping_app/router.gr.dart';
 import 'package:trust_ping_app/services/firebase_auth_service.dart';
 import 'package:trust_ping_app/services/firestore_database.dart';
-import 'package:trust_ping_app/theme.dart';
+import 'package:trust_ping_app/tpstyle.dart';
 
 class ProfileTab extends StatelessWidget {
   const ProfileTab({Key key}) : super(key: key);
-  static final editIcon = Icon(Icons.edit, color: Style.textLightColor);
+  static final editIcon = Icon(Icons.edit, color: TPStyle.textLightColor);
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class ProfileTab extends StatelessWidget {
                   context: context,
                   name: "Tumorart",
                   items: profile.diagnosisCancerType,
-                  colors: Style.reds,
+                  colors: TPStyle.reds,
                   profile: profile,
                   formBuilder: () =>
                       DiagnosisCancerForm(profile: profile, onNext: _onNext),
@@ -60,7 +60,7 @@ class ProfileTab extends StatelessWidget {
                   context: context,
                   name: "Diagnose/Eigenschaften",
                   items: profile.diagnosisCancerProperties,
-                  colors: Style.reds,
+                  colors: TPStyle.reds,
                   profile: profile,
                   formBuilder: () => DiagnosisPropertiesForm(
                       profile: profile, onNext: _onNext),
@@ -69,7 +69,7 @@ class ProfileTab extends StatelessWidget {
                   context: context,
                   name: "Krankheitsphase",
                   items: profile.diagnosisPhase,
-                  colors: Style.reds,
+                  colors: TPStyle.reds,
                   profile: profile,
                   formBuilder: () =>
                       DiagnosisPhaseForm(profile: profile, onNext: _onNext),
@@ -78,7 +78,7 @@ class ProfileTab extends StatelessWidget {
                   context: context,
                   name: "Therapie",
                   items: profile.therapyMethods,
-                  colors: Style.blues,
+                  colors: TPStyle.blues,
                   profile: profile,
                   formBuilder: () =>
                       TherapyMethodForm(profile: profile, onNext: _onNext),
@@ -87,7 +87,7 @@ class ProfileTab extends StatelessWidget {
                   context: context,
                   name: "Nebenwirkungen",
                   items: profile.therapySideEffects,
-                  colors: Style.blues,
+                  colors: TPStyle.blues,
                   profile: profile,
                   formBuilder: () =>
                       TherapySideEffectForm(profile: profile, onNext: _onNext),
@@ -96,7 +96,7 @@ class ProfileTab extends StatelessWidget {
                   context: context,
                   name: "Situation",
                   items: profile.situationGeneral,
-                  colors: Style.yellows,
+                  colors: TPStyle.yellows,
                   profile: profile,
                   formBuilder: () =>
                       LivingSituationForm(profile: profile, onNext: _onNext),
@@ -105,7 +105,7 @@ class ProfileTab extends StatelessWidget {
                   context: context,
                   name: "Interessen",
                   items: profile.situationInterests,
-                  colors: Style.yellows,
+                  colors: TPStyle.yellows,
                   profile: profile,
                   formBuilder: () => LivingSituationInterestsForm(
                       profile: profile, onNext: _onNext),
@@ -138,7 +138,7 @@ class ProfileTab extends StatelessWidget {
             child: TPCircleAvatarWithBorder(
               radius: 28,
               child: Text((profile.name.length > 0) ? profile.name[0] : "?"),
-              borderColor: Style.red,
+              borderColor: TPStyle.red,
               backgroundColor: Colors.white,
             ),
           ),
@@ -215,7 +215,7 @@ class ProfileTab extends StatelessWidget {
     Function formBuilder,
   }) {
     return IconButton(
-      icon: Icon(Icons.edit, color: Style.textLightColor),
+      icon: Icon(Icons.edit, color: TPStyle.textLightColor),
       onPressed: () {
         ExtendedNavigator.of(context).pushNamed(
           Routes.profileEditPage,
@@ -232,7 +232,7 @@ class ProfileTab extends StatelessWidget {
     if (items.length == 0) {
       return Text(
         "Nichts aus­ge­wählt.",
-        style: Style.bodyTS.copyWith(color: Style.textLightColor),
+        style: TPStyle.bodyTS.copyWith(color: TPStyle.textLightColor),
       );
     }
     return Wrap(
@@ -250,7 +250,7 @@ class ProfileTab extends StatelessWidget {
 
   RaisedButton _buildActionArea(BuildContext context) {
     return RaisedButton(
-      color: Style.lightGray,
+      color: TPStyle.lightGray,
       child: Text(
         Strings.logout,
         style: TextStyle(
@@ -264,19 +264,19 @@ class ProfileTab extends StatelessWidget {
 
   Text _formatProfileName(UserProfileV2 profile) {
     return (profile.name.length > 0)
-        ? Style.title(profile.name)
+        ? TPStyle.title(profile.name)
         : Text(
             "Kein Name",
-            style: Style.titleTS.copyWith(color: Style.textLightColor),
+            style: TPStyle.titleTS.copyWith(color: TPStyle.textLightColor),
           );
   }
 
   Text _formatYearOfBirth(UserProfileV2 profile) {
     return (profile.yearOfBirth != null)
-        ? Style.subtitle(profile.yearOfBirth.toString())
+        ? TPStyle.subtitle(profile.yearOfBirth.toString())
         : Text(
             "Kein Geburtsjahr",
-            style: Style.subtitleTS.copyWith(color: Style.textLightColor),
+            style: TPStyle.subtitleTS.copyWith(color: TPStyle.textLightColor),
           );
   }
 
@@ -323,7 +323,7 @@ class ProfileEditPage extends StatelessWidget {
       body: ListView(
         padding: EdgeInsets.all(32),
         children: <Widget>[
-          Style.title(title),
+          TPStyle.title(title),
           vspace32,
           formBuilder(),
         ],
